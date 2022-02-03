@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Thursday, 3rd February 2022 10:11:45 am
-# @modified Thursday, 3rd February 2022 8:24:03 pm
+# @modified Thursday, 3rd February 2022 8:31:04 pm
 # @project  cpp-utils
 # @brief
 #    
@@ -37,17 +37,19 @@ endif()
 
 # ========================================================== Dependencies ========================================================== #
 
-if(${MASTER_PROJECT})
+# Include helper scripts
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/boost.cmake)
 
-    # Include helper scripts
-    include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/boost.cmake)
+# Add boost::ext::* libraries
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/extern/boost-ext)
+# Add mp-units library
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/extern/units)
+
+# Add private targets
+if(${MASTER_PROJECT})
 
     # Add boost headers
     add_boost_headers()
-    # Add boost::ext::* libraries
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/extern/boost-ext)
-    # Add mp-units library
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/extern/units)
 
 endif()
 
