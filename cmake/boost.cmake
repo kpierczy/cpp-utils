@@ -2,7 +2,7 @@
 # @file     boost.cmake
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Wednesday, 1st December 2021 12:22:53 am
-# @modified Thursday, 3rd February 2022 6:45:12 pm
+# @modified Thursday, 3rd February 2022 9:36:57 pm
 # @project  mbed-utils
 # @brief
 #    
@@ -14,7 +14,7 @@
 # -----------------------------------------------------------------------
 # @brief Adds 'boost-headers' interface library target to the project
 #    assuming that the boost git repository resides in the 
-#    ${CMAKE_SOURCE_DIR}/extern/boost
+#    ${CPP_UTILS_HOME}/extern/boost
 # -----------------------------------------------------------------------
 function(add_boost_headers)
 
@@ -24,7 +24,7 @@ function(add_boost_headers)
     target_include_directories(boost-headers 
         INTERFACE 
             $<INSTALL_INTERFACE:include>
-            $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/extern/boost>
+            $<BUILD_INTERFACE:${CPP_UTILS_HOME}/extern/boost>
     )
     # Disable RTTI mechanisms
     target_compile_options(boost-headers INTERFACE

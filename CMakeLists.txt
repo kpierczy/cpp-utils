@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Thursday, 3rd February 2022 10:11:45 am
-# @modified Thursday, 3rd February 2022 8:31:04 pm
+# @modified Thursday, 3rd February 2022 9:49:13 pm
 # @project  cpp-utils
 # @brief
 #    
@@ -14,6 +14,9 @@
 cmake_minimum_required(VERSION 3.21)
 
 # ====================================================== Project configuration ===================================================== #
+
+# Set root of the project
+set(CPP_UTILS_HOME ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
 
 # Establish build type
 set(MASTER_PROJECT OFF)

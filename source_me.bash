@@ -2,7 +2,7 @@
 # @file     source_me.bash
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Thursday, 3rd February 2022 1:51:57 pm
-# @modified Thursday, 3rd February 2022 8:13:05 pm
+# @modified Thursday, 3rd February 2022 9:42:03 pm
 # @project  mbed-utils
 # @brief
 #    
@@ -12,7 +12,9 @@
 # ====================================================================================================================================
 
 # Absolute path to the project's root directory
-export CPP_UTILS_HOME=~/Desktop/cpp-utils
+if [[ ! -n ${CPP_UTILS_HOME+x} ]]; then
+    export CPP_UTILS_HOME=~/Desktop/cpp-utils
+fi
 
 # ====================================================== Install dependencies ====================================================== #
 
