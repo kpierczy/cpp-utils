@@ -2,7 +2,7 @@
  * @file     traits.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Thursday, 3rd February 2022 10:48:23 am
- * @modified Thursday, 3rd February 2022 11:06:18 am
+ * @modified Thursday, 3rd February 2022 6:57:58 pm
  * @project  cpp-utils
  * @brief
  *    
@@ -268,8 +268,14 @@ struct is_method :
  *    tested method
  */
 template<typename T, typename Method>
-constexpr bool has_method = 
-    is_method_v<Method> && std::same_as<T, typename is_method<Method>::class_type>;
+struct has_method {
+    static constexpr bool value = is_method<Method>::value && std::same_as<T, typename is_method<Method>::class_type>;
+};
+    
+/// @brief Alias for @ref has_method<T, Method>::value
+template<typename T, typename Method>
+constexpr bool has_method_v = has_method<T, Method>::value;
+    
 
 /* ======================================================= Types-conversions ====================================================== */
 

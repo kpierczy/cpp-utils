@@ -2,7 +2,7 @@
  * @file     sequence.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Saturday, 15th January 2022 1:44:31 pm
- * @modified Thursday, 3rd February 2022 5:48:33 pm
+ * @modified Thursday, 3rd February 2022 6:58:12 pm
  * @project  Winder
  * @brief
  *    
@@ -37,8 +37,8 @@
  *    destination state (on success) 
  */
 #define ACTIONS_SEQUENCE_STATE_TRANSITIONS(error, src, action, dst)                                                                                                     \
-      src + event<ProceedeSequence<Traits::return_type_t<decltype(action)>>>[  is_sequence_action_success<Traits::return_type_t<decltype(action)>> ] = dst              \
-    , src + event<ProceedeSequence<Traits::return_type_t<decltype(action)>>>[ !is_sequence_action_success<Traits::return_type_t<decltype(action)>> ] / process(error{}) \
+      src + event<ProceedeSequence<estd::return_type_t<decltype(action)>>>[  is_sequence_action_success<estd::return_type_t<decltype(action)>> ] = dst              \
+    , src + event<ProceedeSequence<estd::return_type_t<decltype(action)>>>[ !is_sequence_action_success<estd::return_type_t<decltype(action)>> ] / process(error{}) \
     , src + on_entry<_> / proceede_action(action)
 
 /* ============================================================ Macros ============================================================ */

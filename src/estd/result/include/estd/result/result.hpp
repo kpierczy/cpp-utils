@@ -2,7 +2,7 @@
  * @file     result.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Tuesday, 13th July 2021 9:47:10 am
- * @modified Thursday, 3rd February 2022 4:17:11 pm
+ * @modified Thursday, 3rd February 2022 6:41:12 pm
  * @project  Winder
  * @brief
  *    
@@ -288,7 +288,7 @@ public: /* ------------------------------------------------ Static public method
 public: /* --------------------------------------------------- Public variables --------------------------------------------------- */
 
     // status associated with the result
-    status status;
+    ::estd::status status;
 
     // Value associated with the result
     ResultType value;

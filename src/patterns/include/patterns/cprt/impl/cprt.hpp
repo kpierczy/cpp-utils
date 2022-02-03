@@ -2,7 +2,7 @@
  * @file     cprt.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Sunday, 2nd January 2022 3:49:09 pm
- * @modified Thursday, 3rd February 2022 11:31:50 am
+ * @modified Thursday, 3rd February 2022 6:58:47 pm
  * @project  Winder
  * @brief
  *    
@@ -25,13 +25,13 @@ namespace patterns {
 /* ========================================================== Namespaces ========================================================== */
 
 template<typename T>
-T &CPRT<T>::impl() {
+T &patterns::CPRT<T>::impl() {
     return *static_cast<T*> (this);
 }
 
 
 template<typename T>
-const T &CPRT<T>::impl() const { 
+const T &patterns::CPRT<T>::impl() const { 
     return *static_cast<const T*>(this); 
 }
 

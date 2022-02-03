@@ -2,7 +2,7 @@
  * @file     events.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Thursday, 30th December 2021 5:03:52 pm
- * @modified Thursday, 3rd February 2022 12:29:47 pm
+ * @modified Thursday, 3rd February 2022 6:58:12 pm
  * @project  Winder
  * @brief
  *    
@@ -33,7 +33,7 @@ namespace boost::sml {
  *    valid events
  */
 template<typename T, typename ... Events>
-constexpr bool AnyOfEvents = Traits::is_any_of_v<T, Events...>;
+constexpr bool AnyOfEvents = estd::is_any_of_v<T, Events...>;
 
 /* ================================================================================================================================ */
 

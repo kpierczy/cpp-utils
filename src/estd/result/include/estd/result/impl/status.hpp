@@ -2,7 +2,7 @@
  * @file     status.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Tuesday, 13th July 2021 7:57:43 am
- * @modified Thursday, 3rd February 2022 4:27:45 pm
+ * @modified Thursday, 3rd February 2022 6:00:26 pm
  * @project  Winder
  * @brief
  *    
@@ -130,14 +130,14 @@ constexpr status status::success(domain_id domain, uint32_t code) noexcept {
 template<typename Enum>
     requires std::is_enum_v<Enum>    
 constexpr status status::success(Enum code) noexcept {
-    return status(DefaultDomain, status_code::success(enumToUnderlying(code)));
+    return status(DefaultDomain, status_code::success(to_underlying(code)));
 }
 
 
 template<typename Enum>
     requires std::is_enum_v<Enum>    
 constexpr status status::success(domain_id domain, Enum code) noexcept {
-    return status(domain, status_code::success(enumToUnderlying(code)));
+    return status(domain, status_code::success(to_underlying(code)));
 }
 
 
@@ -154,14 +154,14 @@ constexpr status status::warning(domain_id domain, uint32_t code) noexcept {
 template<typename Enum>
     requires std::is_enum_v<Enum>    
 constexpr status status::warning(Enum code) noexcept {
-    return status(DefaultDomain, status_code::warning(enumToUnderlying(code)));
+    return status(DefaultDomain, status_code::warning(to_underlying(code)));
 }
 
 
 template<typename Enum>
     requires std::is_enum_v<Enum>    
 constexpr status status::warning(domain_id domain, Enum code) noexcept {
-    return status(domain, status_code::warning(enumToUnderlying(code)));
+    return status(domain, status_code::warning(to_underlying(code)));
 }
 
 
@@ -178,14 +178,14 @@ constexpr status status::error(domain_id domain, uint32_t code) noexcept {
 template<typename Enum>
     requires std::is_enum_v<Enum>    
 constexpr status status::error(Enum code) noexcept {
-    return status(DefaultDomain, status_code::error(enumToUnderlying(code)));
+    return status(DefaultDomain, status_code::error(to_underlying(code)));
 }
 
 
 template<typename Enum>
     requires std::is_enum_v<Enum>    
 constexpr status status::error(domain_id domain, Enum code) noexcept {
-    return status(domain, status_code::error(enumToUnderlying(code)));
+    return status(domain, status_code::error(to_underlying(code)));
 }
 
 /* ================================================================================================================================ */

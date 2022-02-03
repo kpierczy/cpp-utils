@@ -2,7 +2,7 @@
  * @file     domain_impl.cpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Thursday, 24th June 2021 4:41:31 pm
- * @modified Thursday, 3rd February 2022 4:17:36 pm
+ * @modified Thursday, 3rd February 2022 5:59:07 pm
  * @project  Winder
  * @brief
  *    
@@ -17,6 +17,10 @@
 #include <array>
 #include <utility>
 #include <type_traits>
+
+/* =========================================================== Namespace ========================================================== */
+
+namespace estd {
 
 /* ======================================================== Static objects ======================================================== */
 
@@ -61,3 +65,5 @@ const domain_descriptor DefaultDomainDescriptor(
 );
 
 /* ================================================================================================================================ */
+
+} // End namespace estd

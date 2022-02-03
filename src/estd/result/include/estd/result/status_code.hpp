@@ -2,7 +2,7 @@
  * @file     status_code.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Monday, 14th June 2021 7:39:49 pm
- * @modified Thursday, 3rd February 2022 12:19:12 pm
+ * @modified Thursday, 3rd February 2022 6:31:52 pm
  * @project  Winder
  * @brief
  *    
@@ -88,7 +88,7 @@ public: /* ------------------------------------------------- Public constructors
      * @param rstatus 
      *    status to be copied to the created status code
      */
-    inline constexpr status_code(const status_code &rstatus) noexcept = default;
+    inline constexpr status_code(const estd::status_code &rstatus) noexcept = default;
 
 public: /* --------------------------------------------------- Public operators --------------------------------------------------- */
 
@@ -99,7 +99,7 @@ public: /* --------------------------------------------------- Public operators 
      * @returns 
      *    reference to assignment's left value
      */
-    inline constexpr status_code &operator=(const status_code &rstatus) noexcept = default;
+    inline constexpr status_code &operator=(const estd::status_code &rstatus) noexcept = default;
 
     /**
      * @brief Assigns enumerical value to the status_code object
@@ -147,7 +147,7 @@ public: /* --------------------------------------------------- Public operators 
      *    @c true when status codes have the same category and code \n
      *    @c false otherwise
      */
-    inline constexpr bool operator==(const status_code &rstatus) const noexcept = default;
+    inline constexpr bool operator==(const estd::status_code &rstatus) const noexcept = default;
 
     /**
      * @brief Comparison operator between status code and enumeration
@@ -171,7 +171,7 @@ public: /* --------------------------------------------------- Public operators 
      *    @c false when status codes have not the same category or code \n
      *    @c true otherwise
      */
-    inline constexpr bool operator!=(const status_code &rstatus) const noexcept = default;
+    inline constexpr bool operator!=(const estd::status_code &rstatus) const noexcept = default;
 
     /**
      * @brief Comparison operator between status code and enumeration

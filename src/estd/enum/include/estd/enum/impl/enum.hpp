@@ -2,7 +2,7 @@
  * @file     enum.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Thursday, 3rd February 2022 11:10:53 am
- * @modified Thursday, 3rd February 2022 11:11:56 am
+ * @modified Thursday, 3rd February 2022 5:58:21 pm
  * @project  cpp-utils
  * @brief
  *    
@@ -20,7 +20,7 @@
 
 /* ========================================================== Namespaces ========================================================== */
 
-namespace enum {
+namespace estd {
 
 /* ========================================================== Definitions ========================================================= */
 
@@ -49,6 +49,6 @@ inline constexpr bool is_valid_enum(Enum value, Enum min, Enum max) noexcept {
 
 /* ================================================================================================================================ */
 
-} // End namespace enum
+} // End namespace estd
 
 #endif

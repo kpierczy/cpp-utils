@@ -2,7 +2,7 @@
  * @file     states.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Thursday, 30th December 2021 5:03:52 pm
- * @modified Thursday, 3rd February 2022 12:29:40 pm
+ * @modified Thursday, 3rd February 2022 6:58:12 pm
  * @project  Winder
  * @brief
  *    
@@ -35,7 +35,7 @@ namespace boost::sml {
  */
 template<typename T, typename ... States>
 concept AnyOfStates = requires {
-    Traits::is_any_of_v<T, States...>;
+    estd::is_any_of_v<T, States...>;
 };
 
 /**
@@ -55,7 +55,7 @@ using state_instance = decltype(state<T>);
  */
 template<typename T, typename ... States>
 concept InstanceOfAnyOfStates = requires {
-    Traits::is_any_of_v<T, state_instance<States>...>;
+    estd::is_any_of_v<T, state_instance<States>...>;
 };
 
 /**

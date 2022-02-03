@@ -2,7 +2,7 @@
  * @file     default_domain.cpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Thursday, 24th June 2021 4:41:31 pm
- * @modified Thursday, 3rd February 2022 4:27:45 pm
+ * @modified Thursday, 3rd February 2022 6:32:06 pm
  * @project  Winder
  * @brief
  *    
@@ -25,7 +25,7 @@ namespace estd {
 /* ========================================================== Definitions ========================================================= */
 
 // Specification of the construct_status_code() functions
-template<> constexpr status_code construct_status_code(Warning code) {
+template<> constexpr estd::status_code construct_status_code(Warning code) {
     return status_code::warning(code);
 }
 
@@ -36,7 +36,7 @@ template<> constexpr status construct_status(Warning code) {
 }
 
 // Specification of the construct_status_code() functions
-template<> constexpr status_code construct_status_code(Error code) {
+template<> constexpr estd::status_code construct_status_code(Error code) {
     return status_code::error(code);
 }
 
@@ -48,7 +48,7 @@ template<> constexpr status construct_status(Error code) {
 
 
 // StatucCode's `to_string` function
-constexpr std::string_view to_string(const status_code &status) {
+constexpr std::string_view to_string(const estd::status_code &status) {
     return status.to_string(get_domain_descriptor(DefaultDomain).getTable(status.category()));
 }
 

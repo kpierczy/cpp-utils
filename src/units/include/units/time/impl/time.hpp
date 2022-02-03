@@ -2,7 +2,7 @@
  * @file     time.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Sunday, 5th December 2021 2:19:26 pm
- * @modified Thursday, 3rd February 2022 11:46:12 am
+ * @modified Thursday, 3rd February 2022 7:04:02 pm
  * @project  Winder
  * @brief
  *    
@@ -44,7 +44,7 @@ constexpr auto time_to_chrono(const T &time) {
     else if constexpr(std::is_same_v<T, units::aliases::isq::si::time::d<typename T::rep>>)
         return std::chrono::days(static_cast<std::chrono::days::rep>(time.number()));
     else
-        IF_CONSTEXPR_NO_MATCH("[timeToChrono] type T has not a correspnding std::chrono::duration representation");
+        IF_CONSTEXPR_NO_MATCH("[time_to_chrono] type T has not a correspnding std::chrono::duration representation");
 
 }
 
@@ -67,7 +67,7 @@ constexpr auto chrono_to_time(const T &time) {
     else if constexpr(std::is_same_v<T, std::chrono::days>)
         return units::aliases::isq::si::time::d<typename T::rep>(time.count());
     else
-        IF_CONSTEXPR_NO_MATCH("[chronoToTime] type T has not a correspnding mp-units type");
+        IF_CONSTEXPR_NO_MATCH("[chrono_to_time] type T has not a correspnding mp-units type");
 
 }
 

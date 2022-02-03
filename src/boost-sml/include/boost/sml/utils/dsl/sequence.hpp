@@ -2,7 +2,7 @@
  * @file     sequence.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Saturday, 15th January 2022 1:44:31 pm
- * @modified Thursday, 3rd February 2022 12:30:36 pm
+ * @modified Thursday, 3rd February 2022 6:58:12 pm
  * @project  Winder
  * @brief
  *    
@@ -31,7 +31,7 @@ namespace boost::sml {
  */
 template<typename T>
 concept ProceedeResult = requires {
-    Traits::is_explicitly_convertible_v<T, bool> || std::is_convertible_v<T, bool>;
+    estd::is_explicitly_convertible_v<T, bool> || std::is_convertible_v<T, bool>;
 };
 
 /* ============================================================ Events ============================================================ */

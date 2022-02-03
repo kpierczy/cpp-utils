@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Tuesday, 15th June 2021 9:10:08 pm
-# @modified Thursday, 3rd February 2022 3:19:53 pm
+# @modified Thursday, 3rd February 2022 7:20:16 pm
 # @project  Winder
 # @brief
 #    
@@ -24,7 +24,7 @@ target_include_directories(boost-sml-utils
 # Link dependancies
 target_link_libraries(boost-sml-utils
     INTERFACE
-        sml
+        boost-sml
         estd-traits
         estd-preprocessor
         boost-headers

@@ -2,7 +2,7 @@
  * @file     domain.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Tuesday, 15th June 2021 8:53:35 pm
- * @modified Thursday, 3rd February 2022 4:17:11 pm
+ * @modified Thursday, 3rd February 2022 6:31:52 pm
  * @project  Winder
  * @brief
  *    
@@ -69,7 +69,7 @@ constexpr domain_id DefaultDomain = DefaultDomainDescriptor.getDomainID();
  *    human-readable representation of @p code if found in table
  *    @p std::string_view() if @p key is unknown
  */
-inline constexpr std::string_view to_string(const status_code &status);
+inline constexpr std::string_view to_string(const estd::status_code &status);
 
 /* ================================================================================================================================ */
 

@@ -2,7 +2,7 @@
  * @file     result.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Tuesday, 13th July 2021 9:00:51 am
- * @modified Thursday, 3rd February 2022 4:17:11 pm
+ * @modified Thursday, 3rd February 2022 6:41:43 pm
  * @project  Winder
  * @brief
  *    
@@ -25,13 +25,13 @@ namespace estd {
 /* ====================================================== Public constructors ===================================================== */
 
 template<typename ResultType>
-constexpr result<ResultType>::result(const status &status) noexcept : 
+constexpr result<ResultType>::result(const ::estd::status &status) noexcept : 
     status(status), value()
 {}
 
 
 template<typename ResultType>
-constexpr result<ResultType>::result(const ResultType &value, const status &status) noexcept : 
+constexpr result<ResultType>::result(const ResultType &value, const ::estd::status &status) noexcept : 
     status(status), value(value)
 {}
 
@@ -44,8 +44,8 @@ constexpr result<ResultType> &result<ResultType>::operator=(const ResultType &rv
 
 
 template<typename ResultType>
-constexpr result<ResultType> &result<ResultType>::operator=(const status &status_code) noexcept {
-    status = status_code;
+constexpr result<ResultType> &result<ResultType>::operator=(const ::estd::status &status) noexcept {
+    this->status = status;
 }
 
 
@@ -62,16 +62,16 @@ constexpr bool result<ResultType>::operator==(const ResultType &rvalue) const no
 
 
 template<typename ResultType>
-constexpr bool result<ResultType>::operator==(const status &status_code) const noexcept {
-    return status == status_code;
+constexpr bool result<ResultType>::operator==(const ::estd::status &status) const noexcept {
+    return this->status == status;
 }
 
 
 template<typename ResultType>
 template<typename Enum>
     requires std::is_enum_v<Enum>
-constexpr bool result<ResultType>::operator==(const Enum &status_code) const noexcept {
-    return status == status(status_code);
+constexpr bool result<ResultType>::operator==(const Enum &status) const noexcept {
+    return this->status == status(status);
 }
 
 
@@ -82,16 +82,16 @@ constexpr bool result<ResultType>::operator!=(const ResultType &value) const noe
 
 
 template<typename ResultType>
-constexpr bool result<ResultType>::operator!=(const status &status_code) const noexcept {
-    return !(*this == status_code);
+constexpr bool result<ResultType>::operator!=(const ::estd::status &status) const noexcept {
+    return !(*this == status);
 }
 
 
 template<typename ResultType>
 template<typename Enum>
     requires std::is_enum_v<Enum>
-constexpr bool result<ResultType>::operator!=(const Enum &status_code) const noexcept {
-    return !(*this == status_code);
+constexpr bool result<ResultType>::operator!=(const Enum &status) const noexcept {
+    return !(*this == status);
 }
 
 /* ===================================================== Public static methods ==================================================== */

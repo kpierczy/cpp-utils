@@ -2,7 +2,7 @@
  * @file     result_code.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Tuesday, 13th July 2021 8:29:14 am
- * @modified Thursday, 3rd February 2022 12:19:12 pm
+ * @modified Thursday, 3rd February 2022 6:31:52 pm
  * @project  Winder
  * @brief
  *    
@@ -43,7 +43,7 @@ public: /* ------------------------------------------------- Public constructors
      * @param status 
      *    status code associated with result
      */
-    inline constexpr result_code(const status_code &status = status_code::success()) noexcept;
+    inline constexpr result_code(const estd::status_code &status = status_code::success()) noexcept;
 
     /**
      * @brief Constructs a new result object with the given @p value and given @p status
@@ -52,7 +52,7 @@ public: /* ------------------------------------------------- Public constructors
      * @param status 
      *    status associated with the result
      */
-    inline constexpr result_code(const ResultType &value, const status_code &status = status_code::success()) noexcept; 
+    inline constexpr result_code(const ResultType &value, const estd::status_code &status = status_code::success()) noexcept; 
 
     /**
      * @brief Constructs a result copying data from @p rresult
@@ -88,7 +88,7 @@ public: /* --------------------------------------------------- Public operators 
      * @returns 
      *    reference to assignment's left value
      */
-    inline constexpr result_code &operator=(const status_code &status) noexcept;
+    inline constexpr result_code &operator=(const estd::status_code &status) noexcept;
 
     /**
      * @brief Assigns enum-derived status code to the result_code object
@@ -137,7 +137,7 @@ public: /* --------------------------------------------------- Public operators 
      *    @c true when result's status is equal to @p status \n
      *    @c false otherwise
      */
-    inline constexpr bool operator==(const status_code &status) const noexcept;
+    inline constexpr bool operator==(const estd::status_code &status) const noexcept;
 
     /**
      * @brief Comparison operator between result code and and status code derived from enumeration
@@ -179,7 +179,7 @@ public: /* --------------------------------------------------- Public operators 
      *    @c false when result's status is equal to @p status \n
      *    @c true otherwise
      */
-    inline constexpr bool operator!=(const status_code &status) const noexcept;
+    inline constexpr bool operator!=(const estd::status_code &status) const noexcept;
 
     /**
      * @brief Comparison operator between result code and and status code derived from enumeration
