@@ -2,7 +2,7 @@
  * @file     default_domain.cpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Thursday, 24th June 2021 4:41:31 pm
- * @modified Thursday, 3rd February 2022 12:19:12 pm
+ * @modified Thursday, 3rd February 2022 4:27:45 pm
  * @project  Winder
  * @brief
  *    
@@ -49,7 +49,7 @@ template<> constexpr status construct_status(Error code) {
 
 // StatucCode's `to_string` function
 constexpr std::string_view to_string(const status_code &status) {
-    return status.to_string(getDomainDescriptor(DefaultDomain).getTable(status.category()));
+    return status.to_string(get_domain_descriptor(DefaultDomain).getTable(status.category()));
 }
 
 /* ================================================================================================================================ */

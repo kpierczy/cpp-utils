@@ -2,7 +2,7 @@
  * @file     status.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Monday, 12th July 2021 9:59:51 am
- * @modified Thursday, 3rd February 2022 12:29:18 pm
+ * @modified Thursday, 3rd February 2022 4:17:11 pm
  * @project  Winder
  * @brief
  *    
@@ -47,7 +47,7 @@ public: /* ------------------------------------------------- Public constructors
      * @param code
      *     code describing the status
      */
-    inline constexpr status(DomainID domain, status_code code = status_code::success()) noexcept;
+    inline constexpr status(domain_id domain, status_code code = status_code::success()) noexcept;
 
     /**
      * @brief Construct a new status with the @p code. 
@@ -169,7 +169,7 @@ public: /* ---------------------------------------------------- Public methods -
      * @returns 
      *    @category category of the status
      */
-    inline constexpr DomainID domain() const noexcept;
+    inline constexpr domain_id domain() const noexcept;
 
     /**
      * @returns 
@@ -220,7 +220,7 @@ public: /* ------------------------------------------------ Static public method
      * @returns 
      *    status of the @c Success category
      */
-    static inline constexpr status success(DomainID domain, uint32_t code = 0) noexcept;
+    static inline constexpr status success(domain_id domain, uint32_t code = 0) noexcept;
 
     /**
      * @brief Creates status from the default with @c Success category and given @p code
@@ -246,7 +246,7 @@ public: /* ------------------------------------------------ Static public method
      */
     template<typename Enum>
         requires std::is_enum_v<Enum>    
-    static inline constexpr status success(DomainID domain, Enum code) noexcept;
+    static inline constexpr status success(domain_id domain, Enum code) noexcept;
 
     /**
      * @brief Creates status from the default domain with @c Warning category and given code
@@ -268,7 +268,7 @@ public: /* ------------------------------------------------ Static public method
      * @returns 
      *    status of the @c Warning category
      */
-    static inline constexpr status warning(DomainID domain, uint32_t code = 0) noexcept;
+    static inline constexpr status warning(domain_id domain, uint32_t code = 0) noexcept;
 
     /**
      * @brief Creates status from the default with @c Warning category and given @p code
@@ -294,7 +294,7 @@ public: /* ------------------------------------------------ Static public method
      */
     template<typename Enum>
         requires std::is_enum_v<Enum>    
-    static inline constexpr status warning(DomainID domain, Enum code) noexcept;
+    static inline constexpr status warning(domain_id domain, Enum code) noexcept;
     
     /**
      * @brief Creates status from the default domain with @c Error category and given code
@@ -316,7 +316,7 @@ public: /* ------------------------------------------------ Static public method
      * @returns 
      *    status of the @c Error category
      */
-    static inline constexpr status error(DomainID domain, uint32_t code = 0) noexcept;
+    static inline constexpr status error(domain_id domain, uint32_t code = 0) noexcept;
 
     /**
      * @brief Creates status from the default with @c Error category and given @p code
@@ -342,7 +342,7 @@ public: /* ------------------------------------------------ Static public method
      */
     template<typename Enum>
         requires std::is_enum_v<Enum>    
-    static inline constexpr status error(DomainID domain, Enum code) noexcept;
+    static inline constexpr status error(domain_id domain, Enum code) noexcept;
 
 private: /* -------------------------------------------------- Private variales --------------------------------------------------- */
 
@@ -350,7 +350,7 @@ private: /* -------------------------------------------------- Private variales 
     status_code current_code;
     
     // Domain of the status
-    DomainID current_domain;
+    domain_id current_domain;
     
 };
 

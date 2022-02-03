@@ -2,7 +2,7 @@
  * @file     result.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Tuesday, 13th July 2021 9:00:51 am
- * @modified Thursday, 3rd February 2022 12:19:12 pm
+ * @modified Thursday, 3rd February 2022 4:17:11 pm
  * @project  Winder
  * @brief
  *    
@@ -108,7 +108,7 @@ template<typename ResultType>
 template<typename Enum>
     requires std::is_enum_v<Enum>
 constexpr result<ResultType> result<ResultType>::success(
-    DomainID domain,
+    domain_id domain,
     Enum code,
     const ResultType &value
 ) noexcept {
@@ -128,7 +128,7 @@ template<typename ResultType>
 template<typename Enum>
     requires std::is_enum_v<Enum>
 constexpr result<ResultType> result<ResultType>::warning(
-    DomainID domain,
+    domain_id domain,
     Enum code,
     const ResultType &value
 ) noexcept {
@@ -148,7 +148,7 @@ template<typename ResultType>
 template<typename Enum>
     requires std::is_enum_v<Enum>
 constexpr result<ResultType> result<ResultType>::error(
-    DomainID domain,
+    domain_id domain,
     Enum code,
     const ResultType &value
 ) noexcept {

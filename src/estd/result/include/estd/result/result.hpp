@@ -2,7 +2,7 @@
  * @file     result.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Tuesday, 13th July 2021 9:47:10 am
- * @modified Thursday, 3rd February 2022 12:19:12 pm
+ * @modified Thursday, 3rd February 2022 4:17:11 pm
  * @project  Winder
  * @brief
  *    
@@ -220,7 +220,7 @@ public: /* ------------------------------------------------ Static public method
     template<typename Enum>
         requires std::is_enum_v<Enum>    
     static inline constexpr result success(
-        DomainID domain,
+        domain_id domain,
         Enum code,
         const ResultType &value = ResultType()
     ) noexcept;
@@ -250,7 +250,7 @@ public: /* ------------------------------------------------ Static public method
     template<typename Enum>
         requires std::is_enum_v<Enum>    
     static inline constexpr result warning(
-        DomainID domain,
+        domain_id domain,
         Enum code,
         const ResultType &value = ResultType()
     ) noexcept;
@@ -280,7 +280,7 @@ public: /* ------------------------------------------------ Static public method
     template<typename Enum>
         requires std::is_enum_v<Enum>    
     static inline constexpr result error(
-        DomainID domain,
+        domain_id domain,
         Enum code,
         const ResultType &value = ResultType()
     ) noexcept;

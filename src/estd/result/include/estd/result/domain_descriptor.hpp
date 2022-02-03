@@ -2,11 +2,11 @@
  * @file     domain_descriptor.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Tuesday, 20th July 2021 10:39:30 pm
- * @modified Thursday, 3rd February 2022 12:11:42 pm
+ * @modified Thursday, 3rd February 2022 4:27:45 pm
  * @project  Winder
  * @brief
  *    
- *    Class representing the DomainDescriptor
+ *    Class representing the domain_descriptor
  *    
  * @copyright Krzysztof Pierczyk © 2021
  * ================================================================================================================================ */
@@ -25,21 +25,21 @@ namespace estd {
 
 /* ========================================================= Declarations ========================================================= */
 
-// Forward declaration of DomainDescriptor
-class DomainDescriptor;
+// Forward declaration of domain_descriptor
+class domain_descriptor;
 // Category of the variables used to represent status domain
-using DomainID = const DomainDescriptor *;
+using domain_id = const domain_descriptor *;
 
 /**
  * @brief Class representing a status domain's descriptor
  */
-class DomainDescriptor {
+class domain_descriptor {
 public:
 
     // Category of table containing descriptions of status codes
-    using DescriptionTable = const char *[];
+    using description_table = const char *[];
     // Category of the empty table
-    using EmptyTable = std::span<const char *>;
+    using empty_table = std::span<const char *>;
 
 public:
 
@@ -52,7 +52,7 @@ public:
      * @param error_description_table
      *    table of description strings for error status codes
      */
-    inline constexpr DomainDescriptor(
+    inline constexpr domain_descriptor(
         std::span<const char *> success_description_table,
         std::span<const char *> warning_description_table,
         std::span<const char *> error_description_table
@@ -67,14 +67,14 @@ public:
     inline constexpr std::span<const char *> getTable(status_code::Category category) const;
 
     /**
-     * @brief Converts DomainDescriptor into DomainID
+     * @brief Converts domain_descriptor into domain_id
      * 
      * @param descriptor 
      *    descriptor to be converted
      * @returns 
      *    domain's ID
      */
-    inline constexpr DomainID getDomainID() const;
+    inline constexpr domain_id getDomainID() const;
 
 private:
 
@@ -88,14 +88,14 @@ private:
 };
 
 /**
- * @brief Converts DomainDescriptor into DomainID
+ * @brief Converts domain_descriptor into domain_id
  * 
  * @param descriptor 
  *    descriptor to be converted
  * @returns 
  *    domain's ID
  */
-static inline constexpr const DomainDescriptor & getDomainDescriptor(DomainID domain);
+static inline constexpr const domain_descriptor & get_domain_descriptor(domain_id domain);
 
 /* ================================================================================================================================ */
 

@@ -2,7 +2,7 @@
  * @file     domain.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Tuesday, 15th June 2021 8:53:35 pm
- * @modified Thursday, 3rd February 2022 12:16:58 pm
+ * @modified Thursday, 3rd February 2022 4:17:11 pm
  * @project  Winder
  * @brief
  *    
@@ -57,9 +57,9 @@ enum class Warning : uint32_t {
 };
 
 // Object used as a domain's reference point
-extern const DomainDescriptor DefaultDomainDescriptor;
+extern const domain_descriptor DefaultDomainDescriptor;
 // Global namespace's domain ID
-constexpr DomainID DefaultDomain = DefaultDomainDescriptor.getDomainID();
+constexpr domain_id DefaultDomain = DefaultDomainDescriptor.getDomainID();
 
 /**
  * @brief Converts error code from default namespace to a human-readable string

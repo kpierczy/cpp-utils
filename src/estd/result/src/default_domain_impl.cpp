@@ -2,7 +2,7 @@
  * @file     domain_impl.cpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Thursday, 24th June 2021 4:41:31 pm
- * @modified Thursday, 3rd February 2022 12:06:16 pm
+ * @modified Thursday, 3rd February 2022 4:17:36 pm
  * @project  Winder
  * @brief
  *    
@@ -21,20 +21,20 @@
 /* ======================================================== Static objects ======================================================== */
 
 // Descriptor of status codes from the global namespace
-const DomainDescriptor DefaultDomainDescriptor(
+const domain_descriptor DefaultDomainDescriptor(
     
     /* ------ Success codes ------ */
-    DomainDescriptor::EmptyTable(),
+    domain_descriptor::empty_table(),
 
     /* ------ Warning codes ------ */
-    (DomainDescriptor::DescriptionTable) {
+    (domain_descriptor::description_table) {
 
         /* TooLate */ "Action could not be finalized as some condition was stolen in the meanwhile"
 
     },
 
     /* ------- Error codes ------- */
-    (DomainDescriptor::DescriptionTable) {
+    (domain_descriptor::description_table) {
 
         /* Timeout        */ "Access timeout",
         /* Unknown        */ "Unknown error",
