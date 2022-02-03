@@ -9,6 +9,13 @@
             // Include Paths (non-recursively)
             "includePath": [
 
+                // Boost sources
+                // "${workspaceFolder}/extern/boost",
+                // Boost-ext sources
+                "${workspaceFolder}/extern/boost-ext/di/include",
+                "${workspaceFolder}/extern/boost-ext/sml/include",
+                "${workspaceFolder}/extern/boost-ext/ut/include",
+
                 // boost-sml utilities library
                 "${workspaceFolder}/src/boost-sml/include",
                 // Extended std library
@@ -22,18 +29,17 @@
                 "${workspaceFolder}/src/estd/traits/include",
                 // Extended STL library
                 "${workspaceFolder}/src/estl/include",
-
                 // Patterns library
                 "${workspaceFolder}/src/patterns/include",
-
                 // Dimensional-analysis library
                 "${workspaceFolder}/src/units/include",
-
                 // Numeric library
                 "${workspaceFolder}/src/numeric/include",
-
                 // Utilities library
                 "${workspaceFolder}/src/utilities/include",
+
+                // Tests
+                "${workspaceFolder}/tests/include",
 
             ],
             // General defines

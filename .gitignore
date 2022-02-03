@@ -1,17 +1,27 @@
 *
 !.gitignore
+!.source_me.bash
 
 # VSCode config
 !.vscode/
 !.vscode/**
+# Cmake helpers
+!cmake/
+!cmake/**
 # Documentation
 !doc/
 !doc/**
 # Extern source files
 !extern/
 !extern/**
+# Script files
+!scripts/
+!scripts/**
 # Source files
 !src/
 !src/**
+# Test files
+!tests/
+!tests/**
 # CMake files
 !CMakeLists.txt

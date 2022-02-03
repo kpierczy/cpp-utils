@@ -3,7 +3,7 @@
 # @author     Krzysztof Jusiak (krzysztof@jusiak.net)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Monday, 14th June 2021 6:53:51 pm
-# @modified Wednesday, 29th December 2021 5:18:39 pm
+# @modified Thursday, 3rd February 2022 7:16:30 pm
 # @project    Winder
 # @brief
 #    
@@ -44,12 +44,12 @@ option(DI_BUILD_TESTS    "Build tests"    OFF)
 # ============================================================= Target ============================================================= #
 
 # Add library
-add_library(di INTERFACE)
+add_library(boost-di INTERFACE)
 # Alias librarie's name
-add_library(Boost::di ALIAS di)
+add_library(Boost::di ALIAS boost-di)
 
 #Add include directories
-target_include_directories(di INTERFACE
+target_include_directories(boost-di INTERFACE
     $<INSTALL_INTERFACE:include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/extension/include>
@@ -59,7 +59,7 @@ target_include_directories(di INTERFACE
 if(${CMAKE_CXX_COMPILER_ID} STREQUAL GNU)
  
     # Provide compile options
-    target_compile_options(di INTERFACE
+    target_compile_options(boost-di INTERFACE
         "-fno-exceptions"
         "-Wall"
         "-Wextra"
@@ -80,7 +80,7 @@ endif()
 if(${MASTER_PROJECT})
 
     # Set path for CMake configuration files 
-    set(INSTALL_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/di-${PROJECT_VERSION})
+    set(INSTALL_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/boost-di-${PROJECT_VERSION})
 
     # Create a ConfigVersion.cmake file
     write_basic_package_version_file(
@@ -96,7 +96,7 @@ if(${MASTER_PROJECT})
     )
 
     # Export the targets to a script
-    install(EXPORT di-targets
+    install(EXPORT boost-di-targets
         FILE
             diTargets.cmake
         NAMESPACE
@@ -113,14 +113,14 @@ if(${MASTER_PROJECT})
     )
 
     # Install di target
-    install(TARGETS di
-        EXPORT di-targets
+    install(TARGETS boost-di
+        EXPORT boost-di-targets
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
     )
 
-    # Set exported name of the `di` target to `di`
-    set_target_properties(di PROPERTIES EXPORT_NAME di)
+    # Set exported name of the `boost-di` target to `boost-di`
+    set_target_properties(boost-di PROPERTIES EXPORT_NAME boost-di)
 
     # Install header files
     install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
@@ -132,15 +132,15 @@ endif()
 if(${MASTER_PROJECT})
 
     # Export targets
-    export(EXPORT di-targets
+    export(EXPORT boost-di-targets
         FILE 
-            ${CMAKE_CURRENT_BINARY_DIR}/di.cmake
+            ${CMAKE_CURRENT_BINARY_DIR}/boost-di.cmake
         NAMESPACE 
             Boost::
     )
 
     # Register package in the User Package Registry
-    export(PACKAGE di)
+    export(PACKAGE boost-di)
 
 endif()
 

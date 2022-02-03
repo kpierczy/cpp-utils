@@ -3,14 +3,14 @@
 # @author     Krzysztof Jusiak (krzysztof@jusiak.net)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Monday, 14th June 2021 6:53:51 pm
-# @modified Wednesday, 29th December 2021 5:17:41 pm
+# @modified Thursday, 3rd February 2022 7:17:26 pm
 # @project    Winder
 # @brief
 #    
 #    CMake package for Boost.UT library
 #    
 # @copyright Krzysztof Pierczyk © 2021
-# @see https://github.com/boost-ext/ut
+# @see https://github.com/boost-ext/boost-ut
 # ====================================================================================================================================
 
 # Establish build type
@@ -26,7 +26,7 @@ endif()
 # ================================================================================================================================== #
 
 cmake_minimum_required(VERSION 3.12...3.20)
-project(ut VERSION 1.1.8 LANGUAGES CXX)
+project(boost-ut VERSION 1.1.8 LANGUAGES CXX)
 
 # ============================================================= Options ============================================================ #
 
@@ -46,7 +46,7 @@ option(BOOST_UT_ENABLE_SANITIZERS "Run static analysis"                         
 option(BOOST_UT_BUILD_BENCHMARKS  "Build the benchmarks"                                          OFF)
 option(BOOST_UT_BUILD_EXAMPLES    "Build the examples"                                            OFF)
 option(BOOST_UT_BUILD_TESTS       "Build the tests"                                               OFF)
-option(BOOST_UT_DISABLE_MODULE    "Disable ut module"                                             OFF)
+option(BOOST_UT_DISABLE_MODULE    "Disable boost-ut module"                                             OFF)
 
 # ========================================================== Dependencies ========================================================== #
 
@@ -85,30 +85,30 @@ endif()
 
 # Enable C++20 modules feature
 if(BOOST_UT_DISABLE_MODULE)
-    target_compile_definitions(ut INTERFACE BOOST_UT_DISABLE_MODULE)
+    target_compile_definitions(boost-ut INTERFACE BOOST_UT_DISABLE_MODULE)
 endif()
 
 # ============================================================= Target ============================================================= #
 
 # Add library
-add_library(ut INTERFACE)
+add_library(boost-ut INTERFACE)
 # Alias librarie's name
-add_library(Boost::ut ALIAS ut)
+add_library(Boost::ut ALIAS boost-ut)
 
 # Set installation include dirs
-set(INCLUDE_INSTALL_DIR include/boost/ut/include)
+set(INCLUDE_INSTALL_DIR include/boost/boost-ut/include)
 
 # Add include directories
-target_include_directories(ut 
+target_include_directories(boost-ut 
     INTERFACE 
         $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>)
 
 # Add compile features
 if(APPLE)
-  target_compile_features(ut INTERFACE cxx_std_20)
+  target_compile_features(boost-ut INTERFACE cxx_std_20)
 else()
-  target_compile_features(ut INTERFACE cxx_std_17)
+  target_compile_features(boost-ut INTERFACE cxx_std_17)
 endif()
 
 # Add compile options (Clang)
@@ -118,7 +118,7 @@ if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
     if(WIN32)
 
         # FIXME: we should not export this pedantic options! CK
-        target_compile_options(ut
+        target_compile_options(boost-ut
             INTERFACE
                 -Wall
                 -Wextra
@@ -140,7 +140,7 @@ if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
 elseif("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
   
     # FIXME: we should not export this pedantic options! CK
-    target_compile_options(ut
+    target_compile_options(boost-ut
         INTERFACE
             "$<$<COMPILE_LANGUAGE:CXX>:-Wall>"
             "$<$<COMPILE_LANGUAGE:CXX>:-Wextra>"
@@ -189,7 +189,7 @@ endif()
 
 if(${MASTER_PROJECT})
 
-    # Create target Boost::ut and install target
+    # Create target Boost::boost-ut and install target
     packageProject( 
         NAME ${PROJECT_NAME}
         VERSION ${PROJECT_VERSION}
@@ -217,7 +217,7 @@ if(${MASTER_PROJECT})
         -iname "*.hpp" -or -iname "*.cpp" | xargs clang-format -i
     )
 
-    # Note: now we can use the target Boost::ut
+    # Note: now we can use the target Boost::boost-ut
     include(cmake/AddCustomCommandOrTest.cmake)
 
     # Compile benchmarks
