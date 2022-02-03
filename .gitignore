@@ -1,0 +1,17 @@
+*
+!.gitignore
+
+# VSCode config
+!.vscode/
+!.vscode/**
+# Documentation
+!doc/
+!doc/**
+# Extern source files
+!extern/
+!extern/**
+# Source files
+!src/
+!src/**
+# CMake files
+!CMakeLists.txt

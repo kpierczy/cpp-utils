@@ -1,0 +1,208 @@
+{
+    /* ============================================================================================================================ */
+    /* ----------------------------------------------------- Projects Settings ---------------------------------------------------- */
+    /* ============================================================================================================================ */
+    
+    // CMake config
+    "cmake.toolset": "",
+    "cmake.configureOnOpen": false,
+    "cmake.configureOnEdit": false,
+    "cmake.sourceDirectory": "${workspaceFolder}",
+    "cmake.generator": "Unix Makefiles",
+    // Configuration settings
+    "cmake.parallelJobs": 8,
+    "cmake.installPrefix": "${workspaceFolder}",
+    "cmake.configureSettings": {
+        "CMAKE_VERBOSE_MAKEFILE" : "OFF",
+    },
+
+    // Search settings
+    "search.useIgnoreFiles": false,
+
+    // Separator of CSV files for Excell preview
+    "csv-preview.separator": "\\|",
+
+    /* ============================================================================================================================ */
+    /* ------------------------------------------------------ Visual Settings ----------------------------------------------------- */
+    /* ============================================================================================================================ */
+
+    // Icons
+    "vsicons.associations.files": [
+        {"icon": "excel2",   "extensions": [".csv"],        "format": "svg"},
+        {"icon": "rmd",      "extensions": ["ld"],          "format": "svg"},
+        {"icon": "config",   "extensions": ["ioc"],         "format": "svg"},
+        {"icon": "assembly", "extensions": ["s"],           "format": "svg"},
+    ],
+    "vsicons.associations.folders": [
+        {"icon": "plugin", "extensions": ["extern", "dep"], "format": "svg"},
+    ],
+
+    /* ============================================================================================================================ */
+    /* ------------------------------------------------------ Helper Settings ----------------------------------------------------- */
+    /* ============================================================================================================================ */
+
+    // Terminal settings
+    // "terminal.integrated.fontSize": 17,
+    "terminal.integrated.scrollback": 50000,
+
+    // Header's generator
+    "psi-header.config": {
+        "forceToTop": true,
+        "initials": "K.P.",
+        "author": "Krzysztof Pierczyk",
+        "blankLinesAfter": 1,
+        "authorEmail": "krzysztof.pierczyk@gmail.com",
+        "creationDateZero": "asIs"
+    },
+    "psi-header.changes-tracking": {
+        "isActive": true,
+        "modDate": "@modified",
+        "modDateFormat": "dd-MM-yyyy hh:nn:ss",
+        "enforceHeader": false,
+        "autoHeader": "off",
+        "updateLicenseVariables": true,
+    },
+    "psi-header.lang-config": [
+        {
+            "language": "cpp",
+            "begin": "/** ==================================================================================================================================",
+            "end": " * ================================================================================================================================ */",
+            "prefix": " * ",
+            "afterHeader": [
+                "#ifndef ___H__",
+                "#define ___H__",
+                "",
+                "/* =========================================================== Includes =========================================================== */",
+                "",
+                "",
+                "",
+                "/* ========================================================== Namespaces ========================================================== */",
+                "",
+                "namespace {",
+                "",
+                "/* ================================================================================================================================ */",
+                "",
+                "} // End namespace",
+                "",
+                "#endif",
+            ]
+        },
+        {
+            "language": "cmake",
+            "begin": "# ====================================================================================================================================",
+            "end": "# ====================================================================================================================================",
+            "prefix": "# ",
+        },
+        {
+            "language": "shellscript",
+            "mapTo": "cmake"
+        },
+        {
+            "language": "python",
+            "mapTo": "cmake"
+        },
+        {
+            "language": "bat",
+            "begin": ": ====================================================================================================================================",
+            "end": ": ====================================================================================================================================",
+            "prefix": ": ",
+        },
+        {
+            "language": "arm",
+            "begin": "/** ==================================================================================================================================",
+            "end": " * ================================================================================================================================ */",
+            "prefix": " * "
+        },
+        {
+            "language": "plantuml",
+            "begin": "/'' ==================================================================================================================================",
+            "end": " ' ================================================================================================================================ '/",
+            "prefix": " ' "
+        }
+    ],
+    "psi-header.variables": [
+        ["projectname", "cpp-utils"]
+    ],
+    "psi-header.templates": [
+        {
+            "language": "cpp",
+            "template": [
+                "@file     <<filename>>",
+                "@author   <<author>> (<<authoremail>>)",
+                "@date     <<filecreated('dddd, Do MMMM YYYY h:mm:ss a')>>",
+                "@modified <<dateformat('dddd, Do MMMM YYYY h:mm:ss a')>>",
+                "@project  <<projectname>>",
+                "@brief",
+                "   ",
+                "   ",
+                "   ",
+                "@copyright <<author>> © <<year>>"
+            ]
+        },
+        {
+            "language": "cmake",
+            "mapTo": "cpp"
+        },
+        {
+            "language": "python",
+            "mapTo": "cpp"
+        },
+        {
+            "language": "shellscript",
+            "mapTo": "cpp"
+        },
+    ],
+    
+    // Comment divider
+    "comment-divider" : {
+        "length" : 134,
+        "shouldLengthIncludeIndent" : true,
+        // Main header
+        "mainHeaderFiller" : "=",
+        "mainHeaderHeight" : "block",
+        "mainHeaderAlign" : "center",
+        // Subheader
+        "subheaderFiller" : "=",
+        "subheaderHeight" : "line",
+        "subheaderAlign" : "center",
+        // Sold line
+        "lineFiller" : "=",
+        // Language map
+        "languagesMap" : {
+            "python" :  [ "#", "#" ],
+            "shellscript" :  [ "#", "#" ],
+            "cmake" :  [ "#", "#" ],
+            "cpp" :  [ "/*", "*/" ],
+            "jsonc" :  [ "/*", "*/" ],
+        },
+    },
+
+    // Comments anchors
+    "commentAnchors.tags.list": [
+        {
+            "tag": "LINK",
+            "enabled": false
+        }
+    ],
+    
+    /* ============================================================================================================================ */
+    /* ------------------------------------------------------- Other Settings ----------------------------------------------------- */
+    /* ============================================================================================================================ */
+
+    // Files associations
+    "files.associations": {
+        "*.svd": "xml",
+        "utility": "cpp",
+        "type_traits": "cpp",
+        "array": "cpp",
+        "compare": "cpp",
+        "functional": "cpp",
+        "istream": "cpp",
+        "ostream": "cpp",
+        "ranges": "cpp",
+        "tuple": "cpp"
+    },
+
+    // Documentation's path
+    "restructuredtext.confPath": "${workspaceFolder}/doc/doc/source",
+}

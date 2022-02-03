@@ -3,4 +3,4 @@
 	url = https://github.com/serge-sans-paille/frozen
 [submodule "extern/bash-utils"]
 	path = extern/bash-utils
-	url = https://github.com/kpierczy/BashUtils
+	url = https://github.com/kpierczy/bash-utils

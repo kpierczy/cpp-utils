@@ -1,0 +1,50 @@
+{
+    "version": 4,
+    "configurations": [
+        {
+            "name": "cpp-utils",
+            "cStandard": "c11",
+            "cppStandard": "c++20",
+            "compilerPath": "/usr/bin/g++",
+            // Include Paths (non-recursively)
+            "includePath": [
+
+                // Extended std library
+                "${workspaceFolder}/src/estd/concepts/include",
+                "${workspaceFolder}/src/estd/enum/include",
+                "${workspaceFolder}/src/estd/miscellaneous/include",
+                "${workspaceFolder}/src/estd/pointers/include",
+                "${workspaceFolder}/src/estd/preprocessor/include",
+                "${workspaceFolder}/src/estd/strings/include",
+                "${workspaceFolder}/src/estd/result/include",
+                "${workspaceFolder}/src/estd/traits/include",
+                // Extended STL library
+                "${workspaceFolder}/src/estl/include",
+
+                // Patterns library
+                "${workspaceFolder}/src/patterns/include",
+
+                // Dimensional-analysis library
+                "${workspaceFolder}/src/units/include",
+
+                // Numeric library
+                "${workspaceFolder}/src/numeric/include",
+
+                // Utilities library
+                "${workspaceFolder}/src/utilities/include",
+
+            ],
+            // General defines
+            "defines": [ ],
+            // Intellisense mode
+            "intelliSenseMode": "gcc-x86",
+            // Browsed directories (recursively)
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "${workspaceFolder}/src"
+                ]
+            }
+        }
+    ]
+}

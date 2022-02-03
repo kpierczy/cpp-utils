@@ -1,0 +1,30 @@
+{
+    "recommendations": [
+        // C++ development
+        "ms-vscode.cpptools",
+        "jeff-hykin.better-cpp-syntax",
+        "twxs.cmake",
+        "ms-vscode.cmake-tools",
+        // // "ms-vscode.cpptools-themes",
+        // Editor's sugar
+        "psioniq.psi-header",
+        "vscode-icons-team.vscode-icons",
+        "stackbreak.comment-divider",
+        "cschlosser.doxdocgen",
+        "earshinov.simple-alignment",
+        // Utilities
+        "tomoki1207.pdf",
+        "mads-hartmann.bash-ide-vscode",
+        "jebbs.plantuml",
+        // Documentation
+        "lextudio.restructuredtext",
+        "trond-snekvik.simple-rst",
+        // Data
+        "mechatroner.rainbow-csv",
+        "randomfractalsinc.vscode-data-preview",
+        "janisdd.vscode-edit-csv",
+        "grapecity.gc-excelviewer",
+        // To be tested
+        "tabnine.tabnine-vscode"
+    ]
+}
