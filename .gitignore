@@ -1,6 +1,6 @@
 *
 !.gitignore
-!.source_me.bash
+!source_me.bash
 
 # VSCode config
 !.vscode/
