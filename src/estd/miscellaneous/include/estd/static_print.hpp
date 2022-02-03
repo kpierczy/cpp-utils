@@ -2,7 +2,7 @@
  * @file     static_print.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Monday, 12th July 2021 9:25:13 am
- * @modified Thursday, 3rd February 2022 11:26:44 am
+ * @modified Thursday, 3rd February 2022 5:50:37 pm
  * @project  Winder
  * @brief
  *    
@@ -11,8 +11,8 @@
  * @copyright Krzysztof Pierczyk © 2021
  * ================================================================================================================================ */
 
-#ifndef __UTILS_MISCELLANEOUS_CONSTEXPR_H__
-#define __UTILS_MISCELLANEOUS_CONSTEXPR_H__
+#ifndef __ESTD_STATIC_PRINT_H__
+#define __ESTD_STATIC_PRINT_H__
 
 /* =========================================================== Includes =========================================================== */
 

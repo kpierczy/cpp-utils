@@ -2,7 +2,7 @@
  * @file     sequence.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Saturday, 15th January 2022 1:44:31 pm
- * @modified Sunday, 16th January 2022 2:05:15 am
+ * @modified Thursday, 3rd February 2022 5:48:33 pm
  * @project  Winder
  * @brief
  *    
@@ -17,10 +17,10 @@
 
 /* =========================================================== Includes =========================================================== */
 
-#include "utils/traits.hpp"
-#include "utils/sml/dsl/sequence.hpp"
-#include "utils/miscellaneous/macros/variadic.hpp"
-#include "utils/miscellaneous/macros/foreach.hpp"
+#include "estd/traits.hpp"
+#include "boost/sml/utils/dsl/sequence.hpp"
+#include "estd/preprocessor/variadic.hpp"
+#include "estd/preprocessor/foreach.hpp"
 #include "boost/preprocessor/punctuation/comma_if.hpp"
 
 /* ============================================================ Helpers =========================================================== */

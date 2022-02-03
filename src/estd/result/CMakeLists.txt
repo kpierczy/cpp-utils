@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Tuesday, 15th June 2021 9:10:08 pm
-# @modified Thursday, 3rd February 2022 12:05:40 pm
+# @modified Thursday, 3rd February 2022 5:49:20 pm
 # @project  Winder
 # @brief
 #    
@@ -26,5 +26,5 @@ target_include_directories(estd-result
 # Link dependancies
 target_link_libraries(estd-result
     PUBLIC
-        miscellaneous
+        estd-enum
 )
