@@ -9,6 +9,8 @@
             // Include Paths (non-recursively)
             "includePath": [
 
+                // boost-sml utilities library
+                "${workspaceFolder}/src/boost-sml/include",
                 // Extended std library
                 "${workspaceFolder}/src/estd/concepts/include",
                 "${workspaceFolder}/src/estd/enum/include",
