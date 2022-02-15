@@ -22,6 +22,7 @@
                 "${workspaceFolder}/src/estd/concepts/include",
                 "${workspaceFolder}/src/estd/enum/include",
                 "${workspaceFolder}/src/estd/miscellaneous/include",
+                "${workspaceFolder}/src/estd/namedtuple/include",
                 "${workspaceFolder}/src/estd/pointers/include",
                 "${workspaceFolder}/src/estd/preprocessor/include",
                 "${workspaceFolder}/src/estd/strings/include",
