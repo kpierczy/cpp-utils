@@ -2,7 +2,7 @@
  * @file     main.cpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Thursday, 3rd February 2022 7:26:04 pm
- * @modified Thursday, 3rd February 2022 8:05:15 pm
+ * @modified Wednesday, 16th February 2022 3:44:49 am
  * @project  mbed-utils
  * @brief
  *    
@@ -14,10 +14,12 @@
 /* =========================================================== Includes =========================================================== */
 
 #include "tests/main.hpp"
+#include "tests/estl.hpp"
 
 /* ====================================================== Injected namespaces ===================================================== */
 
 using namespace boost::ut::literals;
+using namespace boost::ut::operators::terse;
 
 /* ============================================================= Tests ============================================================ */
 

@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Wednesday, 7th July 2021 7:57:46 pm
-# @modified Thursday, 3rd February 2022 11:30:25 am
+# @modified Tuesday, 15th February 2022 11:38:30 pm
 # @project  Winder
 # @brief
 #    
@@ -14,9 +14,11 @@
 # Source files
 add_library(patterns INTERFACE)
 
-# Include directories
-target_include_directories(patterns 
-    INTERFACE 
-        $<INSTALL_INTERFACE:include>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+# CPRT pattern
+add_subdirectory(cprt)
+
+# Link dependencies
+target_link_libraries(patterns
+    INTERFACE
+        patterns-cprt
 )

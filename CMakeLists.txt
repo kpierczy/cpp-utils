@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Thursday, 3rd February 2022 10:11:45 am
-# @modified Thursday, 3rd February 2022 9:49:13 pm
+# @modified Wednesday, 16th February 2022 12:34:14 am
 # @project  cpp-utils
 # @brief
 #    
@@ -11,12 +11,14 @@
 # @copyright Krzysztof Pierczyk © 2022
 # ====================================================================================================================================
 
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.16)
 
 # ====================================================== Project configuration ===================================================== #
 
 # Set root of the project
-set(CPP_UTILS_HOME ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
+if(not ${MASTER_PROJECT})
+    set(CPP_UTILS_HOME ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
+endif()
 
 # Establish build type
 set(MASTER_PROJECT OFF)
@@ -26,6 +28,10 @@ endif()
 
 # Project's header
 project(cpp-utils VERSION 1.0 LANGUAGES CXX)
+
+# ============================================================ Includes ============================================================ #
+
+include(CTest)
 
 # ===================================================== Toolchain configuration ==================================================== #
 
@@ -63,5 +69,10 @@ add_subdirectory(src)
 
 # Tests directory
 if(${MASTER_PROJECT})
+
+    # Add tests
     add_subdirectory(tests)
+    # Add test
+    add_test(NAME tests COMMAND cpp-utils-tests)
+
 endif()

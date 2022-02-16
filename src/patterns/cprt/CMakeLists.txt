@@ -1,27 +1,22 @@
 # ====================================================================================================================================
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
-# @date     Wednesday, 7th July 2021 7:57:46 pm
-# @modified Tuesday, 15th February 2022 11:42:04 pm
-# @project  Winder
+# @date     Monday, 14th February 2022 11:26:49 pm
+# @modified Tuesday, 15th February 2022 11:38:53 pm
+# @project  cpp-utils
 # @brief
 #    
-#    CMakeList for project extended-stl' library
+#    CMakeList for circular buffer' library
 #    
 # @copyright Krzysztof Pierczyk © 2021
 # ====================================================================================================================================
 
 # Source files
-add_library(estl INTERFACE)
+add_library(patterns-cprt INTERFACE)
 
-# Circular buffer implementation
-add_subdirectory(circular_buffer)
-# Named tuple implementation
-add_subdirectory(namedtuple)
-
-# Link dependencies
-target_link_libraries(estl
-    INTERFACE
-        estl-circular-buffer
-        estl-namedtuple
+# Include directories
+target_include_directories(patterns-cprt 
+    INTERFACE 
+        $<INSTALL_INTERFACE:include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )

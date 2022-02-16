@@ -4,6 +4,7 @@
     /* ============================================================================================================================ */
     
     // CMake config
+    "cmake.ctestPath": "/usr/bin/ctest",
     "cmake.toolset": "",
     "cmake.configureOnOpen": false,
     "cmake.configureOnEdit": false,

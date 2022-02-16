@@ -87,5 +87,27 @@
             // Group
             "group": "build"
         },
+        { /* ---------------------------- Test task ---------------------------- */
+            "label": "Run Tests (Colors)",
+            "detail": "Run project's tests",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            // Command
+            "command" : "${config:cmake.ctestPath}",
+            "type": "shell",
+            "args": [
+                "-T",
+                "test",
+                "--output-on-failure",
+                "-C",
+                "Debug",
+                "-j",
+                "${config:cmake.parallelJobs}",
+                "--"
+            ],
+            // Group
+            "group": "build"
+        },
     ]
 }
