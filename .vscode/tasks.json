@@ -24,7 +24,7 @@
         },
         { /* ------------------------ Configruation task ----------------------- */
            
-            "label": "Configure Cmake",
+            "label": "Configure",
             "detail": "Configures CMake build system",
             // Command
             "command": "${command:cmake.configure} --debug-find",
@@ -35,7 +35,7 @@
             "label": "Clean Configure",
             "detail": "Cleans up build directory and configures CMake build system along with Mbed target configuration",
             // Command
-            "dependsOn": [ "Clean", "Configure Cmake" ],
+            "dependsOn": [ "Clean", "Configure" ],
             "dependsOrder": "sequence",
             "command": [""],
             "type": "shell",
