@@ -2,26 +2,26 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Wednesday, 7th July 2021 7:57:46 pm
-# @modified Thursday, 17th February 2022 8:33:13 pm
+# @modified Thursday, 17th February 2022 8:31:39 pm
 # @project  Winder
 # @brief
 #    
-#    CMakeList for project utilities' library
+#    CMakeList for project parseargs' library
 #    
 # @copyright Krzysztof Pierczyk © 2021
 # ====================================================================================================================================
 
 # Source files
-add_library(utilities INTERFACE)
+add_library(utilities-parseargs INTERFACE)
 
-# Callback library
-add_subdirectory(callback)
-# Parseargs library
-add_subdirectory(parseargs)
+# Include directories
+target_include_directories(utilities-parseargs 
+    INTERFACE 
+        $<INSTALL_INTERFACE:include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+)
 
-# Link dependencies
-target_link_libraries(utilities
+# Link dependancies
+target_link_libraries(utilities-parseargs
     INTERFACE
-        utilities-callback
-        utilities-parseargs
 )
