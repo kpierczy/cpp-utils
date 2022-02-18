@@ -41,7 +41,8 @@
                 // Numeric library
                 "${workspaceFolder}/src/numeric/include",
                 // Utilities library
-                "${workspaceFolder}/src/utilities/include",
+                "${workspaceFolder}/src/utilities/callback/include",
+                "${workspaceFolder}/src/utilities/parseargs/include",
 
                 // Tests
                 "${workspaceFolder}/tests/include",

@@ -2,13 +2,14 @@
  * @file     callback.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Thursday, 17th February 2022 8:32:12 pm
- * @modified Thursday, 17th February 2022 8:36:23 pm
+ * @modified Friday, 18th February 2022 2:06:02 pm
  * @project  cpp-utils
  * @brief
  *    
- *    Header of the helper library implementing C++ terminal argument parser
+ *    Header of the helper library implementing C++ 20 terminal argument parser based on the p-ranav's `argparse`
  *    
  * @copyright Krzysztof Pierczyk © 2021
+ * @see https://github.com/p-ranav/argparse
  * ================================================================================================================================ */
 
 #ifndef __UTILITIES_PARSEARGS_H__
