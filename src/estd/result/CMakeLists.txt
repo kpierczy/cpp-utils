@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Tuesday, 15th June 2021 9:10:08 pm
-# @modified Thursday, 3rd February 2022 5:49:20 pm
+# @modified Monday, 14th March 2022 7:04:51 pm
 # @project  Winder
 # @brief
 #    
@@ -12,19 +12,17 @@
 # ====================================================================================================================================
 
 # Source files
-add_library(estd-result
-    src/default_domain_impl.cpp
-)
+add_library(estd-result INTERFACE)
 
 # Include directories
 target_include_directories(estd-result 
-    PUBLIC 
+    INTERFACE 
         $<INSTALL_INTERFACE:include>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
 
 # Link dependancies
 target_link_libraries(estd-result
-    PUBLIC
+    INTERFACE
         estd-enum
 )

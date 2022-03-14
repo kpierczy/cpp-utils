@@ -2,7 +2,7 @@
  * @file     domain.hpp
  * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date     Tuesday, 15th June 2021 8:53:35 pm
- * @modified Thursday, 3rd February 2022 6:31:52 pm
+ * @modified Monday, 14th March 2022 7:05:44 pm
  * @project  Winder
  * @brief
  *    
@@ -70,6 +70,48 @@ constexpr domain_id DefaultDomain = DefaultDomainDescriptor.getDomainID();
  *    @p std::string_view() if @p key is unknown
  */
 inline constexpr std::string_view to_string(const estd::status_code &status);
+
+/* ======================================================== Static objects ======================================================== */
+
+// Descriptor of status codes from the global namespace
+constexpr domain_descriptor DefaultDomainDescriptor(
+    
+    /* ------ Success codes ------ */
+    domain_descriptor::empty_table(),
+
+    /* ------ Warning codes ------ */
+    (domain_descriptor::description_table) {
+
+        /* TooLate */ "Action could not be finalized as some condition was stolen in the meanwhile"
+
+    },
+
+    /* ------- Error codes ------- */
+    (domain_descriptor::description_table) {
+
+        /* Timeout        */ "Access timeout",
+        /* Unknown        */ "Unknown error",
+        /* Config         */ "Configuration error",
+        /* Nullptr        */ "Null pointer error",
+        /* Arg            */ "Invalid value of one or more of arguments",
+        /* ZeroArg        */ "Zero-argument error (non-zero value expected)" ,
+        /* ZeroDiv        */ "Indicator of error due to zero value division",
+        /* Empty          */ "Empty object passed (non-empty object expected)" ,
+        /* Size           */ "Invalid size",
+        /* Index          */ "Invalid index",
+        /* Uninitialized  */ "Object uninitialized",
+        /* WrongConfig    */ "Wrong configuration",
+        /* Unsupported    */ "Unsupported feature",
+        /* Unprivileged   */ "Unprivileged access to resource",
+        /* Value          */ "Wrong value given",
+        /* Alignment      */ "Wrong alignment",
+        /* Busy           */ "Called context is busy and cannot serve a request",
+        /* BufferOverflow */ "Buffer overflow error",
+        /* NotFound       */ "Element not found",
+        /* Inactive       */ "Functionality inactive"
+
+    }
+);
 
 /* ================================================================================================================================ */
 
