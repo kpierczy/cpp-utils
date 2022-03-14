@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Wednesday, 7th July 2021 7:57:46 pm
-# @modified Thursday, 17th February 2022 8:31:02 pm
+# @modified Monday, 14th March 2022 8:49:00 pm
 # @project  Winder
 # @brief
 #    
@@ -26,3 +26,6 @@ target_link_libraries(utilities-callback
     INTERFACE
         estd-concepts
 )
+
+# Export and install library
+install_header_library(utilities-callback Utilities)

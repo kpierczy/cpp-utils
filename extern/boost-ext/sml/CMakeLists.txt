@@ -3,7 +3,7 @@
 # @author     Krzysztof Jusiak (krzysztof@jusiak.net)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Monday, 14th June 2021 6:53:51 pm
-# @modified Thursday, 3rd February 2022 7:17:10 pm
+# @modified Monday, 14th March 2022 9:26:11 pm
 # @project    Winder
 # @brief
 #    
@@ -163,10 +163,10 @@ endif ()
 
 # ======================================================= Target installation ====================================================== #
 
-if(${MASTER_PROJECT})
+# Set path for CMake configuration files 
+set(INSTALL_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/boost-sml-${PROJECT_VERSION})
 
-    # Set path for CMake configuration files 
-    set(INSTALL_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/boost-sml-${PROJECT_VERSION})
+if(${MASTER_PROJECT})
 
     # Create a ConfigVersion.cmake file
     write_basic_package_version_file(
@@ -181,16 +181,6 @@ if(${MASTER_PROJECT})
         INSTALL_DESTINATION ${INSTALL_CONFIGDIR}
     )
 
-    # Export the targets to a script
-    install(EXPORT boost-sml-targets
-        FILE
-            smlTargets.cmake
-        NAMESPACE
-            Boost::
-        DESTINATION
-            ${INSTALL_CONFIGDIR}
-    )
-
     #Install the config and configversion files
     install(FILES
         ${CMAKE_CURRENT_BINARY_DIR}/smlConfig.cmake
@@ -198,20 +188,30 @@ if(${MASTER_PROJECT})
         DESTINATION ${INSTALL_CONFIGDIR}
     )
 
-    # Install boost-sml target
-    install(TARGETS boost-sml
-        EXPORT boost-sml-targets
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    )
-
-    # Set exported name of the `boost-sml` target to `boost-sml`
-    set_target_properties(boost-sml PROPERTIES EXPORT_NAME boost-sml)
-
-    # Install header files
-    install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-
 endif()
+
+# Export the targets to a script
+install(EXPORT boost-sml-targets
+    FILE
+        smlTargets.cmake
+    NAMESPACE
+        Boost::
+    DESTINATION
+        ${INSTALL_CONFIGDIR}
+)
+
+# Install boost-sml target
+install(TARGETS boost-sml
+    EXPORT boost-sml-targets
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+# Set exported name of the `boost-sml` target to `boost-sml`
+set_target_properties(boost-sml PROPERTIES EXPORT_NAME boost-sml)
+
+# Install header files
+install(DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 # ========================================================= Targets exports ======================================================== #
 

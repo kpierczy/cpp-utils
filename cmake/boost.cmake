@@ -2,7 +2,7 @@
 # @file     boost.cmake
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Wednesday, 1st December 2021 12:22:53 am
-# @modified Thursday, 3rd February 2022 9:36:57 pm
+# @modified Monday, 14th March 2022 9:52:01 pm
 # @project  mbed-utils
 # @brief
 #    
@@ -30,6 +30,26 @@ function(add_boost_headers)
     target_compile_options(boost-headers INTERFACE
         "-DBOOST_NO_RTTI"
         "-DBOOST_NO_TYPEID"
+    )
+    
+    # Export library
+    install(TARGETS boost-headers EXPORT boostHeaders)
+    # Install headers
+    install(
+        DIRECTORY
+            ${CPP_UTILS_HOME}/extern/boost/boost/
+        DESTINATION
+            include/boost
+    )
+
+    # Install export
+    install(EXPORT boostHeaders
+        FILE
+            boostHeadersTargets.cmake
+        NAMESPACE
+            cpp-utils::
+        DESTINATION
+            lib/cmake/cpp-utils-${PROJECT_VERSION}
     )
     
 endfunction()

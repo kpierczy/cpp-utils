@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Wednesday, 7th July 2021 7:57:46 pm
-# @modified Tuesday, 15th February 2022 11:38:30 pm
+# @modified Monday, 14th March 2022 8:48:09 pm
 # @project  Winder
 # @brief
 #    
@@ -22,3 +22,7 @@ target_link_libraries(patterns
     INTERFACE
         patterns-cprt
 )
+
+# Install export
+install_export(Patterns)
+

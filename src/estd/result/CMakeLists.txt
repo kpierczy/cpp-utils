@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Tuesday, 15th June 2021 9:10:08 pm
-# @modified Monday, 14th March 2022 7:04:51 pm
+# @modified Monday, 14th March 2022 8:44:04 pm
 # @project  Winder
 # @brief
 #    
@@ -26,3 +26,7 @@ target_link_libraries(estd-result
     INTERFACE
         estd-enum
 )
+
+# Export and install library
+install_header_library(estd-result Estd)
+

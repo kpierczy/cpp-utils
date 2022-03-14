@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Wednesday, 7th July 2021 7:57:46 pm
-# @modified Thursday, 3rd February 2022 11:50:33 am
+# @modified Monday, 14th March 2022 8:48:33 pm
 # @project  Winder
 # @brief
 #    
@@ -28,3 +28,8 @@ target_link_libraries(units
         estd-traits
         estd-preprocessor
 )
+
+# Export and install library
+install_header_library(units Units)
+# Install export
+install_export(Units)

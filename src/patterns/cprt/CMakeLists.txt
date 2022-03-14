@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Monday, 14th February 2022 11:26:49 pm
-# @modified Tuesday, 15th February 2022 11:38:53 pm
+# @modified Monday, 14th March 2022 8:48:01 pm
 # @project  cpp-utils
 # @brief
 #    
@@ -20,3 +20,6 @@ target_include_directories(patterns-cprt
         $<INSTALL_INTERFACE:include>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
+
+# Export and install library
+install_header_library(patterns-cprt Patterns)

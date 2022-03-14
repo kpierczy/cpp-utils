@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Wednesday, 7th July 2021 7:57:46 pm
-# @modified Tuesday, 15th February 2022 11:42:04 pm
+# @modified Monday, 14th March 2022 8:46:53 pm
 # @project  Winder
 # @brief
 #    
@@ -25,3 +25,6 @@ target_link_libraries(estl
         estl-circular-buffer
         estl-namedtuple
 )
+
+# Install export
+install_export(Estl)

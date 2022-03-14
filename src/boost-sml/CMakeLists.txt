@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Tuesday, 15th June 2021 9:10:08 pm
-# @modified Thursday, 3rd February 2022 7:20:16 pm
+# @modified Monday, 14th March 2022 8:46:41 pm
 # @project  Winder
 # @brief
 #    
@@ -18,7 +18,7 @@ add_library(boost-sml-utils INTERFACE)
 target_include_directories(boost-sml-utils 
     INTERFACE 
         $<INSTALL_INTERFACE:include>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>
 )
 
 # Link dependancies
@@ -30,3 +30,7 @@ target_link_libraries(boost-sml-utils
         boost-headers
 )
 
+# Export and install library
+install_header_library(boost-sml-utils BoostSmlUtils)
+# Install export
+install_export(BoostSmlUtils)

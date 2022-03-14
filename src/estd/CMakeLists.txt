@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Wednesday, 7th July 2021 7:57:46 pm
-# @modified Thursday, 3rd February 2022 5:45:51 pm
+# @modified Monday, 14th March 2022 8:47:22 pm
 # @project  Winder
 # @brief
 #    
@@ -36,3 +36,7 @@ target_link_libraries(estd
         estd-strings
         estd-traits
 )
+
+# Install export
+install_export(Estd)
+

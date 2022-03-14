@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Wednesday, 7th July 2021 7:57:46 pm
-# @modified Thursday, 3rd February 2022 12:41:01 pm
+# @modified Monday, 14th March 2022 8:56:14 pm
 # @project  Winder
 # @brief
 #    
@@ -13,6 +13,8 @@
 
 # Source files
 add_library(${PROJECT_NAME} INTERFACE)
+# Alias for the project
+add_library(CppUtils ALIAS ${PROJECT_NAME})
 
 # Subdirectories
 add_subdirectory(boost-sml)

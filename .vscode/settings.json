@@ -201,7 +201,8 @@
         "istream": "cpp",
         "ostream": "cpp",
         "ranges": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "*.cmake.in": "cmake"
     },
 
     // Documentation's path
