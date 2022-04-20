@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Thursday, 3rd February 2022 10:11:45 am
-# @modified Monday, 14th March 2022 9:49:08 pm
+# @modified   Wednesday, 20th April 2022 10:51:55 pm
 # @project  cpp-utils
 # @brief
 #    
@@ -59,7 +59,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/extern/units)
 
 # Add private targets
 if(${MASTER_PROJECT})
-    message("This is ${CPP_UTILS_HOME}!!!")
+    
     # Add boost headers
     add_boost_headers()
 

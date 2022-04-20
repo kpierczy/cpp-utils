@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Wednesday, 7th July 2021 7:57:46 pm
-# @modified Monday, 14th March 2022 8:48:33 pm
+# @modified   Wednesday, 20th April 2022 11:15:52 pm
 # @project  Winder
 # @brief
 #    
@@ -30,6 +30,6 @@ target_link_libraries(units
 )
 
 # Export and install library
-install_header_library(units Units)
+install_header_library(units units-export)
 # Install export
-install_export(Units)
+install_export(units-export)

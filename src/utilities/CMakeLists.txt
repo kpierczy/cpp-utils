@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Wednesday, 7th July 2021 7:57:46 pm
-# @modified Monday, 14th March 2022 8:48:41 pm
+# @modified   Wednesday, 20th April 2022 11:14:39 pm
 # @project  Winder
 # @brief
 #    
@@ -26,5 +26,5 @@ target_link_libraries(utilities
         utilities-parseargs
 )
 
-# Install export
-install_export(Utilities)
+# Export library and install export set
+export_and_install(EXPORT utilities-export TARGETS utilities )

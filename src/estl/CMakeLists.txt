@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Wednesday, 7th July 2021 7:57:46 pm
-# @modified Monday, 14th March 2022 8:46:53 pm
+# @modified   Wednesday, 20th April 2022 11:18:01 pm
 # @project  Winder
 # @brief
 #    
@@ -26,5 +26,5 @@ target_link_libraries(estl
         estl-namedtuple
 )
 
-# Install export
-install_export(Estl)
+# Export library and install export set
+export_and_install(EXPORT estl-export TARGETS estl )

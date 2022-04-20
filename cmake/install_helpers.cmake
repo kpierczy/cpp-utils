@@ -2,7 +2,7 @@
 # @file     install_helpers.cmake
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Monday, 14th March 2022 8:17:49 pm
-# @modified Monday, 14th March 2022 9:46:08 pm
+# @modified   Wednesday, 20th April 2022 11:19:52 pm
 # @project  engineering-thesis
 # @brief
 #    
@@ -18,6 +18,24 @@ include(CMakeParseArguments)
 # ============================================================ Functions =========================================================== #
 
 # ---------------------------------------------------------------------------------------
+# @brief Helper macro defining an export set for given targets
+# ---------------------------------------------------------------------------------------
+function(export_targets)
+
+    # Arguments
+    cmake_parse_arguments(PARSE_ARGV 0 "ARG" "" "EXPORT" "TARGETS")
+
+    # Export targets
+    install(
+        TARGETS 
+            ${ARG_TARGETS}
+        EXPORT
+            ${ARG_EXPORT}
+    )
+
+endfunction()
+
+# ---------------------------------------------------------------------------------------
 # @brief Helper macro function installing the header-only library with its exports
 # ---------------------------------------------------------------------------------------
 function(install_header_library target export)
@@ -29,7 +47,7 @@ function(install_header_library target export)
     add_library(cpp-utils::${target} ALIAS ${target})
 
     # Export library
-    install(TARGETS ${target} EXPORT ${export})
+    export_targets(TARGETS ${target} EXPORT ${export})
     # Install headers
     install(
         DIRECTORY
@@ -57,5 +75,20 @@ function(install_export export)
         DESTINATION
             lib/cmake/cpp-utils-${PROJECT_VERSION}
     )
+
+endfunction()
+
+# ---------------------------------------------------------------------------------------
+# @brief Helper macro function installing exports
+# ---------------------------------------------------------------------------------------
+function(export_and_install)
+
+    # Arguments
+    cmake_parse_arguments(PARSE_ARGV 0 "ARG" "" "EXPORT" "TARGETS")
+
+    # Export targets
+    export_targets(EXPORT ${ARG_EXPORT} TARGETS ${ARG_TARGETS})
+    # Install export
+    install_export(${ARG_EXPORT})
 
 endfunction()

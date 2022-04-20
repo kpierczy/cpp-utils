@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Tuesday, 15th June 2021 9:10:08 pm
-# @modified Monday, 14th March 2022 8:46:41 pm
+# @modified   Wednesday, 20th April 2022 11:18:30 pm
 # @project  Winder
 # @brief
 #    
@@ -31,6 +31,6 @@ target_link_libraries(boost-sml-utils
 )
 
 # Export and install library
-install_header_library(boost-sml-utils BoostSmlUtils)
+install_header_library(boost-sml-utils boost-sml-utils-export)
 # Install export
-install_export(BoostSmlUtils)
+install_export(boost-sml-utils-export)

@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Monday, 14th February 2022 11:26:49 pm
-# @modified Monday, 14th March 2022 8:45:22 pm
+# @modified   Wednesday, 20th April 2022 11:17:11 pm
 # @project  cpp-utils
 # @brief
 #    
@@ -22,4 +22,4 @@ target_include_directories(estl-circular-buffer
 )
 
 # Export and install library
-install_header_library(estl-circular-buffer Estl)
+install_header_library(estl-circular-buffer estl-export)

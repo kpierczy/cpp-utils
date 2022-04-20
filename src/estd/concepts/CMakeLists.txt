@@ -2,7 +2,7 @@
 # @file     CMakeLists.txt
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Wednesday, 7th July 2021 7:57:06 pm
-# @modified Monday, 14th March 2022 9:08:50 pm
+# @modified   Wednesday, 20th April 2022 11:20:49 pm
 # @project  cpp-tools
 # @brief
 #    
@@ -22,4 +22,4 @@ target_include_directories(estd-concepts
 )
 
 # Export and install library
-install_header_library(estd-concepts Estd)
+install_header_library(estd-concepts estd-export)
