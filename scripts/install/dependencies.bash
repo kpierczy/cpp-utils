@@ -1,3 +1,4 @@
+#!/bin/bash
 # ====================================================================================================================================
 # @file     install_deps.bash
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
@@ -18,7 +19,11 @@
 # ====================================================================================================================================
 
 # Source bsah-helper library
-source $CPP_UTILS_HOME/extern/bash-utils/source_me.bash
+echo "Sourcing $SHELL ($CPP_UTILS_HOME/extern/bash-utils/source_me.bash)..."
+source $CPP_UTILS_HOME/extern/bash-utils/source_me.bash || {
+    log_error "Failed to install project's apt dependencies"
+    exit 1
+}
 
 # ============================================================ Functions =========================================================== #
 

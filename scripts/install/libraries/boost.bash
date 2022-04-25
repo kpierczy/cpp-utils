@@ -12,11 +12,14 @@
 # @copyright Krzysztof Pierczyk © 2021
 # ====================================================================================================================================
 
-# Source bsah-helper library
-source $CPP_UTILS_HOME/extern/bash-utils/source_me.bash
-
 # Log context
 LOG_CONTEXT="boost"
+
+# Source bsah-helper library
+source $CPP_UTILS_HOME/extern/bash-utils/source_me.bash || {
+    log_error "Failed to install boost library"
+    exit 1
+}
 
 # ============================================================ Functions =========================================================== #
 

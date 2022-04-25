@@ -12,6 +12,6 @@
 # ====================================================================================================================================
 
 # Install dependencies
-$CPP_UTILS_HOME/scripts/install/dependencies.bash
+$CPP_UTILS_HOME/scripts/install/dependencies.bash || exit 1
 # Install external libraries
-$CPP_UTILS_HOME/scripts/install/libraries/boost.bash
+$CPP_UTILS_HOME/scripts/install/libraries/boost.bash || exit 1

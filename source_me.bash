@@ -29,4 +29,4 @@ fi
 source $CPP_UTILS_HOME/extern/bash-utils/source_me.bash
 
 # Install dependencies
-$CPP_UTILS_HOME/scripts/install.bash
+$CPP_UTILS_HOME/scripts/install.bash || return 1
