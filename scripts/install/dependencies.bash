@@ -19,7 +19,6 @@
 # ====================================================================================================================================
 
 # Source bsah-helper library
-echo "Sourcing $SHELL ($CPP_UTILS_HOME/extern/bash-utils/source_me.bash)..."
 source $CPP_UTILS_HOME/extern/bash-utils/source_me.bash || {
     log_error "Failed to install project's apt dependencies"
     exit 1
