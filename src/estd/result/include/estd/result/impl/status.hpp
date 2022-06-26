@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
- * @file     status.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Tuesday, 13th July 2021 7:57:43 am
- * @modified Thursday, 3rd February 2022 6:00:26 pm
- * @project  Winder
- * @brief
- *    
- *    Implementation of inline fucntions and function tempaltes related to the status class
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       status.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Tuesday, 13th July 2021 7:57:43 am
+ * @modified   Sunday, 26th June 2022 11:56:59 am
+ * @project    cpp-utils
+ * @brief      Implementation of inline fucntions and function tempaltes related to the status class
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_IMPL_RESULT_STATUS_H__
 #define __ESTD_IMPL_RESULT_STATUS_H__

@@ -1,14 +1,14 @@
 # ====================================================================================================================================
-# @file     CMakeLists.txt
-# @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
-# @date     Tuesday, 15th June 2021 9:10:08 pm
-# @modified   Wednesday, 20th April 2022 11:20:33 pm
-# @project  Winder
-# @brief
-#    
-#    CMakeList for generic action's result library
-#    
-# @copyright Krzysztof Pierczyk © 2021
+# @file       CMakeLists.txt
+# @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+# @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+# @date       Tuesday, 15th June 2021 9:10:08 pm
+# @modified   Sunday, 26th June 2022 11:49:16 am
+# @project    cpp-utils
+# @brief      CMakeList for generic action's result library
+# 
+# 
+# @copyright Krzysztof Pierczyk © 2022
 # ====================================================================================================================================
 
 # Source files

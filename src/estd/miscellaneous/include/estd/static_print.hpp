@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
- * @file     static_print.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Monday, 12th July 2021 9:25:13 am
- * @modified Thursday, 3rd February 2022 5:50:37 pm
- * @project  Winder
- * @brief
- *    
- *    Header file of compile-time, hacky values printer
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       static_print.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Monday, 12th July 2021 9:25:13 am
+ * @modified   Sunday, 26th June 2022 11:56:58 am
+ * @project    cpp-utils
+ * @brief      Header file of compile-time, hacky values printer
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_STATIC_PRINT_H__
 #define __ESTD_STATIC_PRINT_H__

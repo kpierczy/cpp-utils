@@ -1,17 +1,16 @@
 /** ==================================================================================================================================
- * @file     status.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Monday, 12th July 2021 9:59:51 am
- * @modified Thursday, 3rd February 2022 4:17:11 pm
- * @project  Winder
- * @brief
- *    
- *    Header file of the class representing generic status of the operation composed of the status_code and domain pointer.
- *    Additional component (compared to the status_code) provides unique distinction between results produced by various domains
- *    of the project.
+ * @file       status.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Monday, 12th July 2021 9:59:51 am
+ * @modified   Thursday, 3rd February 2022 4:17:11 pm
+ * @project    cpp-utils
+ * @brief      Header file of the class representing generic status of the operation composed of the status_code and domain pointer.
+ *             Additional component (compared to the status_code) provides unique distinction between results produced by various 
+ *             domains of the project.
  * 
- *    As a unique domain identifier a pointer to the statically allocated array of strings is used. This way it is possible
- *    to simply assign human-readable representations of the status to the objects.
+ *             As a unique domain identifier a pointer to the statically allocated array of strings is used. This way it is possible
+ *             to simply assign human-readable representations of the status to the objects.
  *    
  * @copyright Krzysztof Pierczyk © 2021
  * ================================================================================================================================ */

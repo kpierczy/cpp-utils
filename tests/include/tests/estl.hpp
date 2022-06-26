@@ -1,13 +1,13 @@
 /** ==================================================================================================================================
- * @file     estl.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Tuesday, 15th February 2022 11:44:39 pm
- * @modified Tuesday, 15th February 2022 11:45:48 pm
- * @project  cpp-utils
- * @brief
- *    
- *    
- *    
+ * @file       estl.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Tuesday, 15th February 2022 11:44:39 pm
+ * @modified   Sunday, 26th June 2022 11:45:05 am
+ * @project    cpp-utils
+ * @brief      
+ * 
+ * 
  * @copyright Krzysztof Pierczyk © 2022
  * ================================================================================================================================ */
 

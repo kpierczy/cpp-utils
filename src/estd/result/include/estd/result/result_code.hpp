@@ -1,16 +1,16 @@
-/** ==================================================================================================================================
- * @file     result_code.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Tuesday, 13th July 2021 8:29:14 am
- * @modified Thursday, 3rd February 2022 6:31:52 pm
- * @project  Winder
- * @brief
- *    
- *    Header file of the result_code class template representing an rabitrary pair {value, status_code}. status_code indicates
- *    status of the operation that returned result_code as well as whether value conains a valid value.
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       result_code.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Tuesday, 13th July 2021 8:29:14 am
+ * @modified   Sunday, 26th June 2022 11:57:52 am
+ * @project    cpp-utils
+ * @brief      Header file of the result_code class template representing an rabitrary pair {value, status_code}. status_code indicates
+ *             status of the operation that returned result_code as well as whether value conains a valid value.
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_RESULT_RESULT_CODE_H__
 #define __ESTD_RESULT_RESULT_CODE_H__

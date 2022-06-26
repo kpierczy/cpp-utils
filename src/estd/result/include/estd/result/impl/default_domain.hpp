@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
- * @file     default_domain.cpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Thursday, 24th June 2021 4:41:31 pm
- * @modified Thursday, 3rd February 2022 6:32:06 pm
- * @project  Winder
- * @brief
- *    
- *    Definitions of helper functions related to default status domain
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       default_domain.cpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Thursday, 24th June 2021 4:41:31 pm
+ * @modified   Sunday, 26th June 2022 11:56:59 am
+ * @project    cpp-utils
+ * @brief      Definitions of helper functions related to default status domain
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_RESULT_IMPL_DOMAIN_H__
 #define __ESTD_RESULT_IMPL_DOMAIN_H__

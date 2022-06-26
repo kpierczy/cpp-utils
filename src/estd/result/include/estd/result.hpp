@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
- * @file     result.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Sunday, 25th July 2021 8:44:05 pm
- * @modified Thursday, 3rd February 2022 12:06:16 pm
- * @project  Winder
- * @brief
- *    
- *    Aggregating file for `result` library
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       result.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Sunday, 25th July 2021 8:44:05 pm
+ * @modified   Sunday, 26th June 2022 11:56:58 am
+ * @project    cpp-utils
+ * @brief      Aggregating file for `result` library
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_RESULT_H__
 #define __ESTD_RESULT_H__

@@ -1,15 +1,14 @@
 /** ==================================================================================================================================
- * @file     fixed_string.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Monday, 12th July 2021 9:25:13 am
- * @modified Tuesday, 15th February 2022 11:00:14 pm
- * @project  Winder
- * @brief
- *    
- *    Header file of compile-time strings literal
+ * @file       fixed_string.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Monday, 12th July 2021 9:25:13 am
+ * @modified   Tuesday, 15th February 2022 11:00:14 pm
+ * @project    cpp-utils
+ * @brief      Header file of compile-time strings literal
  *    
  * @copyright Krzysztof Pierczyk © 2021
- * @seource https://github.com/unterumarmung/fixed_string
+ * @source https://github.com/unterumarmung/fixed_string
  * ================================================================================================================================ */
 
 #ifndef __ESTD_FIXED_STRING_H__

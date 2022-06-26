@@ -1,14 +1,12 @@
 # ====================================================================================================================================
-# @file     uits.bash
-# @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
-# @date     Monday, 29th November 2021 10:34:15 am
-# @modified Thursday, 3rd February 2022 8:22:10 pm
-# @project  mbed-utils
-# @brief
+# @file       uits.bash
+# @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+# @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+# @date       Monday, 29th November 2021 10:34:15 am
+# @modified   Sunday, 26th June 2022 11:43:01 am
+# @project    mbed-utils
+# @brief      Script installing 'units' library for C++
 #    
-#    Script installing 'units' library for C++
-#    
-# @source https://github.com/mpusz/units
 # @fixme
 # @copyright Krzysztof Pierczyk © 2021
 # ====================================================================================================================================

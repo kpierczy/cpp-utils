@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
- * @file     domain_descriptor.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Tuesday, 13th July 2021 7:57:43 am
- * @modified Thursday, 3rd February 2022 4:27:45 pm
- * @project  Winder
- * @brief
- *    
- *    Implementation of functions and of the DomainDescriptr class
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       domain_descriptor.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Tuesday, 13th July 2021 7:57:43 am
+ * @modified   Sunday, 26th June 2022 11:56:59 am
+ * @project    cpp-utils
+ * @brief      Implementation of functions and of the DomainDescriptr class
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_RESULT_IMPL_DOMAIN_DESCRIPTOR_H__
 #define __ESTD_RESULT_IMPL_DOMAIN_DESCRIPTOR_H__

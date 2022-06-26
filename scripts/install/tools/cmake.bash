@@ -1,12 +1,11 @@
 # ====================================================================================================================================
-# @file     install_cmake.bash
-# @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
-# @date     Sunday, 21st November 2021 5:18:41 pm
-# @modified Thursday, 3rd February 2022 8:22:10 pm
-# @project  mbed-utils
-# @brief
-#    
-#    Installation script for CMake
+# @file       install_cmake.bash
+# @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+# @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+# @date       Sunday, 21st November 2021 5:18:41 pm
+# @modified   Sunday, 26th June 2022 1:14:45 pm
+# @project    mbed-utils
+# @brief      Installation script for CMake
 #    
 # @copyright Krzysztof Pierczyk © 2021
 # ====================================================================================================================================
@@ -22,6 +21,11 @@ declare VERSION=3.22.0
 # ============================================================ Functions =========================================================== #
 
 main() {
+
+    # If CMake installation is not needed, exit
+    if [[$CPP_UTILS_INSTALL_CMAKE != true ]]; then
+        exit 0
+    fi
 
     # If CMake is NOT already installed
     if [[ ! -e $CPP_UTILS_HOME/tools/cmake ]]; then

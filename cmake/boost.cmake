@@ -2,8 +2,8 @@
 # @file     boost.cmake
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Wednesday, 1st December 2021 12:22:53 am
-# @modified Monday, 14th March 2022 9:52:01 pm
-# @project  mbed-utils
+# @modified   Sunday, 26th June 2022 2:09:17 pm
+# @project  cpp-utils
 # @brief
 #    
 #    Helper CMake utility adding boost-headers interface library target to the project
@@ -14,7 +14,7 @@
 # -----------------------------------------------------------------------
 # @brief Adds 'boost-headers' interface library target to the project
 #    assuming that the boost git repository resides in the 
-#    ${CPP_UTILS_HOME}/extern/boost
+#    ${CMAKE_SOURCE_DIR}/extern/boost
 # -----------------------------------------------------------------------
 function(add_boost_headers)
 
@@ -24,7 +24,7 @@ function(add_boost_headers)
     target_include_directories(boost-headers 
         INTERFACE 
             $<INSTALL_INTERFACE:include>
-            $<BUILD_INTERFACE:${CPP_UTILS_HOME}/extern/boost>
+            $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src/boost-headers/include>
     )
     # Disable RTTI mechanisms
     target_compile_options(boost-headers INTERFACE
@@ -37,7 +37,7 @@ function(add_boost_headers)
     # Install headers
     install(
         DIRECTORY
-            ${CPP_UTILS_HOME}/extern/boost/boost/
+            ${CMAKE_SOURCE_DIR}/src/boost-headers/include/boost/
         DESTINATION
             include/boost
     )
@@ -51,5 +51,10 @@ function(add_boost_headers)
         DESTINATION
             lib/cmake/cpp-utils-${PROJECT_VERSION}
     )
+
+    # Set related variables
+    set(Boost_FOUND        True)
+    set(Boost_INCLUDE_DIRS ${CMAKE_PREFIX_PATH}/include)
+    set(Boost_LIBRARIES    cpp-utils::boost-headers)
     
 endfunction()

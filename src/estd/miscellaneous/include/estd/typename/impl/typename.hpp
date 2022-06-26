@@ -1,12 +1,11 @@
 /** ==================================================================================================================================
- * @file     typename.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Tuesday, 15th February 2022 5:28:11 am
- * @modified Tuesday, 15th February 2022 11:25:41 pm
- * @project  engineering-thesis
- * @brief
- *    
- *    Implementation of compile-time, compiler-dependent typename strings generation
+ * @file       typename.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Tuesday, 15th February 2022 5:28:11 am
+ * @modified   Tuesday, 15th February 2022 11:25:41 pm
+ * @project    engineering-thesis
+ * @brief      Implementation of compile-time, compiler-dependent typename strings generation
  *    
  * @copyright Krzysztof Pierczyk © 2022
  * ================================================================================================================================ */

@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
- * @file     callback.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Wednesday, 16th June 2021 11:11:55 am
- * @modified Thursday, 3rd February 2022 11:49:55 am
- * @project  Winder
- * @brief
- *    
- *    Header of the generic class template representing a reference to an arbitrary callable object
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       callback.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Wednesday, 16th June 2021 11:11:55 am
+ * @modified   Sunday, 26th June 2022 11:56:59 am
+ * @project    cpp-utils
+ * @brief      Header of the generic class template representing a reference to an arbitrary callable object
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __UTILITIES_CALLBACK_H__
 #define __UTILITIES_CALLBACK_H__

@@ -1,15 +1,13 @@
 /** ==================================================================================================================================
- * @file     circular_buffer.hpp
- * @author   jnk0le
- * @date     Wednesday, 5th January 2022 7:50:31 am
- * @modified Thursday, 3rd February 2022 12:00:01 pm
- * @project  Winder
- * @brief
- *    
- *    Header file declaring static circular buffer
+ * @file       circular_buffer.hpp
+ * @author     jnk0le
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Wednesday, 5th January 2022 7:50:31 am
+ * @modified   Thursday, 3rd February 2022 12:00:01 pm
+ * @project    cpp-utils
+ * @brief      Header file declaring static circular buffer
  *    
  * @source https://github.com/jnk0le/Ring-Buffer/blob/master/ringbuffer.hpp
- * @maintainer Krzysztof Pierczyk
  * ================================================================================================================================ */
 
 #ifndef __ESTL_CIRCULAR_BUFFER_H__

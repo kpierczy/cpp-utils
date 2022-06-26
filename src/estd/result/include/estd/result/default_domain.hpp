@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
- * @file     domain.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Tuesday, 15th June 2021 8:53:35 pm
- * @modified Monday, 14th March 2022 7:05:44 pm
- * @project  Winder
- * @brief
- *    
- *    Declarations of default domain symbol's
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       domain.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Tuesday, 15th June 2021 8:53:35 pm
+ * @modified   Sunday, 26th June 2022 11:56:59 am
+ * @project    cpp-utils
+ * @brief      Declarations of default domain symbol's
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_RESULT_DOMAIN_H__
 #define __ESTD_RESULT_DOMAIN_H__

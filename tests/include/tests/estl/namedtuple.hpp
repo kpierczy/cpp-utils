@@ -1,18 +1,20 @@
 /** ==================================================================================================================================
- * @file     namedtuple.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Tuesday, 15th February 2022 3:54:46 am
- * @modified Tuesday, 15th February 2022 11:46:51 pm
- * @project  engineering-thesis
- * @brief
- *    
- *    
- *    
+ * @file       namedtuple.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Tuesday, 15th February 2022 3:54:46 am
+ * @modified   Sunday, 26th June 2022 11:44:43 am
+ * @project    cpp-utils
+ * @brief      Unit test of the estl::namedtuple class
+ * 
+ * 
  * @copyright Krzysztof Pierczyk © 2022
  * ================================================================================================================================ */
 
 #ifndef __TESTS_ESTL_NAMEDTUPLE_H__
 #define __TESTS_ESTL_NAMEDTUPLE_H__
+#ifdef __GNUC__ 
+#if (GCC_VERSION >= 12'00'00)
 
 /* =========================================================== Includes =========================================================== */
 
@@ -236,4 +238,6 @@ using namespace boost::ut;
 
 /* ================================================================================================================================ */
 
+#endif
+#endif
 #endif

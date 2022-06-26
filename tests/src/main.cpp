@@ -1,12 +1,11 @@
 /** ==================================================================================================================================
- * @file     main.cpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Thursday, 3rd February 2022 7:26:04 pm
- * @modified Wednesday, 16th February 2022 3:44:49 am
- * @project  mbed-utils
- * @brief
- *    
- *    Main source file of host-based tests
+ * @file       main.cpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Thursday, 3rd February 2022 7:26:04 pm
+ * @modified   Sunday, 26th June 2022 11:46:09 am
+ * @project    cpp-utils
+ * @brief      Main source file of host-based tests
  *    
  * @copyright Krzysztof Pierczyk © 2022
  * ================================================================================================================================ */

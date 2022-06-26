@@ -1,12 +1,11 @@
 /** ==================================================================================================================================
- * @file     traits.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Friday, 18th February 2022 2:00:39 pm
- * @modified Friday, 18th February 2022 2:17:39 pm
- * @project  cpp-utils
- * @brief
- *    
- *    Set of the helper traits used in the implementation of `parseargs` module
+ * @file       traits.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Friday, 18th February 2022 2:00:39 pm
+ * @modified   Friday, 18th February 2022 2:17:39 pm
+ * @project    cpp-utils
+ * @brief      Set of the helper traits used in the implementation of `parseargs` module
  *    
  * @copyright Krzysztof Pierczyk © 2022
  * ================================================================================================================================ */

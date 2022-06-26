@@ -1,12 +1,11 @@
 /** ==================================================================================================================================
- * @file     traits.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Thursday, 3rd February 2022 10:48:23 am
- * @modified Thursday, 3rd February 2022 6:57:58 pm
- * @project  cpp-utils
- * @brief
- *    
- *    Set of commonly used type traits
+ * @file       traits.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Thursday, 3rd February 2022 10:48:23 am
+ * @modified   Thursday, 3rd February 2022 6:57:58 pm
+ * @project    cpp-utils
+ * @brief      Set of commonly used type traits
  *    
  * @copyright Krzysztof Pierczyk © 2022
  * ================================================================================================================================ */

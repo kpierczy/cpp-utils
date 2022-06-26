@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
- * @file     pointers.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Monday, 12th July 2021 9:29:30 am
- * @modified Thursday, 3rd February 2022 11:35:35 am
- * @project  Winder
- * @brief
- *    
- *    Implementation of utilities defined in the estd/pointers.hpp
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       pointers.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Monday, 12th July 2021 9:29:30 am
+ * @modified   Sunday, 26th June 2022 11:56:58 am
+ * @project    cpp-utils
+ * @brief      Implementation of utilities defined in the estd/pointers.hpp
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_POINTERS_IMPL_POINTERS_H__
 #define __ESTD_POINTERS_IMPL_POINTERS_H__

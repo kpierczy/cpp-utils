@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
- * @file     typename.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Tuesday, 15th February 2022 5:27:08 am
- * @modified Tuesday, 15th February 2022 11:10:17 pm
- * @project  Winder
- * @brief
- *    
- *    Header file prividning compile-time print-specific specifiers for numeric conversions for templated types
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       typename.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Tuesday, 15th February 2022 5:27:08 am
+ * @modified   Sunday, 26th June 2022 11:56:58 am
+ * @project    cpp-utils
+ * @brief      Header file prividning compile-time print-specific specifiers for numeric conversions for templated types
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_PRINTF_FORMAT_H__
 #define __ESTD_PRINTF_FORMAT_H__

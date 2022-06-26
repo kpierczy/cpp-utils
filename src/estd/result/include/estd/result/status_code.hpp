@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
- * @file     status_code.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Monday, 14th June 2021 7:39:49 pm
- * @modified Thursday, 3rd February 2022 6:31:52 pm
- * @project  Winder
- * @brief
- *    
- *    Header of the status_code class representing a generic status code
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       status_code.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Monday, 14th June 2021 7:39:49 pm
+ * @modified   Sunday, 26th June 2022 11:56:59 am
+ * @project    cpp-utils
+ * @brief      Header of the status_code class representing a generic status code
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_RESULT_STATUS_CODE_H__
 #define __ESTD_RESULT_STATUS_CODE_H__

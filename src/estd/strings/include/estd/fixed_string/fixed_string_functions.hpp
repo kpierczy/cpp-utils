@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
- * @file     fixed_string.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Tuesday, 15th February 2022 8:23:43 pm
- * @modified Tuesday, 15th February 2022 8:58:36 pm
- * @project  Winder
- * @brief
- *    
- *    Implementation of free functions related to the compile-time strings literal
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       fixed_string.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Tuesday, 15th February 2022 8:23:43 pm
+ * @modified   Sunday, 26th June 2022 11:56:58 am
+ * @project    cpp-utils
+ * @brief      Implementation of free functions related to the compile-time strings literal
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_FIXED_STRING_FUNCTIONS_H__
 #define __ESTD_FIXED_STRING_FUNCTIONS_H__

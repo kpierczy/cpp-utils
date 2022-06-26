@@ -1,9 +1,10 @@
 /** ==================================================================================================================================
- * @file     enum.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Thursday, 3rd February 2022 11:10:53 am
- * @modified Thursday, 3rd February 2022 5:58:21 pm
- * @project  cpp-utils
+ * @file       enum.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Thursday, 3rd February 2022 11:10:53 am
+ * @modified   Thursday, 3rd February 2022 5:58:21 pm
+ * @project    cpp-utils
  * @brief
  *    
  *    

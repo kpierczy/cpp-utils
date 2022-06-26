@@ -1,12 +1,11 @@
 /** ==================================================================================================================================
- * @file     namedtuple.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Monday, 14th February 2022 11:27:10 pm
- * @modified Tuesday, 15th February 2022 11:34:03 pm
- * @project  cpp-utils
- * @brief
- *    
- *    Implementation of the namedtuple
+ * @file       namedtuple.hpp
+ * @author     Krzysztof Jusiak
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Monday, 14th February 2022 11:27:10 pm
+ * @modified   Tuesday, 15th February 2022 11:34:03 pm
+ * @project    cpp-utils
+ * @brief       Implementation of the namedtuple
  *    
  * @copyright Krzysztof Pierczyk © 2022
  * @source https://godbolt.org/z/4889PqPGb

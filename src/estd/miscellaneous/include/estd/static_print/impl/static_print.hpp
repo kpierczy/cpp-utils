@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
- * @file     static_print.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Monday, 12th July 2021 9:29:30 am
- * @modified Thursday, 3rd February 2022 11:26:36 am
- * @project  Winder
- * @brief
- *    
- *    Implementation of inline methods and methods templates of the compile-time helpers module
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       static_print.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Monday, 12th July 2021 9:29:30 am
+ * @modified   Sunday, 26th June 2022 11:56:58 am
+ * @project    cpp-utils
+ * @brief      Implementation of inline methods and methods templates of the compile-time helpers module
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_STATIC_PRINT_IMPL_STATIC_PRINT_H__
 #define __ESTD_STATIC_PRINT_IMPL_STATIC_PRINT_H__

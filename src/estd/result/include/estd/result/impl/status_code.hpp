@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
- * @file     status_code.cpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Monday, 12th July 2021 8:25:41 am
- * @modified Thursday, 3rd February 2022 12:19:53 pm
- * @project  Winder
- * @brief
- *    
- *    Implementation of status_code class 'es methods
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       status_code.cpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Monday, 12th July 2021 8:25:41 am
+ * @modified   Sunday, 26th June 2022 11:56:59 am
+ * @project    cpp-utils
+ * @brief      Implementation of status_code class 'es methods
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_RESULT_IMPL_STATUS_CODE_H__
 #define __ESTD_RESULT_IMPL_STATUS_CODE_H__

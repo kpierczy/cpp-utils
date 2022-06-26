@@ -1,9 +1,10 @@
 /** ==================================================================================================================================
- * @file     concepts.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Thursday, 3rd February 2022 10:22:20 am
- * @modified Thursday, 3rd February 2022 10:50:21 am
- * @project  cpp-utils
+ * @file       concepts.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Thursday, 3rd February 2022 10:22:20 am
+ * @modified   Thursday, 3rd February 2022 10:50:21 am
+ * @project    cpp-utils
  * @brief
  *    
  *    

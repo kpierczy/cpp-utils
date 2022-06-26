@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
- * @file     variadic.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Thursday, 30th December 2021 5:32:36 pm
- * @modified Thursday, 3rd February 2022 11:38:04 am
- * @project  Winder
- * @brief
- *    
- *    Declaration of the helper macro related to variadic macros
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       variadic.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Thursday, 30th December 2021 5:32:36 pm
+ * @modified   Sunday, 26th June 2022 11:56:58 am
+ * @project    cpp-utils
+ * @brief      Declaration of the helper macro related to variadic macros
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_PREPROCESSOR_VARIADIC_H__
 #define __ESTD_PREPROCESSOR_VARIADIC_H__

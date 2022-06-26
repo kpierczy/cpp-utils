@@ -1,13 +1,13 @@
 # ====================================================================================================================================
-# @file     CMakeLists.txt
-# @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
-# @date     Thursday, 3rd February 2022 10:11:45 am
-# @modified   Wednesday, 20th April 2022 10:51:55 pm
-# @project  cpp-utils
-# @brief
-#    
-#    Top-level CMake file of the project
-#    
+# @file       CMakeLists.txt
+# @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+# @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+# @date       Thursday, 3rd February 2022 10:11:45 am
+# @modified   Sunday, 26th June 2022 3:02:16 pm
+# @project    cpp-utils
+# @brief      Top-level CMake file of the project
+# 
+# 
 # @copyright Krzysztof Pierczyk © 2022
 # ====================================================================================================================================
 
@@ -21,14 +21,14 @@ if(${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_SOURCE_DIR})
   set(MASTER_PROJECT ON)
 endif()
 
-# Set root of the project
-set(CPP_UTILS_HOME ${CMAKE_CURRENT_LIST_DIR})
-if(NOT ${MASTER_PROJECT})
-    set(CPP_UTILS_HOME ${CMAKE_CURRENT_LIST_DIR} PARENT_SCOPE)
-endif()
-
 # Project's header
 project(cpp-utils VERSION 1.0 LANGUAGES CXX)
+
+# ============================================================= Options ============================================================ #
+
+option(WITH_CUSTOM_BOOST     "If ON includes boost header sources installed by the project's setup into the source tree" $ENV{CPP_UTILS_INSTALL_BOOST_HEADERS})
+option(WITH_CUSTOM_BOOST_EXT "If ON includes boost extensions sources by Kris Jusiak into the source tree"               ON                                   )
+option(WITH_CUSTOM_MP_UNITS  "If ON includes mp-units sources by Matusz Pusz into the source tree"                       ON                                   )
 
 # ============================================================ Includes ============================================================ #
 
@@ -50,19 +50,26 @@ endif()
 # ========================================================== Dependencies ========================================================== #
 
 # Include helper scripts
-include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/boost.cmake)
+if(WITH_CUSTOM_BOOST)
+    add_subdirectory(src/boost-headers)
+else()
+    find_package(Boost REQUIRED)
+endif()
 
 # Add boost::ext::* libraries
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/extern/boost-ext)
+if(WITH_CUSTOM_BOOST_EXT)
+    add_subdirectory(extern/boost-ext)
+else()
+    find_package(di  REQUIRED)
+    find_package(sml REQUIRED)
+    find_package(ut  REQUIRED)
+endif()
+
 # Add mp-units library
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/extern/units)
-
-# Add private targets
-if(${MASTER_PROJECT})
-    
-    # Add boost headers
-    add_boost_headers()
-
+if(WITH_CUSTOM_MP_UNITS)
+    add_subdirectory(extern/mp-units)
+else()
+    find_package(mp-units REQUIRED)
 endif()
 
 # ============================================================= Sources ============================================================ #

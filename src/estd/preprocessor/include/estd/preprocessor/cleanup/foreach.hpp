@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
- * @file     foreach.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Thursday, 30th December 2021 4:42:02 pm
- * @modified Thursday, 3rd February 2022 11:38:04 am
- * @project  Winder
- * @brief
- *    
- *    Header undefining macros defined in the foreach.hpp file
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       foreach.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Thursday, 30th December 2021 4:42:02 pm
+ * @modified   Sunday, 26th June 2022 11:56:59 am
+ * @project    cpp-utils
+ * @brief      Header undefining macros defined in the foreach.hpp file
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifdef __ESTD_PREPROCESSOR_FOREACH_H__
 

@@ -1,14 +1,14 @@
 # ====================================================================================================================================
-# @file     CMakeLists.txt
-# @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
-# @date     Wednesday, 7th July 2021 7:57:46 pm
-# @modified Wednesday, 16th February 2022 12:06:50 am
-# @project  Winder
-# @brief
-#    
-#    CMakeList for tests
-#    
-# @copyright Krzysztof Pierczyk © 2021
+# @file       CMakeLists.txt
+# @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+# @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+# @date       Wednesday, 7th July 2021 7:57:46 pm
+# @modified   Sunday, 26th June 2022 11:50:05 am
+# @project    cpp-utils
+# @brief      CMakeList for tests
+# 
+# 
+# @copyright Krzysztof Pierczyk © 2022
 # ====================================================================================================================================
 
 # Source files

@@ -1,14 +1,12 @@
 #!/bin/bash
 # ====================================================================================================================================
-# @file     install_deps.bash
-# @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
-# @date     Monday, 21st June 2021 1:28:12 pm
-# @modified Thursday, 3rd February 2022 8:22:10 pm
-# @project  mbed-utils
-# @brief
-#    
-#    Installs dependencies of the project using Ubuntu apt repository
-#    
+# @file       install_deps.bash
+# @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+# @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+# @date       Monday, 21st June 2021 1:28:12 pm
+# @modified   Sunday, 26th June 2022 11:43:41 am
+# @project    mbed-utils
+# @brief      Installs dependencies of the project using Ubuntu apt repository
 # @usage
 #
 #        install_deps [MBED_CLI_VERSION]

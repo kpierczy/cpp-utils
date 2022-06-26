@@ -1,16 +1,16 @@
-/** ==================================================================================================================================
- * @file     result.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Tuesday, 13th July 2021 9:47:10 am
- * @modified Thursday, 3rd February 2022 6:41:12 pm
- * @project  Winder
- * @brief
- *    
- *    Header file of the result class template representing an rabitrary pair {value, status}. status indicates
- *    status of the operation that returned result as well as whether value conains a valid value.
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       result.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Tuesday, 13th July 2021 9:47:10 am
+ * @modified   Sunday, 26th June 2022 11:57:52 am
+ * @project    cpp-utils
+ * @brief      Header file of the result class template representing an rabitrary pair {value, status}. status indicates
+ *             status of the operation that returned result as well as whether value conains a valid value.
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_RESULT_RESULT_H__
 #define __ESTD_RESULT_RESULT_H__

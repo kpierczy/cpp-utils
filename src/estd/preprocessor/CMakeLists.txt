@@ -1,14 +1,14 @@
 # ====================================================================================================================================
-# @file     CMakeLists.txt
-# @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
-# @date     Wednesday, 7th July 2021 7:57:46 pm
-# @modified   Wednesday, 20th April 2022 11:20:37 pm
-# @project  Winder
-# @brief
-#    
-#    CMakeList for preprocessor library
-#    
-# @copyright Krzysztof Pierczyk © 2021
+# @file       CMakeLists.txt
+# @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+# @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+# @date       Wednesday, 7th July 2021 7:57:46 pm
+# @modified   Sunday, 26th June 2022 1:53:11 pm
+# @project    cpp-utils
+# @brief      CMakeList for preprocessor library
+# 
+# 
+# @copyright Krzysztof Pierczyk © 2022
 # ====================================================================================================================================
 
 # Source files
@@ -24,7 +24,7 @@ target_include_directories(estd-preprocessor
 # Link dependancies
 target_link_libraries(estd-preprocessor
     INTERFACE
-        boost-headers
+        ${Boost_INCLUDE_DIRS}
 )
 
 # Export and install library

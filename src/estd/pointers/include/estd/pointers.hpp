@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
- * @file     pointers.hpp
- * @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date     Friday, 28th January 2022 11:53:13 am
- * @modified Thursday, 3rd February 2022 11:34:22 am
- * @project  Winder
- * @brief
- *    
- *    Header file of general pointers -related tools
- *    
- * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+/* ============================================================================================================================ *//**
+ * @file       pointers.hpp
+ * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+ * @date       Friday, 28th January 2022 11:53:13 am
+ * @modified   Sunday, 26th June 2022 11:56:58 am
+ * @project    cpp-utils
+ * @brief      Header file of general pointers -related tools
+ * 
+ * 
+ * @copyright Krzysztof Pierczyk © 2022
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_POINTERS_PTR_H__
 #define __ESTD_POINTERS_PTR_H__
