@@ -352,6 +352,7 @@
 
     // Files associations
     "files.associations": {
+        ".clang-format": "yaml",
         "*.svd": "xml",
         "utility": "cpp",
         "type_traits": "cpp",
@@ -362,7 +363,8 @@
         "ostream": "cpp",
         "ranges": "cpp",
         "tuple": "cpp",
-        "*.cmake.in": "cmake"
+        "*.cmake.in": "cmake",
+        "variant": "cpp"
     },
     
 }

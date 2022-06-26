@@ -4,7 +4,7 @@
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Tuesday, 15th February 2022 5:28:11 am
  * @modified   Tuesday, 15th February 2022 11:10:22 pm
- * @project    engineering-thesis
+ * @project    cpp-utils
  * @brief
  *    
  *    Implementation of compile-time, compiler-dependent typename strings generation

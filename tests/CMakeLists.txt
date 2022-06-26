@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 7th July 2021 7:57:46 pm
-# @modified   Sunday, 26th June 2022 11:50:05 am
+# @modified   Sunday, 26th June 2022 3:49:21 pm
 # @project    cpp-utils
 # @brief      CMakeList for tests
 # 
@@ -25,5 +25,5 @@ target_include_directories(cpp-utils-tests
 target_link_libraries(cpp-utils-tests
     PRIVATE
         ${PROJECT_NAME}
-        boost-ut
+        Boost::ut
 )

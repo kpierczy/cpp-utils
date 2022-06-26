@@ -5,21 +5,18 @@
  * @date       Thursday, 3rd February 2022 10:48:23 am
  * @modified   Thursday, 3rd February 2022 6:57:58 pm
  * @project    cpp-utils
- * @brief      Set of commonly used type traits
+ * @brief      Set of type traits related to STL containers
  *    
  * @copyright Krzysztof Pierczyk © 2022
  * ================================================================================================================================ */
 
-#ifndef __ESTD_TRAITS_H__
-#define __ESTD_TRAITS_H__
+#ifndef __ESTD_TRAITS_STL_H__
+#define __ESTD_TRAITS_STL_H__
 
 /* =========================================================== Includes =========================================================== */
 
-#include "estd/traits/callables.hpp"
-#include "estd/traits/conversions.hpp"
-#include "estd/traits/general.hpp"
-#include "estd/traits/templates.hpp"
-#include "estd/traits/stl.hpp"
+#include "estd/traits/stl/array.hpp"
+#include "estd/traits/stl/vector.hpp"
 
 /* ================================================================================================================================ */
 

@@ -3,7 +3,7 @@
 # @author     Krzysztof Jusiak (krzysztof@jusiak.net)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Monday, 14th June 2021 6:53:51 pm
-# @modified Thursday, 3rd February 2022 7:17:26 pm
+# @modified   Sunday, 26th June 2022 3:48:46 pm
 # @project    Winder
 # @brief
 #    
@@ -93,6 +93,7 @@ endif()
 # Add library
 add_library(boost-ut INTERFACE)
 # Alias librarie's name
+add_library(ut        ALIAS boost-ut)
 add_library(Boost::ut ALIAS boost-ut)
 
 # Set installation include dirs

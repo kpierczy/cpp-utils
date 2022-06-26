@@ -13,8 +13,6 @@
             // Include Paths (non-recursively)
             "includePath": [
 
-                // Boost sources
-                // "${workspaceFolder}/extern/boost",
                 // Boost-ext sources
                 "${workspaceFolder}/extern/boost-ext/di/include",
                 "${workspaceFolder}/extern/boost-ext/sml/include",
@@ -23,12 +21,14 @@
                 // boost-sml utilities library
                 "${workspaceFolder}/src/boost-sml/include",
                 // Extended std library
+                "${workspaceFolder}/src/estd/bits/include",
                 "${workspaceFolder}/src/estd/concepts/include",
                 "${workspaceFolder}/src/estd/enum/include",
                 "${workspaceFolder}/src/estd/miscellaneous/include",
                 "${workspaceFolder}/src/estd/pointers/include",
                 "${workspaceFolder}/src/estd/preprocessor/include",
                 "${workspaceFolder}/src/estd/strings/include",
+                "${workspaceFolder}/src/estd/synchronisation/include",
                 "${workspaceFolder}/src/estd/result/include",
                 "${workspaceFolder}/src/estd/traits/include",
                 // Extended STL library

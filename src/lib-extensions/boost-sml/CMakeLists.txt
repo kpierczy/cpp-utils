@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Tuesday, 15th June 2021 9:10:08 pm
-# @modified   Sunday, 26th June 2022 1:53:17 pm
+# @modified   Sunday, 26th June 2022 3:50:41 pm
 # @project    cpp-utils
 # @brief      CMakeList for Boost::SML utilities library
 # 
@@ -19,15 +19,16 @@ target_include_directories(lib-extensions-boost-sml
     INTERFACE 
         $<INSTALL_INTERFACE:include>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>
+        $<INSTALL_INTERFACE:${Boost_INCLUDE_DIRS}>
+        $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>
 )
 
 # Link dependancies
 target_link_libraries(lib-extensions-boost-sml
     INTERFACE
-        boost-sml
+        Boost::sml
         estd-traits
         estd-preprocessor
-        ${Boost_INCLUDE_DIRS}
 )
 
 # Export and install library

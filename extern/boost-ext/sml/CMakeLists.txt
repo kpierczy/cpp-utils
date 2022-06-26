@@ -3,14 +3,14 @@
 # @author     Krzysztof Jusiak (krzysztof@jusiak.net)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Monday, 14th June 2021 6:53:51 pm
-# @modified Monday, 14th March 2022 9:26:11 pm
+# @modified   Sunday, 26th June 2022 3:48:18 pm
 # @project    Winder
 # @brief
 #    
 #    CMake package for Boost.SML library
 #    
 # @copyright Krzysztof Pierczyk © 2021
-# @see https://github.com/boost-ext/boost-sml
+# @see https://github.com/boost-ext/sml
 # ====================================================================================================================================
 
 # Establish build type
@@ -101,6 +101,7 @@ install(DIRECTORY "include/boost" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
 # Add library
 add_library(boost-sml INTERFACE)
 # Alias librarie's name
+add_library(sml        ALIAS boost-sml)
 add_library(Boost::sml ALIAS boost-sml)
 
 #Add include directories

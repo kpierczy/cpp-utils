@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Saturday, 15th January 2022 1:44:31 pm
- * @modified   Sunday, 26th June 2022 12:05:12 pm
+ * @modified   Sunday, 26th June 2022 3:23:02 pm
  * @project    cpp-utils
  * @brief      Helper DSL-type (Domain Specific Language) macros modelling linear sequence of actions that may fail resuling
  *             in processing of the predefined event
@@ -35,9 +35,9 @@
  * @param dst 
  *    destination state (on success) 
  */
-#define ACTIONS_SEQUENCE_STATE_TRANSITIONS(error, src, action, dst)                                                                                                     \
-      src + event<ProceedeSequence<estd::return_type_t<decltype(action)>>>[  is_sequence_action_success<estd::return_type_t<decltype(action)>> ] = dst              \
-    , src + event<ProceedeSequence<estd::return_type_t<decltype(action)>>>[ !is_sequence_action_success<estd::return_type_t<decltype(action)>> ] / process(error{}) \
+#define ACTIONS_SEQUENCE_STATE_TRANSITIONS(error, src, action, dst)                                                                                       \
+      src + event<ProceedeSequence<estd::result_t<decltype(action)>>>[  is_sequence_action_success<estd::result_t<decltype(action)>> ] = dst              \
+    , src + event<ProceedeSequence<estd::result_t<decltype(action)>>>[ !is_sequence_action_success<estd::result_t<decltype(action)>> ] / process(error{}) \
     , src + on_entry<_> / proceede_action(action)
 
 /* ============================================================ Macros ============================================================ */
