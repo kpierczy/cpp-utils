@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Tuesday, 24th May 2022 4:43:28 pm
-# @modified   Thursday, 4th August 2022 5:28:40 pm
+# @modified   Thursday, 4th August 2022 7:33:06 pm
 # @project    cpp-utils
 # @brief      Definition of helper macros utilized by the packahe
 #    

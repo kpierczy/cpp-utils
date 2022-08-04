@@ -3,8 +3,8 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Thursday, 12th May 2022 11:27:46 pm
-# @modified   Sunday, 26th June 2022 3:07:25 pm
-# @project    engineering-thesis
+# @modified   Thursday, 4th August 2022 7:32:52 pm
+# @project    cpp-utils
 # @brief      Definition of the add_doxygen_doc() function
 #    
 #    
@@ -17,6 +17,30 @@
 include(${CMAKE_CURRENT_LIST_DIR}/common.cmake)
 
 # ============================================================= Helpers ============================================================ #
+
+# ----------------------------------------------------------------------------------
+# @brief Helper macro adding custom command (with APPEND option) appending string 
+#   line to the compile doxyfile
+#
+# @param output_file
+#    name of the target doxyfile
+# @param str
+#    string to be appended
+# ----------------------------------------------------------------------------------
+function(append_doxyfile_line output_file str)
+
+    # Add command
+    add_custom_command(
+        
+        # Output
+        OUTPUT ${output_file}
+        # Command
+        ${CMAKE_COMMAND} -E echo "${str}" >> ${output_file}
+        # Append command to file    
+        APPEND
+    )
+
+endfunction()
 
 # ----------------------------------------------------------------------------------
 # @brief Helper macro adding custom command compiling set of @p DOXY_FILES into
@@ -43,30 +67,13 @@ function(compile_doxyfiles)
         # Target file
         OUTPUT ${ARG_OUTPUT_FILE}
         # Command
-        COMMAND cat ${ARG_DOXY_FILES} > ${ARG_OUTPUT_FILE}
+        COMMAND ${CMAKE_COMMAND} -E cat ${ARG_DOXY_FILES} > ${ARG_OUTPUT_FILE}
         # Files dependencies
         DEPENDS ${ARG_DOXY_FILES}
-        
     )
 
     # Append empty line to the file
     append_doxyfile_line(${ARG_OUTPUT_FILE} "")
-
-endfunction()
-
-# ----------------------------------------------------------------------------------
-# @brief Helper macro adding custom command (with APPEND option) appending string 
-#   line to the compile doxyfile
-#
-# @param output_file
-#    name of the target doxyfile
-# @param str
-#    string to be appended
-# ----------------------------------------------------------------------------------
-function(append_doxyfile_line output_file str)
-
-    # Add command
-    add_custom_command(OUTPUT ${output_file} COMMAND echo "${str}" >> ${output_file} APPEND)
 
 endfunction()
 
@@ -86,7 +93,7 @@ endfunction()
 # @param OUTPUT_DIR [DIR] (optional, default: ${CMAKE_CURRENT_BINARY_DIR}/doc/doxygen)
 #     output directory for Doxygen results; this will overwrite 'OUTPUT_DIRECTORY' 
 #     in the original @p DOXYFILE
-# @param OUTPUT_LOG_FILE [FILE] (optional, default: ${DOC_COMMON_LOG_DIR}/doc/${PROJECT_NAME}/doxygen.log)
+# @param OUTPUT_LOG_FILE [FILE] (optional, default: ${CMAKE_CURRENT_BINARY_DIR}/doc/${PROJECT_NAME}/doxygen.log)
 #     name of the Doxygen output log file; this will overwrite 'WARN_LOGFILE' in the
 #     original @p DOXYFILE; by default, the log will be put into the subdirectory
 #     of the default log directory used by colcon (for convinience)
@@ -184,7 +191,7 @@ function(add_doxygen_doc target_name)
     # Set default output directory
     parse_arg(OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/doc/doxygen)
     # Set default log file
-    parse_arg(OUTPUT_LOG_FILE ${DOC_COMMON_LOG_DIR}/doc/${PROJECT_NAME}/doxygen.log)
+    parse_arg(OUTPUT_LOG_FILE ${CMAKE_CURRENT_BINARY_DIR}/doc/${PROJECT_NAME}/doxygen.log)
     # Set default output file
     parse_arg(OUTPUT_FILE html/index.html)
 

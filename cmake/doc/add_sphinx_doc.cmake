@@ -3,8 +3,8 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Thursday, 12th May 2022 11:27:46 pm
-# @modified   Sunday, 26th June 2022 3:07:29 pm
-# @project    engineering-thesis
+# @modified   Thursday, 4th August 2022 7:32:45 pm
+# @project    cpp-utils
 # @brief      Definition of the add_sphinx_doc() function
 #    
 #    
@@ -15,6 +15,7 @@
 
 # Include common utilities
 include(${CMAKE_CURRENT_LIST_DIR}/common.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/add_doxygen_doc.cmake)
 
 # =========================================================== Definitions ========================================================== #
 
@@ -37,7 +38,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/common.cmake)
 #     list of documentation source files
 # @param OUTPUT_DIR [DIR] (optional, default: ${CMAKE_CURRENT_BINARY_DIR}/doc/sphinx)
 #     output directory for Sphinx results
-# @param OUTPUT_LOG_FILE [FILE] (optional, default: ${DOC_COMMON_LOG_DIR}/doc/${PROJECT_NAME}/sphinx)
+# @param OUTPUT_LOG_FILE [FILE] (optional, default: ${CMAKE_CURRENT_BINARY_DIR}/doc/${PROJECT_NAME}/sphinx)
 #     base for the name of the Sphinx error log files; ${BUILDER}.log suffix is 
 #     appended to the file name automatically; by default, the log will be put into 
 #     the subdirectory of the default log directory used by colcon (for convinience)
@@ -196,7 +197,7 @@ function(add_sphinx_doc target_name)
     # Set default output dircetory (Sphinx)
     parse_arg(OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/doc/sphinx)
     # Set default output log file (Sphinx)
-    parse_arg(OUTPUT_LOG_FILE ${DOC_COMMON_LOG_DIR}/doc/${PROJECT_NAME}/sphinx)
+    parse_arg(OUTPUT_LOG_FILE ${CMAKE_CURRENT_BINARY_DIR}/doc/${PROJECT_NAME}/sphinx)
     # Set default builder formats (Sphinx)
     parse_arg(BUILDERS "html")
 
