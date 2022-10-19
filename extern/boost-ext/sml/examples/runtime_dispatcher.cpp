@@ -1,8 +1,8 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file     runtime_dispatcher.cpp
  * @author   Krzysztof Jusiak (krzysztof@jusiak.net)
  * @date     Wednesday, 22nd December 2021 1:33:10 pm
- * @modified Wednesday, 22nd December 2021 6:02:52 pm
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @brief 
  * 
  *    Example showing usage of the built-in runtime dispatcher (this also explains some aspects of the dispatche mechanism
@@ -10,7 +10,7 @@
  * 
  * @todo fixme 
  * @see https://boost-ext.github.io/sml/examples.html
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #include "boost/sml/utility/dispatch_table.hpp"
 #include <boost/sml.hpp>

@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file       namedtuple.hpp
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Tuesday, 15th February 2022 3:54:46 am
- * @modified   Sunday, 26th June 2022 11:44:43 am
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @project    cpp-utils
  * @brief      Unit test of the estl::namedtuple class
  * 
  * 
  * @copyright Krzysztof Pierczyk © 2022
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #ifndef __TESTS_ESTL_NAMEDTUPLE_H__
 #define __TESTS_ESTL_NAMEDTUPLE_H__

@@ -1,16 +1,16 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file       enum.hpp
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Thursday, 3rd February 2022 11:10:53 am
- * @modified   Thursday, 3rd February 2022 5:58:21 pm
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @project    cpp-utils
  * @brief
  *    
  *    
  *    
  * @copyright Krzysztof Pierczyk © 2022
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_ENUM_IMPL_ENUM_H__
 #define __ESTD_ENUM_IMPL_ENUM_H__

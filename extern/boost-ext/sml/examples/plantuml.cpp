@@ -1,8 +1,8 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file     plantuml.cpp
  * @author   Krzysztof Jusiak (krzysztof@jusiak.net)
  * @date     Wednesday, 22nd December 2021 1:33:10 pm
- * @modified Thursday, 23rd December 2021 10:03:34 pm
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @brief 
  * 
  *    Example showing integration of SML with SDL2 library
@@ -10,7 +10,7 @@
  * @see https://boost-ext.github.io/sml/examples.html
  * @see https://plantuml.com/state-diagram
  * @todo Does not work for C++17 version (nope, just does not work in MinGW. On CompilerExplorer compiles just fine in C++17 mode)
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #if __cplusplus >= 201703L
 

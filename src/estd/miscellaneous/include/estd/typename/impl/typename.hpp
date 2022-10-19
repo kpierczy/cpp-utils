@@ -1,14 +1,14 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file       typename.hpp
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Tuesday, 15th February 2022 5:28:11 am
- * @modified   Tuesday, 15th February 2022 11:25:41 pm
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @project    cpp-utils
  * @brief      Implementation of compile-time, compiler-dependent typename strings generation
  *    
  * @copyright Krzysztof Pierczyk © 2022
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_TYPENAME_IMPL_TYPENAME_H__
 #define __ESTD_TYPENAME_IMPL_TYPENAME_H__

@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file     defer_process.cpp
  * @author   Krzysztof Jusiak (krzysztof@jusiak.net)
  * @date     Wednesday, 22nd December 2021 1:33:10 pm
- * @modified Wednesday, 22nd December 2021 5:58:44 pm
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @brief 
  * 
  *    Example showing way to deffer transition of the state machine between 'process_event()' calls and trigger events from
  *    actions associated with transitions
  * 
  * @see https://boost-ext.github.io/sml/examples.html
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #include <boost/sml.hpp>
 #include <cassert>

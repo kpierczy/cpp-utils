@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file     sdl_integration.cpp
  * @author   Krzysztof Jusiak (krzysztof@jusiak.net)
  * @date     Wednesday, 22nd December 2021 1:33:10 pm
- * @modified Thursday, 23rd December 2021 7:45:53 pm
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @brief 
  * 
  *    Example showing integration of SML with SDL2 library
  * 
  * @see https://boost-ext.github.io/sml/examples.html
  * @see https://pl.wikipedia.org/wiki/Simple_DirectMedia_Layer
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #include <boost/sml.hpp>
 #include <cassert>

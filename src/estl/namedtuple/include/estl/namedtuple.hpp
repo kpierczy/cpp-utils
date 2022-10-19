@@ -1,16 +1,16 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file       namedtuple.hpp
  * @author     Krzysztof Jusiak
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Monday, 14th February 2022 11:27:10 pm
- * @modified   Tuesday, 15th February 2022 11:34:43 pm
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @project    cpp-utils
  * @brief      Implementation of the python-like named tuple in c++ 20 (does not work in GCC < 11.2)
  *    
  * @copyright Krzysztof Pierczyk © 2022
  * @source https://gist.github.com/GuillaumeDua/b354dd4c46df160dbfd04c31b2a51c80 (https://godbolt.org/z/4889PqPGb)
  * @source https://twitter.com/krisjusiak/status/1455843968361586690 (https://t.co/fGBE43xnZy)
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_NAMEDTUPLE_H__
 #define __ESTD_NAMEDTUPLE_H__

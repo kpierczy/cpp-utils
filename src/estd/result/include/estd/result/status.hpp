@@ -1,9 +1,9 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file       status.hpp
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Monday, 12th July 2021 9:59:51 am
- * @modified   Thursday, 3rd February 2022 4:17:11 pm
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @project    cpp-utils
  * @brief      Header file of the class representing generic status of the operation composed of the status_code and domain pointer.
  *             Additional component (compared to the status_code) provides unique distinction between results produced by various 
@@ -13,7 +13,7 @@
  *             to simply assign human-readable representations of the status to the objects.
  *    
  * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_RESULT_STATUS_H__
 #define __ESTD_RESULT_STATUS_H__

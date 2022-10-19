@@ -1,9 +1,9 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file       torque.hpp
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Friday, 3rd December 2021 12:48:07 am
- * @modified   Thursday, 3rd February 2022 11:41:15 am
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @project    cpp-utils
  * @brief      Definitions of units, dimensions and quantities (based on the mp-units library) describing torque values (extends 
  *             mp-units nemspaces)
@@ -13,7 +13,7 @@
  *    same dimenion as energy (J = N * m). Moreover it can be handy to use FLA^(-1) definition (e.g. when the overall work, i.e.
  *    integral of the torque over the angle, is calculated).
  * @copyright Krzysztof Pierczyk © 2021
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #ifndef __UNITS_MOMENT_OF_TORQUE_H__
 #define __UNITS_MOMENT_OF_TORQUE_H__

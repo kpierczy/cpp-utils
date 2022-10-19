@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file       aligned_storage.hpp
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Wednesday, 5th January 2022 11:09:00 pm
- * @modified   Thursday, 3rd February 2022 11:27:44 am
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @project    cpp-utils
  * @brief      Implementation of helper utilities related to aligned storage container
  *    
  * @copyright Krzysztof Pierczyk © 2022
  * @see https://stackoverflow.com/questions/42521605/placement-new-address-alignment
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_ALIGNED_STORAGE_H__
 #define __ESTD_ALIGNED_STORAGE_H__

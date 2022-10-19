@@ -1,14 +1,14 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file       crtp.hpp
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Sunday, 2nd January 2022 3:43:47 pm
- * @modified   Thursday, 3rd February 2022 11:32:49 am
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @project    cpp-utils
  * @brief      Header file of the base class for classes implementing CRTP static polymorphism
  *    
  * @copyright Krzysztof Pierczyk © 2022
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #ifndef __PATTERNS_CRTP_H__
 #define __PATTERNS_CRTP_H__

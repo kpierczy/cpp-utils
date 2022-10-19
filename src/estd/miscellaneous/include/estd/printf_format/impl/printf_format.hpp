@@ -1,16 +1,16 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file       print_format.hpp
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Tuesday, 15th February 2022 5:28:11 am
- * @modified   Tuesday, 15th February 2022 11:10:22 pm
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @project    cpp-utils
  * @brief
  *    
  *    Implementation of compile-time, compiler-dependent typename strings generation
  *    
  * @copyright Krzysztof Pierczyk © 2022
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_PRINTF_FORMAT_IMPL_PRINTF_FORMAT_H__
 #define __ESTD_PRINTF_FORMAT_IMPL_PRINTF_FORMAT_H__

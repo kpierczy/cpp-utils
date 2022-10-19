@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file     in_place.cpp
  * @author   Krzysztof Jusiak (krzysztof@jusiak.net)
  * @date     Wednesday, 22nd December 2021 1:33:10 pm
- * @modified Thursday, 23rd December 2021 3:47:33 pm
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @brief 
  * 
  *    Example showing usage in-place defined SM (this example requires C++20 deduction guide and so needs to be compiled with
  *    -std=c++2a flag)
  * 
  * @see https://boost-ext.github.io/sml/examples.html
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #include <boost/sml.hpp>
 #include <cassert>

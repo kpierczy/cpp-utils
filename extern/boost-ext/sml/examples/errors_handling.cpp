@@ -1,14 +1,14 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file     error_handling.cpp
  * @author   Krzysztof Jusiak (krzysztof@jusiak.net)
  * @date     Wednesday, 22nd December 2021 1:33:10 pm
- * @modified Wednesday, 22nd December 2021 6:02:52 pm
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @brief 
  * 
  *    Examples showing ways to handle errors (unexpected events and exceptions)
  * 
  * @see https://boost-ext.github.io/sml/examples.html
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #include <boost/sml.hpp>
 #include <cassert>

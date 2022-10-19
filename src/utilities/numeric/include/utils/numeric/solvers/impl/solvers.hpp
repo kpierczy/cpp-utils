@@ -1,14 +1,14 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file       solvers.hpp
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Tuesday, 1st February 2022 10:16:35 am
- * @modified   Thursday, 3rd February 2022 12:04:37 pm
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @project    cpp-utils
  * @brief      Implementation of tools related to solving polynomial equations
  *    
  * @copyright Krzysztof Pierczyk © 2022
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #ifndef __NUMERIC_SOVLERS_IMPL_SOVLERS_H__
 #define __NUMERIC_SOVLERS_IMPL_SOVLERS_H__

@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file       robber.hpp
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Wednesday, 12th January 2022 12:40:52 pm
- * @modified   Thursday, 3rd February 2022 11:27:38 am
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @project    cpp-utils
  * @brief      Helper, devilish template class enabling access to the private members of the class using template-hack
  *    
  * @see http://bloglitb.blogspot.com/2010/07/access-to-private-members-thats-easy.html
  * @copyright Krzysztof Pierczyk © 2022
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_ROBBER_H__
 #define __ESTD_ROBBER_H__

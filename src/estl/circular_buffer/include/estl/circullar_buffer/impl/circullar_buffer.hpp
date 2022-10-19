@@ -1,14 +1,14 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file       circullar_buffer.hpp
  * @author     jnk0le
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Wednesday, 5th January 2022 7:50:31 am
- * @modified   Thursday, 3rd February 2022 12:01:58 pm
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @project    cpp-utils
  * @brief      Implementation of the circular buffer class template
  *    
  * @source https://github.com/jnk0le/Ring-Buffer/blob/master/ringbuffer.hpp
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #ifndef __ESTL_CIRCULAR_BUFFER_IMPL_CIRCULAR_BUFFER_H__
 #define __ESTL_CIRCULAR_BUFFER_IMPL_CIRCULAR_BUFFER_H__

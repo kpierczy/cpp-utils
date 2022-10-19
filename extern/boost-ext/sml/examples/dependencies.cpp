@@ -1,15 +1,15 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file     dependencies.cpp
  * @author   Krzysztof Jusiak (krzysztof@jusiak.net)
  * @date     Wednesday, 22nd December 2021 1:33:10 pm
- * @modified Thursday, 23rd December 2021 3:04:29 pm
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @brief 
  * 
  *    Example showing data injection into the statemachine's guards and actions
  * 
  * @todo fixme 
  * @see https://boost-ext.github.io/sml/examples.html
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #include <boost/sml.hpp>
 #include <cassert>

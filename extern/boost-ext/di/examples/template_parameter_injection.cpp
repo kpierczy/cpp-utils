@@ -1,14 +1,14 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file     template_parameter_injection.cpp
  * @author   Krzysztof Jusiak (krzysztof@jusiak.net)
  * @date     Wednesday, 22nd December 2021 1:33:10 pm
- * @modified Thursday, 23rd December 2021 6:35:42 pm
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @brief 
  *  
  *    Example showing injection of class template's parameters
  * 
  * @see https://boost-ext.github.io/di/examples.html
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #include <boost/di.hpp>
 #include <cassert>

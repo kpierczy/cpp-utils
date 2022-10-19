@@ -1,14 +1,14 @@
-/** ==================================================================================================================================
+/* ============================================================================================================================ *//**
  * @file       general.hpp
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Thursday, 3rd February 2022 10:48:23 am
- * @modified   Thursday, 3rd February 2022 6:57:58 pm
+ * @modified   Wednesday, 19th October 2022 9:57:37 pm
  * @project    cpp-utils
  * @brief      Set of commonly used type traits
  *    
  * @copyright Krzysztof Pierczyk © 2022
- * ================================================================================================================================ */
+ */// ============================================================================================================================= */
 
 #ifndef __ESTD_TRAITS_GENERAL_H__
 #define __ESTD_TRAITS_GENERAL_H__
@@ -42,6 +42,12 @@ using type_or_empty = std::conditional_t<condition, T, empty>;
  */
 template<bool condition, typename T>
 using empty_or_type = std::conditional_t<condition, empty, T>;
+
+/**
+ * @brief Auxiliary type used to conditonally include member objects into class'es layout
+ */
+template<typename T, bool condition>
+using maybe_member = std::conditional_t<condition, T, empty>;
 
 /**
  * @brief Helper trait wrapping type @p T into a type-dependant context
