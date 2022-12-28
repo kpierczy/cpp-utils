@@ -2,8 +2,8 @@
 # @file     install_helpers.cmake
 # @author   Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date     Monday, 14th March 2022 8:17:49 pm
-# @modified   Wednesday, 20th April 2022 11:19:52 pm
-# @project  engineering-thesis
+# @modified   Wednesday, 28th December 2022 8:59:15 pm
+# @project  cpp-utils
 # @brief
 #    
 #    Helper CMake functions for installing libraries

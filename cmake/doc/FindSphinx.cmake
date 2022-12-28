@@ -3,8 +3,8 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Monday, 23rd May 2022 10:31:26 pm
-# @modified   Tuesday, 24th May 2022 10:49:55 pm
-# @project    engineering-thesis
+# @modified   Wednesday, 28th December 2022 8:59:15 pm
+# @project    cpp-utils
 # @brief      Helper CMake script finding Sphinx executable
 # 
 # 

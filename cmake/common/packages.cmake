@@ -3,8 +3,8 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Thursday, 12th May 2022 11:27:46 pm
-# @modified   Tuesday, 24th May 2022 8:53:39 pm
-# @project    engineering-thesis
+# @modified   Wednesday, 28th December 2022 8:59:15 pm
+# @project    cpp-utils
 # @brief      Definition of the find_packages() macros family
 #    
 #    

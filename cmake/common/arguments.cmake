@@ -3,8 +3,8 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Tuesday, 24th May 2022 4:43:28 pm
-# @modified   Tuesday, 24th May 2022 5:08:01 pm
-# @project    engineering-thesis
+# @modified   Wednesday, 28th December 2022 8:59:15 pm
+# @project    cpp-utils
 # @brief      Definition of helper macros improving arguments parsing
 #    
 #    
