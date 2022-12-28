@@ -1,0 +1,55 @@
+--- sstl/include/sstl/bitmap_allocator.h	2022-12-28 22:12:11.741912163 +0100
++++ sstl/include/sstl/bitmap_allocator.h	2022-12-28 22:18:21.372754568 +0100
+@@ -12,7 +12,7 @@
+ #include <cstdint>
+ #include <array>
+ 
+-#include <sstl_assert.h>
++#include "sstl/assert.h"
+ 
+ #include "__internal/_except.h"
+ #include "__internal/_aligned_storage.h"
+--- sstl/include/sstl/deque.h	2022-12-28 22:12:11.741912163 +0100
++++ sstl/include/sstl/deque.h	2022-12-28 22:18:21.372754568 +0100
+@@ -16,7 +16,7 @@
+ #include <initializer_list>
+ #include <array>
+ 
+-#include <sstl_assert.h>
++#include "sstl/assert.h"
+ 
+ #include "__internal/_aligned_storage.h"
+ #include "__internal/_iterator.h"
+--- sstl/include/sstl/freelist_allocator.h	2022-12-28 22:12:11.741912163 +0100
++++ sstl/include/sstl/freelist_allocator.h	2022-12-28 22:18:21.376754512 +0100
+@@ -12,7 +12,7 @@
+ #include <cstdint>
+ #include <array>
+ 
+-#include <sstl_assert.h>
++#include "sstl/assert.h"
+ 
+ #include "__internal/_except.h"
+ #include "__internal/_aligned_storage.h"
+--- sstl/include/sstl/__internal/_hacky_derived_class_access.h	2022-12-28 22:12:11.737912219 +0100
++++ sstl/include/sstl/__internal/_hacky_derived_class_access.h	2022-12-28 22:18:21.360754735 +0100
+@@ -8,7 +8,7 @@
+ #define _SSTL_HACKY_DERIVED_CLASS_ACCESS
+ 
+ #include <type_traits>
+-#include <sstl_assert.h>
++#include "sstl/assert.h"
+ 
+ namespace sstl
+ {
+--- sstl/include/sstl/vector.h	2022-12-28 22:12:11.741912163 +0100
++++ sstl/include/sstl/vector.h	2022-12-28 22:18:21.384754400 +0100
+@@ -17,7 +17,7 @@
+ #include <array>
+ #include <stdexcept>
+ 
+-#include <sstl_assert.h>
++#include "sstl/assert.h"
+ 
+ #include "__internal/_except.h"
+ #include "__internal/_utility.h"

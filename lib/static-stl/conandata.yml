@@ -1,0 +1,4 @@
+patches:
+  "1.0":
+    - patch_file: "patches/fb7a46c.patch"
+      patch_description: Needed to properly customize assert() macro.

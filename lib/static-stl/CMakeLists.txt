@@ -1,12 +1,11 @@
 # ====================================================================================================================================
-# @file     CMakeLists.txt
-# @author   rukkal
-# @date     Wednesday, 5th January 2022 12:23:05 pm
-# @modified Wednesday, 5th January 2022 12:47:47 pm
-# @project  Winder
-# @brief
-#    
-#    Cmake package for the static-stl library
+# @file       CMakeLists.txt
+# @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+# @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
+# @date       Wednesday, 5th January 2022 12:23:05 pm
+# @modified   Wednesday, 28th December 2022 11:51:19 pm
+# @project    cpp-utils
+# @brief      Cmake package for the static-stl library
 #    
 # @source https://github.com/rukkal/static-stl
 # ====================================================================================================================================
@@ -24,69 +23,42 @@ endif()
 # ================================================================================================================================== #
 
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
-project(static-stl VERSION 1.0.0 LANGUAGES CXX)
-
-# ========================================================== Dependencies ========================================================== #
-
-# Install-setup dependency
-if(CMAKE_VERSION VERSION_LESS 3.20.0)
-
-    # @see https://github.com/TheLartians/PackageProject.cmake/pull/19
-    include(cmake/PackageProject.cmake) 
-    
-else()
-
-    # @see https://github.com/cpm-cmake/CPM.cmake
-    include(cmake/CPM.cmake)
-
-    # Download PackageProject.cmake (it will be used to make target installable)
-    CPMAddPackage(
-        NAME PackageProject.cmake
-        GITHUB_REPOSITORY TheLartians/PackageProject.cmake
-        VERSION 1.6.0
-    )
-
-endif()
+project(static-stl VERSION 1.0 LANGUAGES CXX)
 
 # ============================================================= Target ============================================================= #
 
 # Add library
-add_library(sstl INTERFACE)
+add_library(static-stl INTERFACE)
 
 # Add include directories
-target_include_directories(sstl 
-    INTERFACE 
-        $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include>
-)
-
+target_include_directories(static-stl INTERFACE include)
 # Set compile options
-target_compile_options(sstl
-    INTERFACE
-        "$<$<COMPILE_LANGUAGE:CXX>:-Wall>"
-)
-
-# Link to Mbed libraries
-target_link_libraries(sstl
-    INTERFACE
-        mbed-os
-)
-
-# ======================================================= Target installation ====================================================== #
-
-if(${MASTER_PROJECT})
-
-    # Create target sstl and install target
-    packageProject( 
-        NAME ${PROJECT_NAME}
-        VERSION ${PROJECT_VERSION}
-        BINARY_DIR ${PROJECT_BINARY_DIR}
-        INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include
-        INCLUDE_DESTINATION ${INCLUDE_INSTALL_DIR}
-        COMPATIBILITY SameMajorVersion
-    )
-
+target_compile_options(static-stl INTERFACE "$<$<COMPILE_LANGUAGE:CXX>:-Wall>" )
+# Add preprocessor definitions
+if(SSTL_ASSERT)
+    target_compile_definitions(static-stl INTERFACE ${SSTL_ASSERT})
 endif()
+if(SSTL_ASSERT_HEADER)
+    target_compile_definitions(static-stl INTERFACE ${SSTL_ASSERT_HEADER})
+endif()
+# Link to assert-providing library if given
+if(SSTL_ASSERT_LIB)
+    target_link_libraries(static-stl INTERFACE ${SSTL_ASSERT_LIB})
+endif()
+
+# ============================================================ Installs ============================================================ #
+
+# Install header files
+install(
+    DIRECTORY
+        ${PROJECT_SOURCE_DIR}/include/
+        ${PROJECT_SOURCE_DIR}/sstl/include/
+    TYPE
+        INCLUDE
+)
+
+# Install targets
+install(TARGETS static-stl)
 
 # ====================================================== Helper configuration ====================================================== #
 

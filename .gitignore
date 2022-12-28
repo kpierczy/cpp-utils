@@ -14,6 +14,9 @@
 # Extern source files
 !extern/
 !extern/**
+# Libraries
+!lib/
+!lib/**
 # Script files
 !scripts/
 !scripts/**

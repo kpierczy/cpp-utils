@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Thursday, 3rd February 2022 1:51:57 pm
-# @modified   Wednesday, 28th December 2022 8:58:45 pm
+# @modified   Wednesday, 28th December 2022 11:56:41 pm
 # @project    cpp-utils
 # @details
 # 
@@ -20,7 +20,7 @@
 export CPP_UTILS_HOME="$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
 # Set this variable to true/false depending on whether you need a custom installation of boost headers
-export CPP_UTILS_INSTALL_BOOST_HEADERS=true
+export CPP_UTILS_INSTALL_BOOST_HEADERS=false
 # Set this variable to true/false depending on whether you need a custom installation of CMake
 export CPP_UTILS_INSTALL_CMAKE=false
 
