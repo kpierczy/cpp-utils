@@ -5,7 +5,7 @@
 # VSCode config
 !.vscode/
 !.vscode/**
-# Cmake helpers
+# CMake helpers
 !cmake/
 !cmake/**
 # Documentation
@@ -26,5 +26,8 @@
 # Test files
 !tests/
 !tests/**
-# CMake files
+!test_package/
+!test_package/**
+# Other files
 !CMakeLists.txt
+!conanfile.py

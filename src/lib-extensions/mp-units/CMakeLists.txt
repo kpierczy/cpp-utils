@@ -3,13 +3,16 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 7th July 2021 7:57:46 pm
-# @modified   Sunday, 26th June 2022 2:05:17 pm
+# @modified   Thursday, 29th December 2022 4:46:57 am
 # @project    cpp-utils
 # @brief      CMakeList for units' library
 # 
 # 
 # @copyright Krzysztof Pierczyk © 2022
 # ====================================================================================================================================
+
+# Find dependencies
+find_package(mp-units CONFIG REQUIRED)
 
 # Source files
 add_library(lib-extensions-mp-units INTERFACE)
@@ -24,7 +27,7 @@ target_include_directories(lib-extensions-mp-units
 # Link dependancies
 target_link_libraries(lib-extensions-mp-units
     INTERFACE
-        mp-units
+        mp-units::mp-units
         estd-traits
         estd-preprocessor
 )

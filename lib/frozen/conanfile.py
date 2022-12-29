@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 28th December 2022 9:23:13 pm
-# @modified   Thursday, 29th December 2022 12:58:23 am
+# @modified   Thursday, 29th December 2022 5:00:43 am
 # @project    cpp-utils
 # @brief      Conan package file for the static-stl library
 # 
@@ -42,8 +42,8 @@ class HelloConan(ConanFile):
     description = "Header-only library that provides 0 cost initialization for immutable containers, fixed-size " + \
                   "containers, and various algorithms."
     topics      = ("stl", "constexpr")
-    url         = "https://github.com/serge-sans-paille/frozen"
-    url_version = "079f73c"
+    homepage    = "https://github.com/serge-sans-paille/frozen"
+    revision    = "079f73c"
 
     # ---------------------------------------------------------------------------- #
     
@@ -78,8 +78,8 @@ class HelloConan(ConanFile):
 
         # Download and checkout SSTL library
         git = Git(folder='frozen')
-        git.clone(self.url)
-        git.checkout(self.url_version)
+        git.clone(self.homepage)
+        git.checkout(self.revision)
         # Copy files to the source folder
         copy_tree('./frozen', '.')
         # Patch sources

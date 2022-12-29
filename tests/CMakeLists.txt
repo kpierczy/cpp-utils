@@ -3,13 +3,16 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 7th July 2021 7:57:46 pm
-# @modified   Sunday, 26th June 2022 3:49:21 pm
+# @modified   Thursday, 29th December 2022 4:44:54 am
 # @project    cpp-utils
 # @brief      CMakeList for tests
 # 
 # 
 # @copyright Krzysztof Pierczyk © 2022
 # ====================================================================================================================================
+
+# Find dependencies
+find_package(ut CONFIG REQUIRED)
 
 # Source files
 add_executable(cpp-utils-tests src/main.cpp)

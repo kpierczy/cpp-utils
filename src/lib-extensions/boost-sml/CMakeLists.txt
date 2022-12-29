@@ -3,13 +3,16 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Tuesday, 15th June 2021 9:10:08 pm
-# @modified   Sunday, 26th June 2022 3:50:41 pm
+# @modified   Thursday, 29th December 2022 4:46:44 am
 # @project    cpp-utils
 # @brief      CMakeList for Boost::SML utilities library
 # 
 # 
 # @copyright Krzysztof Pierczyk © 2022
 # ====================================================================================================================================
+
+# Find dependencies
+find_package(sml CONFIG REQUIRED)
 
 # Source files
 add_library(lib-extensions-boost-sml INTERFACE)
@@ -26,7 +29,7 @@ target_include_directories(lib-extensions-boost-sml
 # Link dependancies
 target_link_libraries(lib-extensions-boost-sml
     INTERFACE
-        Boost::sml
+        sml::sml
         estd-traits
         estd-preprocessor
 )

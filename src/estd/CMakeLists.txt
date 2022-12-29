@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 7th July 2021 7:57:46 pm
-# @modified   Sunday, 26th June 2022 3:09:47 pm
+# @modified   Thursday, 29th December 2022 4:55:21 am
 # @project    cpp-utils
 # @brief      CMakeList for project extended-std' library
 # 
@@ -38,6 +38,9 @@ target_link_libraries(estd
         estd-strings
         estd-traits
 )
+
+# Require C++20 standard
+target_compile_features(estd INTERFACE cxx_std_20)
 
 # Export library and install export set
 export_and_install(EXPORT estd-export TARGETS estd )

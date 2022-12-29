@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 7th July 2021 7:57:46 pm
-# @modified   Sunday, 26th June 2022 1:17:48 pm
+# @modified   Thursday, 29th December 2022 4:55:43 am
 # @project    cpp-utils
 # @brief      CMakeList for project utilities' library
 # 
@@ -27,6 +27,9 @@ target_link_libraries(utilities
         utilities-numeric
         utilities-patterns
 )
+
+# Require C++20 standard
+target_compile_features(utilities INTERFACE cxx_std_20)
 
 # Export library and install export set
 export_and_install(EXPORT utilities-export TARGETS utilities )

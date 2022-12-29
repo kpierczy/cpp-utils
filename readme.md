@@ -1,7 +1,7 @@
 # Welcome to the cpp-utils library!
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![version](https://img.shields.io/badge/version-1.0.0-blue)
+![version](https://img.shields.io/badge/version-1.1.0-blue)
 
 The `cpp-utils` project is a set of abstract C++ utilities that can be used in all types of projects. The repository provides all
 kind of traits, containers, compile-time utilities and extensions to a few popular C++ libraries that has been implemented by the

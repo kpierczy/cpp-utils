@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 28th December 2022 9:23:13 pm
-# @modified   Thursday, 29th December 2022 12:22:44 am
+# @modified   Thursday, 29th December 2022 5:00:37 am
 # @project    cpp-utils
 # @brief      Conan package file for the static-stl library
 # 
@@ -41,8 +41,8 @@ class HelloConan(ConanFile):
     description = "The SSTL is a partial reimplementation of the C++ Standard Template Library (STL) that strictly avoids the" + \
                   "use of dynamic memory allocation."
     topics      = ("stl", "static")
-    url         = "https://github.com/rukkal/static-stl"
-    url_version = "fb7a46c"
+    homepage    = "https://github.com/rukkal/static-stl"
+    revision    = "fb7a46c"
 
     # ---------------------------------------------------------------------------- #
     
@@ -75,8 +75,8 @@ class HelloConan(ConanFile):
 
         # Download and checkout SSTL library
         git = Git(folder='sstl')
-        git.clone(self.url)
-        git.checkout(self.url_version)
+        git.clone(self.homepage)
+        git.checkout(self.revision)
         # Patch sources
         apply_conandata_patches(self)
 
