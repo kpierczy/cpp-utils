@@ -3,8 +3,8 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Monday, 29th November 2021 10:34:15 am
-# @modified   Sunday, 26th June 2022 11:43:01 am
-# @project    mbed-utils
+# @modified   Thursday, 29th December 2022 2:03:19 am
+# @project    cpp-utils
 # @brief      Script installing 'units' library for C++
 #    
 # @fixme

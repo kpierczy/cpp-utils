@@ -1,26 +1,27 @@
 #!/bin/bash
 # ====================================================================================================================================
-# @file       install_deps.bash
+# @file       dependencies.bash
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Monday, 21st June 2021 1:28:12 pm
-# @modified   Sunday, 26th June 2022 11:43:41 am
-# @project    mbed-utils
+# @modified   Thursday, 29th December 2022 1:53:30 am
+# @project    cpp-utils
 # @brief      Installs dependencies of the project using Ubuntu apt repository
-# @usage
-#
-#        install_deps [MBED_CLI_VERSION]
-#
-#    MBED_CLI_VERSION - version of the CLI to be downloaded (either CLI_V1 or CLI_V2)
 #
 # @copyright Krzysztof Pierczyk © 2021
 # ====================================================================================================================================
 
-# Source bsah-helper library
-source $CPP_UTILS_HOME/extern/bash-utils/source_me.bash || {
-    log_error "Failed to install project's apt dependencies"
+# Guarantee that the `bash-utils` project is sourced in the calling shell
+if $([[ -z ${BASH_UTILS_HOME:+x} ]]); then
+    echo -e \
+            "[ERROR] BASH_UTILS_HOME variable is not defined or does not point to the root directory of bash-utils\n" \
+            "       project. Please source source_me.bash file in the root directory of this project to provide\n"    \
+            "       shell with required dependencies"
     exit 1
-}
+fi
+
+# Source bash-utils library
+source $BASH_UTILS_HOME/source_me.bash
 
 # ============================================================ Functions =========================================================== #
 

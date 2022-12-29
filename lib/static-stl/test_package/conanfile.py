@@ -3,8 +3,8 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 28th December 2022 10:20:00 pm
-# @modified   Wednesday, 28th December 2022 11:14:04 pm
-# @project    embedded-utils
+# @modified   Thursday, 29th December 2022 2:02:59 am
+# @project    cpp-utils
 # @brief      Test package for the static-stl package
 # 
 # 

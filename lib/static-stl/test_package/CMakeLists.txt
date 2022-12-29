@@ -3,8 +3,8 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Friday, 16th December 2022 1:50:50 am
-# @modified   Wednesday, 28th December 2022 11:16:28 pm
-# @project    embedded-utils
+# @modified   Thursday, 29th December 2022 2:02:57 am
+# @project    cpp-utils
 # 
 # 
 # @copyright Krzysztof Pierczyk © 2022

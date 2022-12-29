@@ -1,6 +1,3 @@
 [submodule "extern/bash-utils"]
 	path = extern/bash-utils
 	url = https://github.com/kpierczy/bash-utils
-[submodule "extern/boost"]
-	path = extern/boost
-	url = https://github.com/boostorg/boost

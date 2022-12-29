@@ -1,21 +1,16 @@
+#!/usr/bin/env bash
 # ====================================================================================================================================
-# @file       CMakeLists.txt
+# @file       glibc.bash
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
-# @date       Friday, 16th December 2022 1:50:50 am
-# @modified   Thursday, 29th December 2022 2:04:05 am
+# @date       Saturday, 6th November 2021 5:49:03 pm
+# @modified   Thursday, 29th December 2022 1:58:56 am
 # @project    cpp-utils
-# 
-# 
-# @copyright Krzysztof Pierczyk © 2022
+# @brief      Installation routines for glibc tool
+#    
+# @copyright Krzysztof Pierczyk © 2021
 # ====================================================================================================================================
 
-cmake_minimum_required(VERSION 3.15)
-project(PackageTest CXX)
-
-find_package(frozen CONFIG REQUIRED)
-
-# Compile simple application
-add_executable(test src/test.cpp)
-# Link it with the tested library
-target_link_libraries(test frozen::frozen)
+function build_glibc() {
+    return 0
+}

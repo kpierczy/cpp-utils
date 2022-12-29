@@ -3,8 +3,8 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 28th December 2022 10:20:00 pm
-# @modified   Thursday, 29th December 2022 12:06:57 am
-# @project    embedded-utils
+# @modified   Thursday, 29th December 2022 2:02:49 am
+# @project    cpp-utils
 # @brief      Test package for the frozen package
 # 
 # 
