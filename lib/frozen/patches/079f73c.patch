@@ -1,0 +1,27 @@
+--- CMakeLists.txt	2022-12-29 00:28:21.102868789 +0100
++++ CMakeLists.txt	2022-12-29 00:30:03.853439403 +0100
+@@ -40,6 +40,10 @@
+   "Enable test coverage collection of frozen tests"
+   OFF "NOT subproject" OFF)
+ 
++option(frozen.exceptions
++  "If OFF disables exceptions in the library"
++  ON)
++
+ #
+ # When the end user is consuming frozen as a nested subproject, an option
+ # is provided such that the user may exlude frozen from the set of installed
+@@ -74,6 +78,13 @@
+ target_compile_features(frozen INTERFACE cxx_std_14)
+ 
+ #
++# Additional compile definitions
++#
++if(frozen.exceptions)
++  target_compile_definitions(frozen INTERFACE FROZEN_NO_EXCEPTIONS)
++endif()
++
++#
+ # The include directory for frozen can be expected to vary between build
+ # and installaion. Here we use a CMake generator expression to dispatch
+ # on how the configuration under which this library is being consumed.

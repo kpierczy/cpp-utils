@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Thursday, 3rd February 2022 1:51:57 pm
-# @modified   Wednesday, 28th December 2022 11:56:41 pm
+# @modified   Thursday, 29th December 2022 1:05:55 am
 # @project    cpp-utils
 # @details
 # 
@@ -28,12 +28,11 @@ export CPP_UTILS_INSTALL_CMAKE=false
 
 # Update subprojects
 if [[ "$1" == 'update' ]]; then
-    if [[$CPP_UTILS_INSTALL_BOOST_HEADERS == true ]]; then
+    if [[ $CPP_UTILS_INSTALL_BOOST_HEADERS == true ]]; then
         git submodule update --init --recursive
     else
         git submodule update --init --recursive extern/bash-utils
         git submodule update --init --recursive extern/frozen
-        git submodule update --init --recursive extern/static-stl
     fi
 fi
 
