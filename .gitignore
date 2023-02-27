@@ -17,9 +17,6 @@
 # Libraries
 !lib/
 !lib/**
-# Script files
-!scripts/
-!scripts/**
 # Source files
 !src/
 !src/**
@@ -28,6 +25,9 @@
 !tests/**
 !test_package/
 !test_package/**
+# Auxiliary utilities
+!tools/
+!tools/**
 # Other files
 !CMakeLists.txt
 !conanfile.py

@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Monday, 13th June 2022 1:19:55 am
- * @modified   Sunday, 26th June 2022 3:11:44 pm
+ * @modified   Tuesday, 28th February 2023 12:19:50 am
  * @project    cpp-utils
  * @brief      Definitions of common utilities for handling bit-aligned data
  * 
@@ -53,9 +53,9 @@ void copy_bytes(const uint8_t *src, uint8_t *dst, std::size_t n) {
 void copy_bytes_from_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n, std::size_t bitoffset) {
     
     // Calculate bitoffset from the byte boundry
-    std::size_t bitoffset_remainder = bitoffset % BITS_IN_BYTE;
+    std::size_t bitoffset_remainder = bitoffset % byte_bitsize;
     // Calculate number of full bytes in the offset
-    std::size_t bytes_offset = bitoffset / BITS_IN_BYTE;
+    std::size_t bytes_offset = bitoffset / byte_bitsize;
 
     // Skip bytes offset in the source
     src += bytes_offset;
@@ -67,7 +67,7 @@ void copy_bytes_from_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n,
     // Compute distance from the LSBit (of the source byte) to the bitoffset boundary
     std::size_t lsb_bitoffset = bitoffset_remainder;
     // Compute distance from the MSBit (of the source byte) to the bitoffset boundary
-    std::size_t msb_bitoffset = (BITS_IN_BYTE - bitoffset_remainder);
+    std::size_t msb_bitoffset = (byte_bitsize - bitoffset_remainder);
 
     // Copy data to the output buffer
     for(std::size_t i = 0; i < n; ++i)
@@ -78,9 +78,9 @@ void copy_bytes_from_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n,
 void copy_bytes_to_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n, std::size_t bitoffset) {
     
     // Calculate bitoffset from the byte boundry
-    std::size_t bitoffset_remainder = bitoffset % BITS_IN_BYTE;
+    std::size_t bitoffset_remainder = bitoffset % byte_bitsize;
     // Calculate number of full bytes in the offset
-    std::size_t bytes_offset = bitoffset / BITS_IN_BYTE;
+    std::size_t bytes_offset = bitoffset / byte_bitsize;
 
     // Skip bytes offset in the destination
     dst += bytes_offset;
@@ -92,7 +92,7 @@ void copy_bytes_to_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n, s
     // Compute distance from the LSBit (of the destination byte) to the bitoffset boundary
     std::size_t lsb_bitoffset = bitoffset_remainder;
     // Compute distance from the MSBit (of the destination byte) to the bitoffset boundary
-    std::size_t msb_bitoffset = (BITS_IN_BYTE - bitoffset_remainder);
+    std::size_t msb_bitoffset = (byte_bitsize - bitoffset_remainder);
 
     // Handle the first element of the output manually preserving [bitoffset_remainder] LSBits
     dst[0] = ((src[0] << lsb_bitoffset) | (dst[0] & (0xFFU >> msb_bitoffset)));
@@ -109,12 +109,12 @@ void copy_bytes_to_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n, s
 void copy_bits(const uint8_t *src, uint8_t *dst, std::size_t n) {
 
     // Calculate number of full bytes to be copied
-    std::size_t bytes = n / BITS_IN_BYTE;
+    std::size_t bytes = n / byte_bitsize;
     // Copy whole bytes
     copy_bytes(src, dst, bytes);
     
     // Calculate unaligned bits remainding from the number of bits to be copied
-    std::size_t bits_remainder = n % BITS_IN_BYTE;
+    std::size_t bits_remainder = n % byte_bitsize;
     // If all bits has been copied, return
     if(bits_remainder == 0)
         return;
@@ -124,19 +124,19 @@ void copy_bits(const uint8_t *src, uint8_t *dst, std::size_t n) {
     dst += bytes;
 
     // Copy remainding bits
-    dst[0] = ((dst[0] & (0xFFU << (BITS_IN_BYTE - bits_remainder))) | (src[0] & (0xFFU >> bits_remainder)));
+    dst[0] = ((dst[0] & (0xFFU << (byte_bitsize - bits_remainder))) | (src[0] & (0xFFU >> bits_remainder)));
 }
 
 
 void copy_bits_from_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n, std::size_t bitoffset) {
     
     // Calculate number of full bytes to be copied
-    std::size_t bytes = n / BITS_IN_BYTE;
+    std::size_t bytes = n / byte_bitsize;
     // Copy whole bytes
     copy_bytes_from_bitshifted(src, dst, bytes, bitoffset);
     
     // Calculate unaligned bits remainding from the number of bits to be copied
-    std::size_t bits_remainder = n % BITS_IN_BYTE;
+    std::size_t bits_remainder = n % byte_bitsize;
     // If all bits has been copied, return
     if(bits_remainder == 0)
         return;
@@ -146,10 +146,10 @@ void copy_bits_from_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n, 
     dst += bytes;
 
     // Calculate bitoffset (from LSBit) in current src[0] that left to be copied
-    std::size_t src_bitoffset = (bitoffset % BITS_IN_BYTE);
+    std::size_t src_bitoffset = (bitoffset % byte_bitsize);
     // If there is no offset from byte boundary, perform simplified copy
     if(src_bitoffset == 0) {
-        dst[0] = ((dst[0] & (0xFFU << bits_remainder)) | (src[0] >> (BITS_IN_BYTE - bits_remainder)));
+        dst[0] = ((dst[0] & (0xFFU << bits_remainder)) | (src[0] >> (byte_bitsize - bits_remainder)));
         return;
     } 
 
@@ -157,24 +157,24 @@ void copy_bits_from_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n, 
     std::size_t remainding_src_bits_lsb_offset = src_bitoffset + bits_remainder;
 
     // If all remaining bits reside in src[0]
-    if(remainding_src_bits_lsb_offset < BITS_IN_BYTE) {
+    if(remainding_src_bits_lsb_offset < byte_bitsize) {
 
         // Select bits of src[0] that has to be copied and align them to the LSBit of src[0]
-        uint8_t bits_to_copy = ((src[0] << (BITS_IN_BYTE - remainding_src_bits_lsb_offset)) >> (BITS_IN_BYTE - bits_remainder));
+        uint8_t bits_to_copy = ((src[0] << (byte_bitsize - remainding_src_bits_lsb_offset)) >> (byte_bitsize - bits_remainder));
 
         // Copy bits to destination leaving bits that are not subject to be overwitten untouched
-        dst[0] = ((dst[0] & (0xFFU << (BITS_IN_BYTE - bits_remainder))) | bits_to_copy);
+        dst[0] = ((dst[0] & (0xFFU << (byte_bitsize - bits_remainder))) | bits_to_copy);
 
     // Else, if remainding bits reside in both src[0] and src[1]
     } else {
 
         // Merge bits from src[0] and src[1] into 16-bit int
-        uint16_t src_bits = ((src[1] << BITS_IN_BYTE) | src[0]);
+        uint16_t src_bits = ((src[1] << byte_bitsize) | src[0]);
         // Remove bits > 'remainding_src_bits_lsb_offset' and align bits form 'src_bitoffset' to 0
         src_bits = (src_bits << (BITS_IN_WORD - remainding_src_bits_lsb_offset)) >> (BITS_IN_WORD - bits_remainder);
 
         // Copy bits to destination leaving bits that are not subject to be overwitten untouched
-        dst[0] = ((dst[0] & (0xFFU << (BITS_IN_BYTE - bits_remainder))) | (src_bits & 0xFFU));
+        dst[0] = ((dst[0] & (0xFFU << (byte_bitsize - bits_remainder))) | (src_bits & 0xFFU));
         
     }
 
@@ -184,12 +184,12 @@ void copy_bits_from_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n, 
 void copy_bits_to_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n, std::size_t bitoffset) {
     
     // Calculate number of full bytes to be copied
-    std::size_t bytes = n / BITS_IN_BYTE;
+    std::size_t bytes = n / byte_bitsize;
     // Copy whole bytes
     copy_bytes_to_bitshifted(src, dst, bytes, bitoffset);
     
     // Calculate unaligned bits remainding from the number of bits to be copied
-    std::size_t bits_remainder = n % BITS_IN_BYTE;
+    std::size_t bits_remainder = n % byte_bitsize;
     // If all bits has been copied, return
     if(bits_remainder == 0)
         return;
@@ -199,10 +199,10 @@ void copy_bits_to_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n, st
     dst += bytes;
 
     // Calculate bitoffset (from LSBit) in current dst[0] of the first bit that has not been overwitten yet
-    std::size_t dst_bitoffset = (bitoffset % BITS_IN_BYTE);
+    std::size_t dst_bitoffset = (bitoffset % byte_bitsize);
     // If there is no offset from byte boundary, perform simplified copy
     if(dst_bitoffset == 0) {
-        dst[0] = ((dst[0] & (0xFFU << bits_remainder)) | (src[0] >> (BITS_IN_BYTE - bits_remainder)));
+        dst[0] = ((dst[0] & (0xFFU << bits_remainder)) | (src[0] >> (byte_bitsize - bits_remainder)));
         return;
     } 
 
@@ -210,18 +210,18 @@ void copy_bits_to_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n, st
     std::size_t remainding_dst_bits_lsb_offset = dst_bitoffset + bits_remainder;
 
     // If all remaining bits reside in dst[0]
-    if(remainding_dst_bits_lsb_offset < BITS_IN_BYTE) {
+    if(remainding_dst_bits_lsb_offset < byte_bitsize) {
 
         // Select bits of dst[0] that has to be untouched
         uint8_t dst_bits_untouched = dst[0] & ~(
-            (0xFFU << (BITS_IN_BYTE - remainding_dst_bits_lsb_offset)) 
-                   >> (BITS_IN_BYTE - bits_remainder)
+            (0xFFU << (byte_bitsize - remainding_dst_bits_lsb_offset)) 
+                   >> (byte_bitsize - bits_remainder)
         );
 
         // Select bits of src[0] that has to be copied and align them to the bitshift of bits in dst[0] that has to be overwitten
         uint8_t bits_to_copy = (
-            (src[0] << (BITS_IN_BYTE - bits_remainder)) 
-                    >> (BITS_IN_BYTE - remainding_dst_bits_lsb_offset)
+            (src[0] << (byte_bitsize - bits_remainder)) 
+                    >> (byte_bitsize - remainding_dst_bits_lsb_offset)
         );
 
         // Copy bits to destination leaving bits that are not subject to be overwitten untouched
@@ -231,10 +231,10 @@ void copy_bits_to_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n, st
     } else {
 
         // Get remaining bits in src[0] and promote them to 16-bit integer; shift result to the offset of bits in dst[0] that has to be overwitten
-        uint16_t src_bits_left = uint16_t(src[0] & (0xFF >> (BITS_IN_BYTE - bits_remainder))) << dst_bitoffset;
+        uint16_t src_bits_left = uint16_t(src[0] & (0xFF >> (byte_bitsize - bits_remainder))) << dst_bitoffset;
         
         // Merge bits in dst[0] and dst[1] into 16-bit ineger
-        uint16_t dst_bits = uint16_t((dst[1] << BITS_IN_BYTE) | dst[0]);
+        uint16_t dst_bits = uint16_t((dst[1] << byte_bitsize) | dst[0]);
         // Select bits of dst[0:1] that has to be left unchanged
         dst_bits = dst_bits & ~(
             (0xFFFFU << (BITS_IN_WORD - remainding_dst_bits_lsb_offset)) 
@@ -245,7 +245,7 @@ void copy_bits_to_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n, st
         dst_bits |= src_bits_left;
         // Dispatch dst bits into dst[0] and dst[1]
         dst[0] = ( dst_bits                  & 0xFFU);
-        dst[1] = ((dst_bits >> BITS_IN_BYTE) & 0xFFU);
+        dst[1] = ((dst_bits >> byte_bitsize) & 0xFFU);
         
     }
 

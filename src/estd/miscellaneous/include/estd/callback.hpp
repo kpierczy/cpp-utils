@@ -3,9 +3,9 @@
  * @author     ARM Limited
  * @maintainer Krzysztof Pierczyk (kpierczyk@emka-project.com.pl)
  * @date       Tuesday, 30th August 2022 3:16:57 pm
- * @modified   Wednesday, 19th October 2022 9:14:31 pm
+ * @modified   Tuesday, 28th February 2023 12:24:29 am
  * @project    SHARK_KB
- * @brief      Modificationn of the mbed::Callback class tempalte originally from ARM Mbed
+ * @brief      Modificationn of the mbed::callback class tempalte originally from ARM Mbed
  * @details 
  * 
  *   Configuration of the module:
@@ -56,13 +56,13 @@ namespace estd {
  * @brief Callback class based on template specialization
  */
 template <typename Signature>
-class Callback;
+class callback;
 
 /**
- * @brief Callback class based on template specialization
+ * @brief callback class based on template specialization
  */
 template <typename R, typename... ArgTs>
-class Callback<R(ArgTs...)> : private estd::details::callback::CallbackBase {
+class callback<R(ArgTs...)> : private estd::details::callback::CallbackBase {
 
 public: /* ---------------------------------------------------- Public types ----------------------------------------------------- */
 
@@ -72,49 +72,49 @@ public: /* ---------------------------------------------------- Public types ---
 public: /* ---------------------------------------------------- Public ctors ----------------------------------------------------- */
 
     /** 
-     * @brief Create an empty Callback
+     * @brief Create an empty callback
      */
-    Callback() noexcept : CallbackBase(nullptr) { }
+    callback() noexcept : CallbackBase(nullptr) { }
 
     /** 
-     * @brief Create an empty Callback
+     * @brief Create an empty callback
      */
-    Callback(std::nullptr_t) noexcept : Callback() { }
+    callback(std::nullptr_t) noexcept : callback() { }
 
-#if CONF_CALLBACK_NONTRIVIAL
+    #if CONF_CALLBACK_NONTRIVIAL
 
     /** 
-     * @brief Copy a Callback
+     * @brief Copy a callback
      * @param other 
-     *     The Callback to copy
+     *     The callback to copy
      */
-    Callback(const Callback &other) : CallbackBase() {
+    callback(const callback &other) : CallbackBase() {
         copy(other);
     }
 
     /** 
-     * @brief Move a Callback
+     * @brief Move a callback
      * @details Move constructor exists to ensure that it gets selected in 
      *    preference to the universal constructor form.
      * 
      * @param other 
-     *    The Callback to move
+     *    The callback to move
      */
-    Callback(Callback &&other) : CallbackBase() {
+    callback(callback &&other) : CallbackBase() {
         copy(other);
     }
 
-#else
+    #else
 
     // Use default copy-constructor
-    Callback(const Callback &other) = default;
+    callback(const callback &other) = default;
     // Use default move-constructor
-    Callback(Callback &&other) = default;
+    callback(callback &&other) = default;
 
-#endif
+    #endif
 
     /** 
-     * @brief Create a Callback with a member function
+     * @brief Create a callback with a member function
      * 
      * @param obj
      *    Pointer to object to invoke member function on
@@ -123,14 +123,14 @@ public: /* ---------------------------------------------------- Public ctors ---
      */
     template<typename Obj, typename Method,
         typename std::enable_if_t<std::is_invocable_r<R, Method, Obj, ArgTs...>::value, int> = 0>
-    Callback(Obj obj, Method method) : CallbackBase() {
+    callback(Obj obj, Method method) : CallbackBase() {
         generate([obj, method](ArgTs... args) {
             return estd::details::callback::invoke_r<R>(method, obj, std::forward<ArgTs>(args)...);
         });
     }
 
     /** 
-     * @brief Create a Callback with a static function and bound pointer 
+     * @brief Create a callback with a static function and bound pointer 
      * 
      * @param func 
      *    Static function to attach
@@ -139,7 +139,7 @@ public: /* ---------------------------------------------------- Public ctors ---
      */
     template<typename Fn, typename BoundArg,
         typename std::enable_if_t<std::is_invocable_r<R, Fn, BoundArg, ArgTs...>::value, int> = 0>
-    Callback(Fn func, BoundArg arg) : CallbackBase()
+    callback(Fn func, BoundArg arg) : CallbackBase()
     {
         generate([func, arg](ArgTs... args) {
             return estd::details::callback::invoke_r<R>(func, arg, std::forward<ArgTs>(args)...);
@@ -147,7 +147,7 @@ public: /* ---------------------------------------------------- Public ctors ---
     }
 
     /** 
-     * @brief Create a Callback with a function object 
+     * @brief Create a callback with a function object 
      * 
      * @param f 
      *    Function object to attach
@@ -158,13 +158,13 @@ public: /* ---------------------------------------------------- Public ctors ---
         typename std::enable_if_t<
             !estd::details::callback::can_null_check<F>::value &&
             std::is_invocable_r<R, F, ArgTs...>::value, int> = 0>
-    Callback(F f) : CallbackBase() {
-        static_assert(std::is_copy_constructible<F>::value, "Callback F must be CopyConstructible");
+    callback(F f) : CallbackBase() {
+        static_assert(std::is_copy_constructible<F>::value, "callback F must be CopyConstructible");
         generate(std::move(f));
     }
 
     /** 
-     * @brief Create a Callback with a function pointer 
+     * @brief Create a callback with a function pointer 
      * 
      * @param f 
      *    Function pointer to attach
@@ -173,8 +173,8 @@ public: /* ---------------------------------------------------- Public ctors ---
         typename std::enable_if_t<
             estd::details::callback::can_null_check<F>::value &&
             std::is_invocable_r<R, F, ArgTs...>::value, int> = 0>
-    Callback(F f) : CallbackBase() {
-        static_assert(std::is_copy_constructible<F>::value, "Callback F must be CopyConstructible");
+    callback(F f) : CallbackBase() {
+        static_assert(std::is_copy_constructible<F>::value, "callback F must be CopyConstructible");
         if (!f) {
             clear();
         } else {
@@ -182,39 +182,39 @@ public: /* ---------------------------------------------------- Public ctors ---
         }
     }
 
-#if CONF_CALLBACK_NONTRIVIAL
+    #if CONF_CALLBACK_NONTRIVIAL
 
     /// Destroys a callback
-    ~Callback() {
+    ~callback() {
         destroy();
     }
 
-#else
+    #else
 
     /// Destroys a callback
-    ~Callback() = default;
+    ~callback() = default;
     
-#endif
+    #endif
 
 public: /* --------------------------------------------------- Public methods ---------------------------------------------------- */
 
     /// Swap a callback
-    void swap(Callback &that) noexcept {
-#if CONF_CALLBACK_NONTRIVIAL
+    void swap(callback &that) noexcept {
+        #if CONF_CALLBACK_NONTRIVIAL
         if (this != &that) {
-            Callback temp(std::move(*this));
+            callback temp(std::move(*this));
             *this = std::move(that);
             that = std::move(temp);
         }
-#else
+        #else
         CallbackBase::swap(that);
-#endif
+        #endif
     }
 
-#if CONF_CALLBACK_NONTRIVIAL
+    #if CONF_CALLBACK_NONTRIVIAL
 
     /// Assign a callback
-    Callback &operator=(const Callback &that) {
+    callback &operator=(const callback &that) {
         
         /**
          * @note C++ standard says to use swap, but that's overkill with no exceptions
@@ -229,7 +229,7 @@ public: /* --------------------------------------------------- Public methods --
     }
 
     /// Assign a callback
-    Callback &operator=(Callback &&that) {
+    callback &operator=(callback &&that) {
         if (this != &that) {
             destroy();
             copy(that);
@@ -237,20 +237,20 @@ public: /* --------------------------------------------------- Public methods --
         return *this;
     }
     
-#else
+    #else
 
     // Use default copy-asignment
-    Callback &operator=(const Callback &that) = default;
+    callback &operator=(const callback &that) = default;
     // Use default move-asignment
-    Callback &operator=(Callback &&that) = default;
+    callback &operator=(callback &&that) = default;
 
-#endif
+    #endif
 
     /**
      * @brief Assign a callback
      * 
      * @note C++ std::function lacks the is_same restriction here, which would mean non-const lvalue references hit this,
-     *    rather than the normal copy assignment (`F &&` is a better match for `Callback &` than `const Callback &`).
+     *    rather than the normal copy assignment (`F &&` is a better match for `callback &` than `const callback &`).
      *    Wouldn't matter if both used the swap form, but having cut it down, for code size want to ensure we don't use this
      *    instead of copy assignment. (If nontrivial disabled, definitely want to use the default copy assignment, and
      *    if nontrivial enabled, we know this doesn't handle self-assignment).
@@ -259,33 +259,33 @@ public: /* --------------------------------------------------- Public methods --
     template <typename F,
         typename = std::enable_if_t<
             std::is_invocable_r<R, F, ArgTs...>::value &&
-            !std::is_same<std::remove_cvref_t<F>, Callback>::value>>
-    Callback &operator=(F &&f) {
+            !std::is_same<std::remove_cvref_t<F>, callback>::value>>
+    callback &operator=(F &&f) {
         
         /**
          * @note C++ standard says to use swap, but that's overkill with no exceptions
          */
         
-        this->~Callback();
-        new (this) Callback(std::forward<F>(f));
+        this->~callback();
+        new (this) callback(std::forward<F>(f));
         return *this;
     }
 
     /// Assigns callback
     template <typename F>
-    Callback &operator=(std::reference_wrapper<F> f) noexcept {
+    callback &operator=(std::reference_wrapper<F> f) noexcept {
         
         /**
          * @note C++ standard says to use swap, but that's overkill with no exceptions
          */
 
-        this->~Callback();
-        new (this) Callback(f);
+        this->~callback();
+        new (this) callback(f);
         return *this;
     }
 
     /// Empty a callback
-    Callback &operator=(std::nullptr_t) noexcept {
+    callback &operator=(std::nullptr_t) noexcept {
         destroy();
         clear();
         return *this;
@@ -308,7 +308,7 @@ public: /* --------------------------------------------------- Public methods --
         return control();
     }
 
-#if CONF_CALLBACK_COMPARABLE
+    #if CONF_CALLBACK_COMPARABLE
 
     /**
      * @brief Test for equality
@@ -322,7 +322,7 @@ public: /* --------------------------------------------------- Public methods --
      *       Avoid using this operator if possible, so that the option
      *       `platform.callback-comparable` can be turned off to save ROM.
      */
-    friend bool operator==(const Callback &l, const Callback &r) noexcept {
+    friend bool operator==(const callback &l, const callback &r) noexcept {
         
         // Type of stored object differs
         if (l.control() != r.control()) {
@@ -339,37 +339,37 @@ public: /* --------------------------------------------------- Public methods --
         return memcmp(&l._storage, &r._storage, sizeof(Store)) == 0;
     }
     
-#endif
+    #endif
 
     /// Test for emptiness
-    friend bool operator==(const Callback &f, std::nullptr_t) noexcept {
+    friend bool operator==(const callback &f, std::nullptr_t) noexcept {
         return !f;
     }
 
     /// Test for emptiness
-    friend bool operator==(std::nullptr_t, const Callback &f) noexcept {
+    friend bool operator==(std::nullptr_t, const callback &f) noexcept {
         return !f;
     }
 
-#if CONF_CALLBACK_COMPARABLE
+    #if CONF_CALLBACK_COMPARABLE
 
     /** 
      * @brief Test for inequality
-     * @see operator==(const Callback &l, const Callback &r)
+     * @see operator==(const callback &l, const callback &r)
      */
-    friend bool operator!=(const Callback &l, const Callback &r) noexcept {
+    friend bool operator!=(const callback &l, const callback &r) noexcept {
         return !(l == r);
     }
 
-#endif
+    #endif
 
     /// Test for non-emptiness
-    friend bool operator!=(const Callback &f, std::nullptr_t) noexcept {
+    friend bool operator!=(const callback &f, std::nullptr_t) noexcept {
         return bool(f);
     }
 
     /// Test for non-emptiness
-    friend bool operator!=(std::nullptr_t, const Callback &f) noexcept {
+    friend bool operator!=(std::nullptr_t, const callback &f) noexcept {
         return bool(f);
     }
 
@@ -377,7 +377,7 @@ public: /* --------------------------------------------------- Public methods --
      * @brief Static thunk for passing as C-style function
      * 
      * @param func
-     *    Callback to call passed as void pointer
+     *    callback to call passed as void pointer
      * @param args
      *    Arguments to be called with function func
      * 
@@ -385,7 +385,7 @@ public: /* --------------------------------------------------- Public methods --
      *    by the signature of func
      */
     static R thunk(void *func, ArgTs... args) {
-        return static_cast<Callback *>(func)->call(args...);
+        return static_cast<callback *>(func)->call(args...);
     }
 
 public: /* --------------------------------------------------- Private types ----------------------------------------------------- */
@@ -403,14 +403,14 @@ public: /* -------------------------------------------------- Private methods --
     template <typename F, typename = std::enable_if_t<!std::is_lvalue_reference<F>::value>>
     void generate(F &&f) {
 
-#ifndef __ICCARM__ /* This assert fails on IAR for unknown reason */
+        #ifndef __ICCARM__ /* This assert fails on IAR for unknown reason */
         static_assert(std::is_same<decltype(target_call<F>), call_type>::value, "Call type mismatch");
-#endif
-        static_assert(sizeof(Callback) == sizeof(CallbackBase), "Callback should be same size as CallbackBase");
+        #endif
+        static_assert(sizeof(callback) == sizeof(CallbackBase), "callback should be same size as CallbackBase");
         static_assert(std::is_trivially_copyable<CallbackBase>::value, "CallbackBase expected to be TriviallyCopyable");
 
         // Set the control pointer
-#if CONF_CALLBACK_NONTRIVIAL
+        #if CONF_CALLBACK_NONTRIVIAL
         // Generates one static ops for each <F,R,ArgTs...> tuple
         // But the functions used for copy/move/dtor depend only on F, and even then only if non-trivial.
         // `call` is type-erased - we cast from our call_type to the void (*)(void) in CallbackBase
@@ -421,24 +421,24 @@ public: /* -------------------------------------------------- Private methods --
             std::is_trivially_destructible<F>::value ? trivial_target_dtor : target_dtor<F>,
         };
         _ops = &ops;
-#else
-        // Avoid the need for the const ops table - just one function pointer in the Callback itself
+        #else
+        // Avoid the need for the const ops table - just one function pointer in the callback itself
         _call = reinterpret_cast<void (*)()>(target_call<F>);
         static_assert(std::is_trivially_copyable<F>::value, "F must be TriviallyCopyable. Turn on Mbed configuration option 'platform.callback-nontrivial' to use more complex function objects");
-        static_assert(std::is_trivially_copyable<Callback>::value, "Callback expected to be TriviallyCopyable");
-#endif
+        static_assert(std::is_trivially_copyable<callback>::value, "callback expected to be TriviallyCopyable");
+        #endif
 
         // Move the functor into storage
         static_assert(sizeof(F) <= sizeof(Store) && alignof(F) <= alignof(Store),
-                      "Type F must not exceed the size of the Callback class");
+                      "Type F must not exceed the size of the callback class");
         new (&_storage) F(std::move(f));
 
-#if CONF_CALLBACK_COMPARABLE
-        // Zero out any padding - required for Callback-to-Callback comparisons.
+        #if CONF_CALLBACK_COMPARABLE
+        // Zero out any padding - required for callback-to-callback comparisons.
         if (sizeof(F) < sizeof(Store)) {
             std::memset(reinterpret_cast<char *>(&_storage) + sizeof(F), 0, sizeof(Store) - sizeof(F));
         }
-#endif
+        #endif
     }
 
     /// Target call routine - custom needed for each <F,R,ArgTs...> tuple
@@ -454,7 +454,7 @@ public: /* -------------------------------------------------- Private methods --
 
 /// Swaps callbacks
 template <typename R, typename... ArgTs>
-void swap(Callback<R(ArgTs...)> &lhs, Callback<R(ArgTs...)> &rhs) noexcept {
+void swap(callback<R(ArgTs...)> &lhs, callback<R(ArgTs...)> &rhs) noexcept {
     lhs.swap(rhs);
 }
 
@@ -464,11 +464,11 @@ void swap(Callback<R(ArgTs...)> &lhs, Callback<R(ArgTs...)> &rhs) noexcept {
  * @param func 
  *    Static function to attach
  * @returns 
- *    Callback with inferred type
+ *    callback with inferred type
  */
 template <typename R, typename... ArgTs>
-Callback<R(ArgTs...)> callback(R(*func)(ArgTs...) = nullptr) noexcept {
-    return Callback<R(ArgTs...)>(func);
+callback<R(ArgTs...)> callback(R(*func)(ArgTs...) = nullptr) noexcept {
+    return callback<R(ArgTs...)>(func);
 }
 
 /** 
@@ -477,11 +477,11 @@ Callback<R(ArgTs...)> callback(R(*func)(ArgTs...) = nullptr) noexcept {
  * @param func 
  *    Static function to attach
  * @returns 
- *    Callback with inferred type
+ *    callback with inferred type
  */
 template <typename R, typename... ArgTs>
-Callback<R(ArgTs...)> callback(const Callback<R(ArgTs...)> &func) {
-    return Callback<R(ArgTs...)>(func);
+callback<R(ArgTs...)> callback(const callback<R(ArgTs...)> &func) {
+    return callback<R(ArgTs...)>(func);
 }
 
 /** 
@@ -490,11 +490,11 @@ Callback<R(ArgTs...)> callback(const Callback<R(ArgTs...)> &func) {
  * @param func 
  *    Static function to attach
  * @return 
- *    Callback with inferred type
+ *    callback with inferred type
  */
 template <typename R, typename... ArgTs>
-Callback<R(ArgTs...)> callback(Callback<R(ArgTs...)> &&func) noexcept {
-    return Callback<R(ArgTs...)>(std::move(func));
+callback<R(ArgTs...)> callback(callback<R(ArgTs...)> &&func) noexcept {
+    return callback<R(ArgTs...)>(std::move(func));
 }
 
 /** 
@@ -505,46 +505,46 @@ Callback<R(ArgTs...)> callback(Callback<R(ArgTs...)> &&func) noexcept {
  * @param method 
  *    Member function to attach
  * @return 
- *    Callback with inferred type
+ *    callback with inferred type
  */
 template<typename T, typename U, typename R, typename... ArgTs>
-Callback<R(ArgTs...)> callback(U *obj, R(T::*method)(ArgTs...)) noexcept {
-    return Callback<R(ArgTs...)>(obj, method);
+callback<R(ArgTs...)> callback(U *obj, R(T::*method)(ArgTs...)) noexcept {
+    return callback<R(ArgTs...)>(obj, method);
 }
 
 template<typename T, typename U, typename R, typename... ArgTs>
-Callback<R(ArgTs...)> callback(U *obj, R(T::*method)(ArgTs...) &) noexcept {
-    return Callback<R(ArgTs...)>(obj, method);
+callback<R(ArgTs...)> callback(U *obj, R(T::*method)(ArgTs...) &) noexcept {
+    return callback<R(ArgTs...)>(obj, method);
 }
 
 template<typename T, typename U, typename R, typename... ArgTs>
-Callback<R(ArgTs...)> callback(const U *obj, R(T::*method)(ArgTs...) const) noexcept {
-    return Callback<R(ArgTs...)>(obj, method);
+callback<R(ArgTs...)> callback(const U *obj, R(T::*method)(ArgTs...) const) noexcept {
+    return callback<R(ArgTs...)>(obj, method);
 }
 
 template<typename T, typename U, typename R, typename... ArgTs>
-Callback<R(ArgTs...)> callback(const U *obj, R(T::*method)(ArgTs...) const &) noexcept {
-    return Callback<R(ArgTs...)>(obj, method);
+callback<R(ArgTs...)> callback(const U *obj, R(T::*method)(ArgTs...) const &) noexcept {
+    return callback<R(ArgTs...)>(obj, method);
 }
 
 template<typename T, typename U, typename R, typename... ArgTs>
-Callback<R(ArgTs...)> callback(volatile U *obj, R(T::*method)(ArgTs...) volatile) noexcept {
-    return Callback<R(ArgTs...)>(obj, method);
+callback<R(ArgTs...)> callback(volatile U *obj, R(T::*method)(ArgTs...) volatile) noexcept {
+    return callback<R(ArgTs...)>(obj, method);
 }
 
 template<typename T, typename U, typename R, typename... ArgTs>
-Callback<R(ArgTs...)> callback(volatile U *obj, R(T::*method)(ArgTs...) volatile &) noexcept {
-    return Callback<R(ArgTs...)>(obj, method);
+callback<R(ArgTs...)> callback(volatile U *obj, R(T::*method)(ArgTs...) volatile &) noexcept {
+    return callback<R(ArgTs...)>(obj, method);
 }
 
 template<typename T, typename U, typename R, typename... ArgTs>
-Callback<R(ArgTs...)> callback(const volatile U *obj, R(T::*method)(ArgTs...) const volatile) noexcept {
-    return Callback<R(ArgTs...)>(obj, method);
+callback<R(ArgTs...)> callback(const volatile U *obj, R(T::*method)(ArgTs...) const volatile) noexcept {
+    return callback<R(ArgTs...)>(obj, method);
 }
 
 template<typename T, typename U, typename R, typename... ArgTs>
-Callback<R(ArgTs...)> callback(const volatile U *obj, R(T::*method)(ArgTs...) const volatile &) noexcept {
-    return Callback<R(ArgTs...)>(obj, method);
+callback<R(ArgTs...)> callback(const volatile U *obj, R(T::*method)(ArgTs...) const volatile &) noexcept {
+    return callback<R(ArgTs...)>(obj, method);
 }
 
 /** 
@@ -555,26 +555,26 @@ Callback<R(ArgTs...)> callback(const volatile U *obj, R(T::*method)(ArgTs...) co
  * @param arg 
  *    Pointer argument to function
  * @return 
- *    Callback with inferred type
+ *    callback with inferred type
  */
 template <typename T, typename U, typename R, typename... ArgTs>
-Callback<R(ArgTs...)> callback(R(*func)(T *, ArgTs...), U *arg) noexcept {
-    return Callback<R(ArgTs...)>(func, arg);
+callback<R(ArgTs...)> callback(R(*func)(T *, ArgTs...), U *arg) noexcept {
+    return callback<R(ArgTs...)>(func, arg);
 }
 
 template <typename T, typename U, typename R, typename... ArgTs>
-Callback<R(ArgTs...)> callback(R(*func)(const T *, ArgTs...), const U *arg) noexcept {
-    return Callback<R(ArgTs...)>(func, arg);
+callback<R(ArgTs...)> callback(R(*func)(const T *, ArgTs...), const U *arg) noexcept {
+    return callback<R(ArgTs...)>(func, arg);
 }
 
 template <typename T, typename U, typename R, typename... ArgTs>
-Callback<R(ArgTs...)> callback(R(*func)(volatile T *, ArgTs...), volatile U *arg) noexcept {
-    return Callback<R(ArgTs...)>(func, arg);
+callback<R(ArgTs...)> callback(R(*func)(volatile T *, ArgTs...), volatile U *arg) noexcept {
+    return callback<R(ArgTs...)>(func, arg);
 }
 
 template <typename T, typename U, typename R, typename... ArgTs>
-Callback<R(ArgTs...)> callback(R(*func)(const volatile T *, ArgTs...), const volatile U *arg) noexcept {
-    return Callback<R(ArgTs...)>(func, arg);
+callback<R(ArgTs...)> callback(R(*func)(const volatile T *, ArgTs...), const volatile U *arg) noexcept {
+    return callback<R(ArgTs...)>(func, arg);
 }
 
 /** 
@@ -586,9 +586,9 @@ Callback<R(ArgTs...)> callback(R(*func)(const volatile T *, ArgTs...), const vol
  * @note The function object is limited to a single word of storage
  */
 template <typename F>
-Callback<estd::details::callback::unqualify_fn_t<estd::details::callback::member_type_t<decltype(&std::remove_cvref_t<F>::operator())>>>
+callback<estd::details::callback::unqualify_fn_t<estd::details::callback::member_type_t<decltype(&std::remove_cvref_t<F>::operator())>>>
 callback(F &&f) {
-    return Callback<estd::details::callback::unqualify_fn_t<estd::details::callback::member_type_t<decltype(&std::remove_cvref_t<F>::operator())>>>(std::forward<F>(f));
+    return callback<estd::details::callback::unqualify_fn_t<estd::details::callback::member_type_t<decltype(&std::remove_cvref_t<F>::operator())>>>(std::forward<F>(f));
 }
 
 /* ======================================================= Deduction guides ======================================================= */
@@ -596,33 +596,33 @@ callback(F &&f) {
 #if __cplusplus >= 201703 || __cpp_deduction_guides >= 201703
 
 template <typename R, typename... Args>
-Callback(R(*)(Args...)) -> Callback<R(Args...)>;
+callback(R(*)(Args...)) -> callback<R(Args...)>;
 template <typename F>
-Callback(F) -> Callback<estd::details::callback::unqualify_fn_t<estd::details::callback::member_type_t<decltype(&F::operator())>>>;
+callback(F) -> callback<estd::details::callback::unqualify_fn_t<estd::details::callback::member_type_t<decltype(&F::operator())>>>;
 template <typename T, typename U, typename R, typename... ArgTs>
-Callback(U *obj, R(T::*method)(ArgTs...)) -> Callback<R(ArgTs...)>;
+callback(U *obj, R(T::*method)(ArgTs...)) -> callback<R(ArgTs...)>;
 template <typename T, typename U, typename R, typename... ArgTs>
-Callback(U *obj, R(T::*method)(ArgTs...) &) -> Callback<R(ArgTs...)>;
+callback(U *obj, R(T::*method)(ArgTs...) &) -> callback<R(ArgTs...)>;
 template <typename T, typename U, typename R, typename... ArgTs>
-Callback(const U *obj, R(T::*method)(ArgTs...) const) -> Callback<R(ArgTs...)>;
+callback(const U *obj, R(T::*method)(ArgTs...) const) -> callback<R(ArgTs...)>;
 template <typename T, typename U, typename R, typename... ArgTs>
-Callback(const U *obj, R(T::*method)(ArgTs...) const &) -> Callback<R(ArgTs...)>;
+callback(const U *obj, R(T::*method)(ArgTs...) const &) -> callback<R(ArgTs...)>;
 template <typename T, typename U, typename R, typename... ArgTs>
-Callback(volatile U *obj, R(T::*method)(ArgTs...) volatile) -> Callback<R(ArgTs...)>;
+callback(volatile U *obj, R(T::*method)(ArgTs...) volatile) -> callback<R(ArgTs...)>;
 template <typename T, typename U, typename R, typename... ArgTs>
-Callback(volatile U *obj, R(T::*method)(ArgTs...) volatile &) -> Callback<R(ArgTs...)>;
+callback(volatile U *obj, R(T::*method)(ArgTs...) volatile &) -> callback<R(ArgTs...)>;
 template <typename T, typename U, typename R, typename... ArgTs>
-Callback(const volatile U *obj, R(T::*method)(ArgTs...) const volatile) -> Callback<R(ArgTs...)>;
+callback(const volatile U *obj, R(T::*method)(ArgTs...) const volatile) -> callback<R(ArgTs...)>;
 template <typename T, typename U, typename R, typename... ArgTs>
-Callback(const volatile U *obj, R(T::*method)(ArgTs...) const volatile &) -> Callback<R(ArgTs...)>;
+callback(const volatile U *obj, R(T::*method)(ArgTs...) const volatile &) -> callback<R(ArgTs...)>;
 template <typename T, typename U, typename R, typename... ArgTs>
-Callback(R(*func)(T *, ArgTs...), U *arg) -> Callback<R(ArgTs...)>;
+callback(R(*func)(T *, ArgTs...), U *arg) -> callback<R(ArgTs...)>;
 template <typename T, typename U, typename R, typename... ArgTs>
-Callback(R(*func)(const T *, ArgTs...), const U *arg) -> Callback<R(ArgTs...)>;
+callback(R(*func)(const T *, ArgTs...), const U *arg) -> callback<R(ArgTs...)>;
 template <typename T, typename U, typename R, typename... ArgTs>
-Callback(R(*func)(volatile T *, ArgTs...), volatile U *arg) -> Callback<R(ArgTs...)>;
+callback(R(*func)(volatile T *, ArgTs...), volatile U *arg) -> callback<R(ArgTs...)>;
 template <typename T, typename U, typename R, typename... ArgTs>
-Callback(R(*func)(const volatile T *, ArgTs...), const volatile U *arg) -> Callback<R(ArgTs...)>;
+callback(R(*func)(const volatile T *, ArgTs...), const volatile U *arg) -> callback<R(ArgTs...)>;
 
 #endif
 

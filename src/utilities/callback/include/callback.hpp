@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Wednesday, 16th June 2021 11:11:55 am
- * @modified   Sunday, 26th June 2022 11:56:59 am
+ * @modified   Tuesday, 28th February 2023 12:31:57 am
  * @project    cpp-utils
  * @brief      Header of the generic class template representing a reference to an arbitrary callable object
  * 
@@ -62,7 +62,7 @@ public: /* ------------------------------------------------- Public constructors
      *    object to be referenced
      */
     template<typename Class>
-        requires Concepts::Functor<Class, Return, Args...>
+        requires estd::functor<Class, Return, Args...>
     inline constexpr Callback(Class &&obj) noexcept;
 
     /**
@@ -98,7 +98,7 @@ public: /* -------------------------------------------------- Public operators -
      *    object to be referenced
      */
     template<typename Class>
-    requires Concepts::Functor<Class, Return, Args...>
+    requires estd::functor<Class, Return, Args...>
     inline constexpr Callback &operator=(Class &obj);
 
     /**
@@ -135,7 +135,7 @@ private: /* -------------------------------------------------- Private methods -
      *    pointer to Result(void *, Args...) function that casts first argument to the @tparam 
      *    Class and calls result with arguments
      */
-    template<Concepts::Functor<Return, Args...> Class>
+    template<estd::functor<Return, Args...> Class>
     static inline constexpr Ptr expandFunctorCall(Return (Class::*)(Args...));
 
     /**
@@ -147,7 +147,7 @@ private: /* -------------------------------------------------- Private methods -
      *    pointer to Result(void *, Args...) function that casts first argument to the @tparam 
      *    Class and calls result with arguments
      */
-    template<Concepts::Functor<Return, Args...> Class>
+    template<estd::functor<Return, Args...> Class>
     static inline constexpr Ptr expandFunctorCall(Return (Class::*)(Args...) const);
 
     /**

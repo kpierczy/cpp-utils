@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Sunday, 2nd January 2022 3:43:47 pm
- * @modified   Wednesday, 19th October 2022 9:57:37 pm
+ * @modified   Tuesday, 28th February 2023 12:33:05 am
  * @project    cpp-utils
  * @brief      Header file of the base class for classes implementing CRTP static polymorphism
  *    
@@ -20,18 +20,18 @@ namespace patterns {
 /* ========================================================= Declarations ========================================================= */
 
 /**
- * @class CRTP
+ * @class crtp
  * @brief Universal base class providing static cast methods used to implement 
- *    CRTP interface classes
+ *    crtp interface classes
  * @tparam T 
  *    target (derived) class of the CRTP pattern
  * 
  * @example 
  *    
  *    template<typename Derived> 
- *    class CRTPInterface : public CRTP<Derived> {
+ *    class CRTPInterface : public crtp<Derived> {
  *    private:
- *        using CRTP<Derived>::impl;
+ *        using crtp<Derived>::impl;
  *    public:
  *        
  *        void foo() { 
@@ -46,7 +46,7 @@ namespace patterns {
  * 
  */
 template<typename T>
-class CRTP {
+class crtp {
 protected:
 
     /**

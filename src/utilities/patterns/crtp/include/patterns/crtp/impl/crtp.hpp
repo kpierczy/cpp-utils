@@ -3,9 +3,9 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Sunday, 2nd January 2022 3:49:09 pm
- * @modified   Sunday, 26th June 2022 12:15:41 pm
+ * @modified   Tuesday, 28th February 2023 12:33:32 am
  * @project    cpp-utils
- * @brief      Implementation of inline methods of the CRTP template class
+ * @brief      Implementation of inline methods of the crtp template class
  * 
  * 
  * @copyright Krzysztof Pierczyk © 2022
@@ -25,13 +25,13 @@ namespace patterns {
 /* ========================================================== Namespaces ========================================================== */
 
 template<typename T>
-T &patterns::CRTP<T>::impl() {
+T &patterns::crtp<T>::impl() {
     return *static_cast<T*> (this);
 }
 
 
 template<typename T>
-const T &patterns::CRTP<T>::impl() const { 
+const T &patterns::crtp<T>::impl() const { 
     return *static_cast<const T*>(this); 
 }
 

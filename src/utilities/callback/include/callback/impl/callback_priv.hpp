@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Wednesday, 16th June 2021 11:11:55 am
- * @modified   Sunday, 26th June 2022 11:56:59 am
+ * @modified   Tuesday, 28th February 2023 12:31:44 am
  * @project    cpp-utils
  * @brief      Imlementation of the private functions related to the class template representing reference to an arbitrary callable object
  * 
@@ -22,7 +22,7 @@
 /* ========================================================== Definitions ========================================================= */
 
 template<typename Return, typename... Args>
-template<Concepts::Functor<Return, Args...> Class>
+template<estd::functor<Return, Args...> Class>
 constexpr typename Callback<Return(Args...)>::Ptr 
 Callback<Return(Args...)>::expandFunctorCall(Return (Class::*)(Args...)) {
     return [](void* object, Args... args) { 
@@ -31,7 +31,7 @@ Callback<Return(Args...)>::expandFunctorCall(Return (Class::*)(Args...)) {
 }
 
 template<typename Return, typename... Args>
-template<Concepts::Functor<Return, Args...> Class>
+template<estd::functor<Return, Args...> Class>
 constexpr typename Callback<Return(Args...)>::Ptr 
 Callback<Return(Args...)>::expandFunctorCall(Return (Class::*)(Args...) const) {
     return [](void* object, Args... args) { 

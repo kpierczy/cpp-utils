@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Monday, 13th June 2022 1:18:14 am
- * @modified   Sunday, 26th June 2022 3:11:18 pm
+ * @modified   Tuesday, 28th February 2023 12:19:24 am
  * @project    cpp-utils
  * @brief      Definitions of common utilities for handling bit-aligned data
  * 
@@ -26,10 +26,13 @@ namespace estd {
 /* =========================================================== Constants ========================================================== */
 
 /// Number of bits in a byte
-inline constexpr std::size_t BITS_IN_BYTE = 8;
+inline constexpr std::size_t byte_bitsize = 8;
 
-/// Number of bits in a byte
-inline constexpr std::size_t BITS_IN_WORD = 16;
+/// Number of bits in a halfword
+inline constexpr std::size_t halfword_bitsize = 16;
+
+/// Number of bits in a word
+inline constexpr std::size_t word_bitsize = 32;
 
 /* =========================================================== Functions ========================================================== */
 

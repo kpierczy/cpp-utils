@@ -3,9 +3,9 @@
  * @author     ARM Limited
  * @maintainer Krzysztof Pierczyk (kpierczyk@emka-project.com.pl)
  * @date       Tuesday, 30th August 2022 3:16:57 pm
- * @modified   Wednesday, 19th October 2022 9:13:54 pm
+ * @modified   Tuesday, 28th February 2023 12:25:09 am
  * @project    SHARK_KB
- * @brief      Modificationn of the mbed::Callback class tempalte originally from ARM Mbed (details)
+ * @brief      Modificationn of the mbed::callback class tempalte originally from ARM Mbed (details)
  * 
  * @copyright Copyright (c) 2006-2019 ARM Limited
  * @license
@@ -142,7 +142,7 @@ struct can_null_check :
 /* ============================================================= Base ============================================================= */
 
 /**
- * @brief Base class for the @ref Callback type
+ * @brief Base class for the @ref callback type
  * 
  */
 struct [[gnu::may_alias]] CallbackBase {
@@ -177,8 +177,8 @@ public: /* ---------------------------------------------------- Public types ---
      * problems when it swaps locally-stored functors; we need it for copy-assignment too.
      *
      * It appears [[gnu::may_alias]] doesn't work through composition - it's not sufficent to mark just the
-     * `Store` type, we have to mark the whole `Callback` if we're going to let the compiler
-     * implicitly define the trivial copy for it. This potentially could lead to an issue if a `Callback`
+     * `Store` type, we have to mark the whole `callback` if we're going to let the compiler
+     * implicitly define the trivial copy for it. This potentially could lead to an issue if a `callback`
      * was used in a trivially-copyable type itself, but this seems an unlikely use case. The p0593r5
      * change would, if correctly implemented, work in composition.
      *
@@ -201,10 +201,10 @@ public: /* ---------------------------------------------------- Public types ---
 
 public: /* --------------------------------------------------- Public members ---------------------------------------------------- */
 
-    // Callback storage
+    // callback storage
     Store _storage;
 
-#if CONF_CALLBACK_NONTRIVIAL
+    #if CONF_CALLBACK_NONTRIVIAL
 
     // Dynamically dispatched operations
     const struct ops {
@@ -219,7 +219,7 @@ public: /* --------------------------------------------------- Public members --
     // Construct as empty
     CallbackBase(std::nullptr_t) noexcept : _ops(nullptr) { }
 
-#else
+    #else
 
     // Type-erased function pointer
     void (*_call)();
@@ -230,7 +230,7 @@ public: /* --------------------------------------------------- Public members --
     // Construct as empty
     CallbackBase(std::nullptr_t) noexcept : _call(nullptr) { }
     
-#endif
+    #endif
 
 public: /* ---------------------------------------------------- Public ctors ----------------------------------------------------- */
 
@@ -240,41 +240,41 @@ public: /* ---------------------------------------------------- Public ctors ---
 public: /* --------------------------------------------------- Public methods ---------------------------------------------------- */
 
     Control &control() {
-#if CONF_CALLBACK_NONTRIVIAL
+        #if CONF_CALLBACK_NONTRIVIAL
         return _ops;
-#else
+        #else
         return _call;
-#endif
+        #endif
     }
 
     const Control &control() const {
-#if CONF_CALLBACK_NONTRIVIAL
+        #if CONF_CALLBACK_NONTRIVIAL
         return _ops;
-#else
+        #else
         return _call;
-#endif
+        #endif
     }
 
     auto call_fn() const {
-#if CONF_CALLBACK_NONTRIVIAL
+        #if CONF_CALLBACK_NONTRIVIAL
         return _ops->call;
-#else
+        #else
         return _call;
-#endif
+        #endif
     }
 
     /**
      * @brief Clear to empty - does not destroy
      * @details For copy efficiency we only zero out the operation pointer
      *     Therefore storage is undefined when we are empty.
-     *     Callback-to-Callback comparison operator has to deal with this,
+     *     callback-to-callback comparison operator has to deal with this,
      *     but such comparisons are rare. Comparisons to empty are efficient.
      */
     void clear() noexcept {
         control() = nullptr;
     }
 
-#if CONF_CALLBACK_NONTRIVIAL
+    #if CONF_CALLBACK_NONTRIVIAL
     
     /**
      * @brief Copy from another CallbackBase - assumes we are uninitialised
@@ -286,7 +286,7 @@ public: /* --------------------------------------------------- Public methods --
         }
     }
     
-#else
+    #else
 
     /// Swaps callback objects
     void swap(CallbackBase &other) noexcept {
@@ -294,21 +294,21 @@ public: /* --------------------------------------------------- Public methods --
         std::swap(_call, other._call);
     }
     
-#endif
+    #endif
 
     /**
      * @brief Destroy anything we hold - does not reset, so we are in undefined state afterwards.
      * @note Must be followed by copy, move, reset, or destruction of the CallbackBase
      */
     void destroy() {
-#if CONF_CALLBACK_NONTRIVIAL
+        #if CONF_CALLBACK_NONTRIVIAL
         if (_ops) {
             _ops->dtor(_storage);
         }
-#endif
+        #endif
     }
 
-#if CONF_CALLBACK_NONTRIVIAL
+    #if CONF_CALLBACK_NONTRIVIAL
 
     /// Copy construct F into storage
     template <typename F>
@@ -332,7 +332,7 @@ public: /* --------------------------------------------------- Public methods --
     /// Trivial destruction in storage
     static void trivial_target_dtor(Store &p) noexcept { }
     
-#endif
+    #endif
 };
 
 /* ================================================================================================================================ */

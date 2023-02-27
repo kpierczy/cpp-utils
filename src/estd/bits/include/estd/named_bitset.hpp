@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Thursday, 2nd June 2022 12:53:22 pm
- * @modified   Sunday, 26th June 2022 3:41:37 pm
+ * @modified   Tuesday, 28th February 2023 12:18:38 am
  * @project    cpp-utils
  * @brief      Definition of the named_bitset class template extending std::bitset with capability to be indexed ([] operator)
  *             with enum class values
@@ -12,8 +12,8 @@
  * @copyright Krzysztof Pierczyk © 2022
  */// ============================================================================================================================= */
 
-#ifndef __ETHERCAT_UTILITIES_NAMED_BITSET_H__
-#define __ETHERCAT_UTILITIES_NAMED_BITSET_H__
+#ifndef __ESTD_NAMED_BITSET_H__
+#define __ESTD_NAMED_BITSET_H__
 
 /* =========================================================== Includes =========================================================== */
 
@@ -44,12 +44,10 @@ namespace estd {
  *    operand
  * @returns  
  *    result of ~(1 << e_) where e_ is @p e casted to underlying integral type
- * 
- * @todo When C++20 is available require @p Enum to be enumeration
  */
-template<typename Enum, 
-    std::enable_if_t<std::is_enum_v<Enum>, bool> = true
-> constexpr auto operator~(Enum e) {
+template<typename Enum>
+    requires (std::is_enum_v<Enum>)
+constexpr auto operator~(Enum e) {
     return ( ~( std::underlying_type_t<Enum>(1) << estd::to_underlying(e) ) );
 }
 
@@ -70,12 +68,10 @@ template<typename Enum,
  * @returns  
  *    result of ((1 << e_1) | (1 << e_2)) where e_1 and e_2 are @p e1 and @p e2 
  *    casted to underlying integral types
- * 
- * @todo When C++20 is available require @p Enum1 and @p Enum2 to be enumeration
  */
-template<typename Enum1, typename Enum2, 
-    std::enable_if_t<std::is_enum_v<Enum1> and std::is_enum_v<Enum2>, bool> = true
-> constexpr auto operator|(Enum1 e1, Enum2 e2) {
+template<typename Enum1, typename Enum2>
+    requires (std::is_enum_v<Enum1> && std::is_enum_v<Enum2>)
+constexpr auto operator|(Enum1 e1, Enum2 e2) {
     return (
         ( std::underlying_type_t<Enum1>(1) << estd::to_underlying(e1) ) | 
         ( std::underlying_type_t<Enum2>(1) << estd::to_underlying(e2) )
@@ -97,12 +93,10 @@ template<typename Enum1, typename Enum2,
  *    right operand
  * @returns  
  *    result of (i | (1 << e_)) where e_ is @p e casted to underlying integral type
- * 
- * @todo When C++20 is available require @p Int to be integral and @p Enum to be enumeration
  */
-template<typename Int, typename Enum, 
-    std::enable_if_t<std::is_integral_v<Int> and std::is_enum_v<Enum>, bool> = true
-> constexpr auto operator|(Int i, Enum e) {
+template<typename Int, typename Enum>
+    requires (std::is_integral_v<Int> && std::is_enum_v<Enum>)
+constexpr auto operator|(Int i, Enum e) {
     return (i | ( std::underlying_type_t<Enum>(1) << estd::to_underlying(e) ));
 }
 
@@ -123,12 +117,10 @@ template<typename Int, typename Enum,
  * @returns  
  *    result of ((1 << e_1) & (1 << e_2)) where e_1 and e_2 are @p e1 and @p e2 
  *    casted to underlying integral types
- * 
- * @todo When C++20 is available require @p Enum1 and @p Enum2 to be enumeration
  */
-template<typename Enum1, typename Enum2, 
-    std::enable_if_t<std::is_enum_v<Enum1> and std::is_enum_v<Enum2>, bool> = true
-> constexpr auto operator&(Enum1 e1, Enum2 e2) {
+template<typename Enum1, typename Enum2>
+    requires (std::is_enum_v<Enum1> && std::is_enum_v<Enum2>)
+constexpr auto operator&(Enum1 e1, Enum2 e2) {
     return (
         ( std::underlying_type_t<Enum1>(1) << estd::to_underlying(e1) ) & 
         ( std::underlying_type_t<Enum2>(1) << estd::to_underlying(e2) )
@@ -150,12 +142,10 @@ template<typename Enum1, typename Enum2,
  *    right operand
  * @returns  
  *    result of (i & (1 << e_)) where e_ is @p e casted to underlying integral type
- * 
- * @todo When C++20 is available require @p Int to be integral and @p Enum to be enumeration
  */
-template<typename Int, typename Enum, 
-    std::enable_if_t<std::is_integral_v<Int> and std::is_enum_v<Enum>, bool> = true
-> constexpr auto operator&(Int i, Enum e) {
+template<typename Int, typename Enum>
+    requires (std::is_integral_v<Int> && std::is_enum_v<Enum>)
+constexpr auto operator&(Int i, Enum e) {
     return (i & ( std::underlying_type_t<Enum>(1) << estd::to_underlying(e) ));
 }
 
@@ -165,7 +155,7 @@ template<typename Int, typename Enum,
  * @brief Helper macor defining unary member operator of the class derived from the  
  *    derivation of std::bitset
  */
-#define ETHERCAT_UTILITIES_WRAP_BITSET_UNARY_MEMBER_OPERATOR(op, baseclass, targetclass) \
+#define ESTD_NAMED_BITSET_WRAP_BITSET_UNARY_MEMBER_OPERATOR(op, baseclass, targetclass) \
     constexpr targetclass& operator op( ) noexcept {                  \
         baseclass::operator op(); return *this; }
 
@@ -173,7 +163,7 @@ template<typename Int, typename Enum,
  * @brief Helper macor defining binary member operator of the class derived from the  
  *    derivation of std::bitset
  */
-#define ETHERCAT_UTILITIES_WRAP_BITSET_BINARY_MEMBER_OPERATOR(op, baseclass, targetclass)      \
+#define ESTD_NAMED_BITSET_WRAP_BITSET_BINARY_MEMBER_OPERATOR(op, baseclass, targetclass)      \
     constexpr targetclass& operator BOOST_PP_CAT(op, =)( const targetclass& other ) noexcept { \
         baseclass::operator BOOST_PP_CAT(op, =)(other); return *this; }                        \
     constexpr targetclass& operator BOOST_PP_CAT(op, =)( const baseclass& other ) noexcept {   \
@@ -183,17 +173,17 @@ template<typename Int, typename Enum,
  * @brief Helper macor defining all basic member operators of the class derived from the  
  *    @p baseclass derivation of std::bitset
  */
-#define ETHERCAT_UTILITIES_WRAP_BITSET_MEMBER_OPERATORS(baseclass, targetclass)      \
-    ETHERCAT_UTILITIES_WRAP_BITSET_UNARY_MEMBER_OPERATOR(~,  baseclass, targetclass) \
-    ETHERCAT_UTILITIES_WRAP_BITSET_BINARY_MEMBER_OPERATOR(|, baseclass, targetclass) \
-    ETHERCAT_UTILITIES_WRAP_BITSET_BINARY_MEMBER_OPERATOR(&, baseclass, targetclass) \
-    ETHERCAT_UTILITIES_WRAP_BITSET_BINARY_MEMBER_OPERATOR(^, baseclass, targetclass)
+#define ESTD_NAMED_BITSET_WRAP_BITSET_MEMBER_OPERATORS(baseclass, targetclass)      \
+    ESTD_NAMED_BITSET_WRAP_BITSET_UNARY_MEMBER_OPERATOR(~,  baseclass, targetclass) \
+    ESTD_NAMED_BITSET_WRAP_BITSET_BINARY_MEMBER_OPERATOR(|, baseclass, targetclass) \
+    ESTD_NAMED_BITSET_WRAP_BITSET_BINARY_MEMBER_OPERATOR(&, baseclass, targetclass) \
+    ESTD_NAMED_BITSET_WRAP_BITSET_BINARY_MEMBER_OPERATOR(^, baseclass, targetclass)
     
 /**
  * @brief Helper macor defining binary operator of the class derived from the  
  *    derivation of std::bitset
  */
-#define ETHERCAT_UTILITIES_WRAP_BITSET_BINARY_OPERATOR(op, baseclass, targetclass)                           \
+#define ESTD_NAMED_BITSET_WRAP_BITSET_BINARY_OPERATOR(op, baseclass, targetclass)                           \
     constexpr targetclass operator op(const targetclass &lset, const targetclass &rset) { \
         return targetclass{ operator op(                                                  \
             static_cast<baseclass>(lset),                                                 \
@@ -205,19 +195,19 @@ template<typename Int, typename Enum,
  * @brief Helper macor defining all basic non-member binary operators of the class derived from
  *    the @p baseclass derivation of std::bitset
  */
-#define ETHERCAT_UTILITIES_WRAP_BITSET_BINARY_OPERATORS(baseclass, targetclass) \
-    ETHERCAT_UTILITIES_WRAP_BITSET_BINARY_OPERATOR(|, baseclass, targetclass)   \
-    ETHERCAT_UTILITIES_WRAP_BITSET_BINARY_OPERATOR(&, baseclass, targetclass)   \
-    ETHERCAT_UTILITIES_WRAP_BITSET_BINARY_OPERATOR(^, baseclass, targetclass)
+#define ESTD_NAMED_BITSET_WRAP_BITSET_BINARY_OPERATORS(baseclass, targetclass) \
+    ESTD_NAMED_BITSET_WRAP_BITSET_BINARY_OPERATOR(|, baseclass, targetclass)   \
+    ESTD_NAMED_BITSET_WRAP_BITSET_BINARY_OPERATOR(&, baseclass, targetclass)   \
+    ESTD_NAMED_BITSET_WRAP_BITSET_BINARY_OPERATOR(^, baseclass, targetclass)
     
 /**
  * @brief Helper macor defining all basic non-member binary operators of the class derived from
  *    the @p baseclass derivation of std::bitset
  */
-#define ETHERCAT_UTILITIES_WRAP_BITSET_BINARY_OPERATORS_TEMPLATE(header, baseclass, targetclass) \
-    header ETHERCAT_UTILITIES_WRAP_BITSET_BINARY_OPERATOR(|, baseclass, targetclass);            \
-    header ETHERCAT_UTILITIES_WRAP_BITSET_BINARY_OPERATOR(&, baseclass, targetclass);            \
-    header ETHERCAT_UTILITIES_WRAP_BITSET_BINARY_OPERATOR(^, baseclass, targetclass)
+#define ESTD_NAMED_BITSET_WRAP_BITSET_BINARY_OPERATORS_TEMPLATE(header, baseclass, targetclass) \
+    header ESTD_NAMED_BITSET_WRAP_BITSET_BINARY_OPERATOR(|, baseclass, targetclass);            \
+    header ESTD_NAMED_BITSET_WRAP_BITSET_BINARY_OPERATOR(&, baseclass, targetclass);            \
+    header ESTD_NAMED_BITSET_WRAP_BITSET_BINARY_OPERATOR(^, baseclass, targetclass)
 
 /* ========================================================= Named bitset ========================================================= */
 
@@ -254,9 +244,9 @@ public: /* ----------------------------------------------------- Public ctors --
      * 
      * @todo When C++20 is available require @p Enum to be enumeration
      */
-    template<typename Enum, 
-        std::enable_if_t<std::is_enum_v<Enum>, bool> = true
-    > constexpr named_bitset(Enum e) : 
+    template<typename Enum>
+        requires (std::is_enum_v<Enum>)
+    constexpr named_bitset(Enum e) : 
         std::bitset<N>{ std::underlying_type_t<Enum>(1) << estd::to_underlying(e) }
     { }
 
@@ -266,7 +256,7 @@ public: /* ----------------------------------------------------- Public ctors --
 public: /* --------------------------------------------------- Public operators -------------------------------------------------- */
 
     /// Wrap basic member operator of the bitset
-    ETHERCAT_UTILITIES_WRAP_BITSET_MEMBER_OPERATORS(std::bitset<N>, named_bitset);
+    ESTD_NAMED_BITSET_WRAP_BITSET_MEMBER_OPERATORS(std::bitset<N>, named_bitset);
 
     /**
      * @brief Accesses reference to the bit of the bitset indexed by the underlying value 
@@ -281,9 +271,9 @@ public: /* --------------------------------------------------- Public operators 
      * 
      * @todo When C++20 is available require @p Enum to be enumeration
      */
-    template<typename Enum, 
-        std::enable_if_t<std::is_enum_v<Enum>, bool> = true
-    > constexpr typename std::bitset<N>::reference operator[](Enum field) { 
+    template<typename Enum>
+        requires (std::is_enum_v<Enum>)
+    constexpr typename std::bitset<N>::reference operator[](Enum field) { 
         return std::bitset<N>::operator[](estd::to_underlying(field)); 
     }
 
@@ -300,9 +290,9 @@ public: /* --------------------------------------------------- Public operators 
      * 
      * @todo When C++20 is available require @p Enum to be enumeration
      */
-    template<typename Enum, 
-        std::enable_if_t<std::is_enum_v<Enum>, bool> = true
-    > constexpr bool operator[](Enum field) const { 
+    template<typename Enum>
+        requires (std::is_enum_v<Enum>)
+    constexpr bool operator[](Enum field) const { 
         return std::bitset<N>::operator[](estd::to_underlying(field)); 
     }
 
@@ -326,9 +316,9 @@ public: /* ---------------------------------------------------- Public methods -
      * 
      * @todo When C++20 is available require @p Enum to be enumeration
      */
-    template<typename Enum, 
-        std::enable_if_t<std::is_enum_v<Enum>, bool> = true
-    > constexpr bool test(Enum field) const { 
+    template<typename Enum>
+        requires (std::is_enum_v<Enum>)
+    constexpr bool test(Enum field) const { 
         return std::bitset<N>::test(estd::to_underlying(field)); 
     }
 
@@ -345,9 +335,9 @@ public: /* ---------------------------------------------------- Public methods -
      * 
      * @todo When C++20 is available require @p Enum to be enumeration
      */
-    template<typename Enum, 
-        std::enable_if_t<std::is_enum_v<Enum>, bool> = true
-    > constexpr void set(Enum field, bool value = true) { 
+    template<typename Enum>
+        requires (std::is_enum_v<Enum>)
+    constexpr void set(Enum field, bool value = true) { 
         std::bitset<N>::set(estd::to_underlying(field), value); 
     }
 
@@ -364,9 +354,9 @@ public: /* ---------------------------------------------------- Public methods -
      * 
      * @todo When C++20 is available require @p Enum to be enumeration
      */
-    template<typename Enum, 
-        std::enable_if_t<std::is_enum_v<Enum>, bool> = true
-    > constexpr void reset(Enum field) { 
+    template<typename Enum>
+        requires (std::is_enum_v<Enum>)
+    constexpr void reset(Enum field) { 
         std::bitset<N>::reset(estd::to_underlying(field)); 
     }
 
@@ -383,9 +373,9 @@ public: /* ---------------------------------------------------- Public methods -
      * 
      * @todo When C++20 is available require @p Enum to be enumeration
      */
-    template<typename Enum, 
-        std::enable_if_t<std::is_enum_v<Enum>, bool> = true
-    > constexpr void flip(Enum field) { 
+    template<typename Enum>
+        requires (std::is_enum_v<Enum>)
+    constexpr void flip(Enum field) { 
         std::bitset<N>::flip(estd::to_underlying(field)); 
     }
 
@@ -404,9 +394,9 @@ public: /* ---------------------------------------------------- Public methods -
      * 
      * @todo When C++20 is available require @p T to be integral
      */
-    template<typename T, 
-        std::enable_if_t<std::is_integral_v<T>, bool> = true
-    > constexpr T to_value() const {
+    template<typename T>
+        requires (std::is_integral_v<T>)
+    constexpr T to_value() const {
 
         T t { 0 };
 
@@ -420,7 +410,7 @@ public: /* ---------------------------------------------------- Public methods -
 };
 
 /// Wrap binary operators of the bitset
-ETHERCAT_UTILITIES_WRAP_BITSET_BINARY_OPERATORS_TEMPLATE(template<std::size_t N>, std::bitset<N>, named_bitset<N>);
+ESTD_NAMED_BITSET_WRAP_BITSET_BINARY_OPERATORS_TEMPLATE(template<std::size_t N>, std::bitset<N>, named_bitset<N>);
 
 /* ================================================================================================================================ */
 

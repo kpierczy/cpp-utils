@@ -4,7 +4,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Sunday, 21st November 2021 6:16:17 pm
-# @modified   Thursday, 29th December 2022 2:01:13 am
+# @modified   Monday, 27th February 2023 3:58:16 pm
 # @project    cpp-utils
 # @brief      Installs arm-none-eabi toolchain form source (abased on the build script from ARM Embedded Toolchain v10.3-2021.10)
 #    
@@ -408,7 +408,7 @@ function install() {
     is_var_set opts[autocontinue] && build_script_flags+=( "--autocontinue" )
 
     # Install toolchain
-    $BASH_UTILS_BIN_HOME/install/buildtools/toolchain/gcc.bash                                           \
+    $FRAMEWORK_HOME/gcc.bash                                           \
         --with-libc='newlib'                                                                             \
         --target='arm-none-eabi'                                                                         \
         --with-doc                                                                                       \
