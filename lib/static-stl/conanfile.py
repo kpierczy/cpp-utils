@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 28th December 2022 9:23:13 pm
-# @modified   Thursday, 29th December 2022 5:00:37 am
+# @modified   Tuesday, 28th February 2023 12:05:02 am
 # @project    cpp-utils
 # @brief      Conan package file for the static-stl library
 # 
@@ -25,8 +25,8 @@
 
 # ============================================================ Imports ============================================================= #
 
-from conans import ConanFile
-from conans.tools import Git
+from conan import ConanFile
+from conan.tools.scm import Git
 from conan.tools.files import apply_conandata_patches
 from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout
 
@@ -74,8 +74,8 @@ class HelloConan(ConanFile):
     def source(self):
 
         # Download and checkout SSTL library
-        git = Git(folder='sstl')
-        git.clone(self.homepage)
+        git = Git(self, folder='sstl')
+        git.clone(self.homepage, target='.')
         git.checkout(self.revision)
         # Patch sources
         apply_conandata_patches(self)

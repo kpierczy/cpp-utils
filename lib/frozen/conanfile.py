@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 28th December 2022 9:23:13 pm
-# @modified   Thursday, 29th December 2022 5:00:43 am
+# @modified   Tuesday, 28th February 2023 12:03:21 am
 # @project    cpp-utils
 # @brief      Conan package file for the static-stl library
 # 
@@ -26,8 +26,8 @@
 # ============================================================ Imports ============================================================= #
 
 from distutils.dir_util import copy_tree
-from conans import ConanFile
-from conans.tools import Git
+from conan import ConanFile
+from conan.tools.scm import Git
 from conan.tools.files import apply_conandata_patches
 from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout
 
@@ -43,7 +43,7 @@ class HelloConan(ConanFile):
                   "containers, and various algorithms."
     topics      = ("stl", "constexpr")
     homepage    = "https://github.com/serge-sans-paille/frozen"
-    revision    = "079f73c"
+    revision    = "5666e8c"
 
     # ---------------------------------------------------------------------------- #
     
@@ -77,8 +77,8 @@ class HelloConan(ConanFile):
     def source(self):
 
         # Download and checkout SSTL library
-        git = Git(folder='frozen')
-        git.clone(self.homepage)
+        git = Git(self, folder='frozen')
+        git.clone(self.homepage, target='.')
         git.checkout(self.revision)
         # Copy files to the source folder
         copy_tree('./frozen', '.')
