@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 7th July 2021 7:57:46 pm
-# @modified   Thursday, 29th December 2022 4:55:21 am
+# @modified   Tuesday, 28th February 2023 8:56:10 pm
 # @project    cpp-utils
 # @brief      CMakeList for project extended-std' library
 # 
@@ -22,7 +22,8 @@ add_subdirectory(miscellaneous)
 add_subdirectory(pointers)
 add_subdirectory(preprocessor)
 add_subdirectory(result)
-add_subdirectory(strings)
+add_subdirectory(string)
+add_subdirectory(synchronisation)
 add_subdirectory(traits)
 
 # Sublibraries
@@ -35,7 +36,8 @@ target_link_libraries(estd
         estd-pointers
         estd-preprocessor
         estd-result
-        estd-strings
+        estd-string
+        estd-synchronisation
         estd-traits
 )
 

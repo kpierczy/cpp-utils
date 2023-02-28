@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Monday, 13th June 2022 1:19:55 am
- * @modified   Tuesday, 28th February 2023 12:19:50 am
+ * @modified   Tuesday, 28th February 2023 8:40:50 pm
  * @project    cpp-utils
  * @brief      Definitions of common utilities for handling bit-aligned data
  * 
@@ -171,7 +171,7 @@ void copy_bits_from_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n, 
         // Merge bits from src[0] and src[1] into 16-bit int
         uint16_t src_bits = ((src[1] << byte_bitsize) | src[0]);
         // Remove bits > 'remainding_src_bits_lsb_offset' and align bits form 'src_bitoffset' to 0
-        src_bits = (src_bits << (BITS_IN_WORD - remainding_src_bits_lsb_offset)) >> (BITS_IN_WORD - bits_remainder);
+        src_bits = (src_bits << (halfword_bitsize - remainding_src_bits_lsb_offset)) >> (halfword_bitsize - bits_remainder);
 
         // Copy bits to destination leaving bits that are not subject to be overwitten untouched
         dst[0] = ((dst[0] & (0xFFU << (byte_bitsize - bits_remainder))) | (src_bits & 0xFFU));
@@ -237,8 +237,8 @@ void copy_bits_to_bitshifted(const uint8_t *src, uint8_t *dst, std::size_t n, st
         uint16_t dst_bits = uint16_t((dst[1] << byte_bitsize) | dst[0]);
         // Select bits of dst[0:1] that has to be left unchanged
         dst_bits = dst_bits & ~(
-            (0xFFFFU << (BITS_IN_WORD - remainding_dst_bits_lsb_offset)) 
-                     >> (BITS_IN_WORD - remainding_dst_bits_lsb_offset - dst_bitoffset)
+            (0xFFFFU << (halfword_bitsize - remainding_dst_bits_lsb_offset)) 
+                     >> (halfword_bitsize - remainding_dst_bits_lsb_offset - dst_bitoffset)
         );
 
         // Merge src and dst bits

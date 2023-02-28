@@ -3,7 +3,7 @@
  * @author     Krzysztof Jusiak
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Monday, 14th February 2022 11:27:10 pm
- * @modified   Wednesday, 19th October 2022 9:57:37 pm
+ * @modified   Tuesday, 28th February 2023 8:18:01 pm
  * @project    cpp-utils
  * @brief      Implementation of the python-like named tuple in c++ 20 (does not work in GCC < 11.2)
  *    
@@ -19,7 +19,7 @@
 
 #if defined(__GNUC__) or defined(__GNUG__)
 #define GCC_VERSION (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
-#if ( GCC_VERSION < 11'02'00 )
+#if (GCC_VERSION < 12'00'00)
 #error "estl::namedtupl does not work with GCC < 11.2"
 #endif
 #endif

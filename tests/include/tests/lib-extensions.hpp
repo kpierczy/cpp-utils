@@ -1,18 +1,32 @@
 /* ============================================================================================================================ *//**
- * @file       units.hpp
+ * @file       lib-extensions.hpp
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date       Monday, 29th November 2021 10:15:59 am
- * @modified   Tuesday, 28th February 2023 8:52:43 pm
+ * @date       Tuesday, 28th February 2023 8:49:30 pm
+ * @modified   Tuesday, 28th February 2023 8:53:01 pm
  * @project    cpp-utils
- * @brief      Compilation of header files defining user-defined literals for various numerical units
+ * @brief      
  * 
  * 
  * @copyright Krzysztof Pierczyk © 2022
  */// ============================================================================================================================= */
 
+#ifndef __TESTS_LIB_EXTENSIONS_H__
+#define __TESTS_LIB_EXTENSIONS_H__
+
 /* =========================================================== Includes =========================================================== */
 
+// Compilation test for 'boost-sml'
+#include "boost/sml/utils/actions.hpp"
+#include "boost/sml/utils/events.hpp"
+#include "boost/sml/utils/guards.hpp"
+#include "boost/sml/utils/states.hpp"
+#include "boost/sml/utils/dsl/sequence.hpp"
+#include "boost/sml/utils/macros/events.hpp"
+#include "boost/sml/utils/macros/states.hpp"
+#include "boost/sml/utils/macros/transition_table.hpp"
+#include "boost/sml/utils/macros/cleanup.hpp"
+// Compilation test for 'mp-units'
 #include "units/angle.hpp"
 #include "units/angular_velocity.hpp"
 #include "units/density.hpp"
@@ -32,4 +46,14 @@
 #include "units/torque.hpp"
 #include "units/voltage.hpp"
 
-/* ========================================================== Namespaces ========================================================== */
+/* ========================================================== Definitions ========================================================= */
+
+inline void lib_extensions_tests()
+{
+    
+}
+
+/* ================================================================================================================================ */
+
+#endif
+

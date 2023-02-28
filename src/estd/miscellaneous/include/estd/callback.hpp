@@ -3,7 +3,7 @@
  * @author     ARM Limited
  * @maintainer Krzysztof Pierczyk (kpierczyk@emka-project.com.pl)
  * @date       Tuesday, 30th August 2022 3:16:57 pm
- * @modified   Tuesday, 28th February 2023 12:24:29 am
+ * @modified   Tuesday, 28th February 2023 8:45:32 pm
  * @project    SHARK_KB
  * @brief      Modificationn of the mbed::callback class tempalte originally from ARM Mbed
  * @details 
@@ -43,6 +43,7 @@
 #include <cstring>
 #include <type_traits>
 #include <cstdint>
+#include <cassert>
 // Private includes
 #include "estd/callback/callback.hpp"
 
@@ -62,7 +63,7 @@ class callback;
  * @brief callback class based on template specialization
  */
 template <typename R, typename... ArgTs>
-class callback<R(ArgTs...)> : private estd::details::callback::CallbackBase {
+class callback<R(ArgTs...)> : private details::callback::CallbackBase {
 
 public: /* ---------------------------------------------------- Public types ----------------------------------------------------- */
 
@@ -125,7 +126,7 @@ public: /* ---------------------------------------------------- Public ctors ---
         typename std::enable_if_t<std::is_invocable_r<R, Method, Obj, ArgTs...>::value, int> = 0>
     callback(Obj obj, Method method) : CallbackBase() {
         generate([obj, method](ArgTs... args) {
-            return estd::details::callback::invoke_r<R>(method, obj, std::forward<ArgTs>(args)...);
+            return details::callback::invoke_r<R>(method, obj, std::forward<ArgTs>(args)...);
         });
     }
 
@@ -142,7 +143,7 @@ public: /* ---------------------------------------------------- Public ctors ---
     callback(Fn func, BoundArg arg) : CallbackBase()
     {
         generate([func, arg](ArgTs... args) {
-            return estd::details::callback::invoke_r<R>(func, arg, std::forward<ArgTs>(args)...);
+            return details::callback::invoke_r<R>(func, arg, std::forward<ArgTs>(args)...);
         });
     }
 
@@ -156,7 +157,7 @@ public: /* ---------------------------------------------------- Public ctors ---
      */
     template <typename F,
         typename std::enable_if_t<
-            !estd::details::callback::can_null_check<F>::value &&
+            !details::callback::can_null_check<F>::value &&
             std::is_invocable_r<R, F, ArgTs...>::value, int> = 0>
     callback(F f) : CallbackBase() {
         static_assert(std::is_copy_constructible<F>::value, "callback F must be CopyConstructible");
@@ -171,7 +172,7 @@ public: /* ---------------------------------------------------- Public ctors ---
      */
     template <typename F,
         typename std::enable_if_t<
-            estd::details::callback::can_null_check<F>::value &&
+            details::callback::can_null_check<F>::value &&
             std::is_invocable_r<R, F, ArgTs...>::value, int> = 0>
     callback(F f) : CallbackBase() {
         static_assert(std::is_copy_constructible<F>::value, "callback F must be CopyConstructible");
@@ -293,7 +294,7 @@ public: /* --------------------------------------------------- Public methods --
 
     /// Call the attached function
     R call(ArgTs... args) const {
-        assert_param(bool(*this));
+        assert(bool(*this));
         auto op_call = reinterpret_cast<call_type *>(call_fn());
         return op_call(this, args...);
     }
@@ -446,7 +447,7 @@ public: /* -------------------------------------------------- Private methods --
     static R target_call(const CallbackBase *p, ArgTs... args) {
         // Need for const_cast here correlates to a std::function bug - see P0045 and N4159
         F &f = const_cast<F &>(reinterpret_cast<const F &>(p->_storage));
-        return estd::details::callback::invoke_r<R>(f, std::forward<ArgTs>(args)...);
+        return details::callback::invoke_r<R>(f, std::forward<ArgTs>(args)...);
     }
 };
 
@@ -467,7 +468,7 @@ void swap(callback<R(ArgTs...)> &lhs, callback<R(ArgTs...)> &rhs) noexcept {
  *    callback with inferred type
  */
 template <typename R, typename... ArgTs>
-callback<R(ArgTs...)> callback(R(*func)(ArgTs...) = nullptr) noexcept {
+callback<R(ArgTs...)> make_callback(R(*func)(ArgTs...) = nullptr) noexcept {
     return callback<R(ArgTs...)>(func);
 }
 
@@ -480,7 +481,7 @@ callback<R(ArgTs...)> callback(R(*func)(ArgTs...) = nullptr) noexcept {
  *    callback with inferred type
  */
 template <typename R, typename... ArgTs>
-callback<R(ArgTs...)> callback(const callback<R(ArgTs...)> &func) {
+callback<R(ArgTs...)> make_callback(const callback<R(ArgTs...)> &func) {
     return callback<R(ArgTs...)>(func);
 }
 
@@ -493,7 +494,7 @@ callback<R(ArgTs...)> callback(const callback<R(ArgTs...)> &func) {
  *    callback with inferred type
  */
 template <typename R, typename... ArgTs>
-callback<R(ArgTs...)> callback(callback<R(ArgTs...)> &&func) noexcept {
+callback<R(ArgTs...)> make_callback(callback<R(ArgTs...)> &&func) noexcept {
     return callback<R(ArgTs...)>(std::move(func));
 }
 
@@ -508,42 +509,42 @@ callback<R(ArgTs...)> callback(callback<R(ArgTs...)> &&func) noexcept {
  *    callback with inferred type
  */
 template<typename T, typename U, typename R, typename... ArgTs>
-callback<R(ArgTs...)> callback(U *obj, R(T::*method)(ArgTs...)) noexcept {
+callback<R(ArgTs...)> make_callback(U *obj, R(T::*method)(ArgTs...)) noexcept {
     return callback<R(ArgTs...)>(obj, method);
 }
 
 template<typename T, typename U, typename R, typename... ArgTs>
-callback<R(ArgTs...)> callback(U *obj, R(T::*method)(ArgTs...) &) noexcept {
+callback<R(ArgTs...)> make_callback(U *obj, R(T::*method)(ArgTs...) &) noexcept {
     return callback<R(ArgTs...)>(obj, method);
 }
 
 template<typename T, typename U, typename R, typename... ArgTs>
-callback<R(ArgTs...)> callback(const U *obj, R(T::*method)(ArgTs...) const) noexcept {
+callback<R(ArgTs...)> make_callback(const U *obj, R(T::*method)(ArgTs...) const) noexcept {
     return callback<R(ArgTs...)>(obj, method);
 }
 
 template<typename T, typename U, typename R, typename... ArgTs>
-callback<R(ArgTs...)> callback(const U *obj, R(T::*method)(ArgTs...) const &) noexcept {
+callback<R(ArgTs...)> make_callback(const U *obj, R(T::*method)(ArgTs...) const &) noexcept {
     return callback<R(ArgTs...)>(obj, method);
 }
 
 template<typename T, typename U, typename R, typename... ArgTs>
-callback<R(ArgTs...)> callback(volatile U *obj, R(T::*method)(ArgTs...) volatile) noexcept {
+callback<R(ArgTs...)> make_callback(volatile U *obj, R(T::*method)(ArgTs...) volatile) noexcept {
     return callback<R(ArgTs...)>(obj, method);
 }
 
 template<typename T, typename U, typename R, typename... ArgTs>
-callback<R(ArgTs...)> callback(volatile U *obj, R(T::*method)(ArgTs...) volatile &) noexcept {
+callback<R(ArgTs...)> make_callback(volatile U *obj, R(T::*method)(ArgTs...) volatile &) noexcept {
     return callback<R(ArgTs...)>(obj, method);
 }
 
 template<typename T, typename U, typename R, typename... ArgTs>
-callback<R(ArgTs...)> callback(const volatile U *obj, R(T::*method)(ArgTs...) const volatile) noexcept {
+callback<R(ArgTs...)> make_callback(const volatile U *obj, R(T::*method)(ArgTs...) const volatile) noexcept {
     return callback<R(ArgTs...)>(obj, method);
 }
 
 template<typename T, typename U, typename R, typename... ArgTs>
-callback<R(ArgTs...)> callback(const volatile U *obj, R(T::*method)(ArgTs...) const volatile &) noexcept {
+callback<R(ArgTs...)> make_callback(const volatile U *obj, R(T::*method)(ArgTs...) const volatile &) noexcept {
     return callback<R(ArgTs...)>(obj, method);
 }
 
@@ -558,22 +559,22 @@ callback<R(ArgTs...)> callback(const volatile U *obj, R(T::*method)(ArgTs...) co
  *    callback with inferred type
  */
 template <typename T, typename U, typename R, typename... ArgTs>
-callback<R(ArgTs...)> callback(R(*func)(T *, ArgTs...), U *arg) noexcept {
+callback<R(ArgTs...)> make_callback(R(*func)(T *, ArgTs...), U *arg) noexcept {
     return callback<R(ArgTs...)>(func, arg);
 }
 
 template <typename T, typename U, typename R, typename... ArgTs>
-callback<R(ArgTs...)> callback(R(*func)(const T *, ArgTs...), const U *arg) noexcept {
+callback<R(ArgTs...)> make_callback(R(*func)(const T *, ArgTs...), const U *arg) noexcept {
     return callback<R(ArgTs...)>(func, arg);
 }
 
 template <typename T, typename U, typename R, typename... ArgTs>
-callback<R(ArgTs...)> callback(R(*func)(volatile T *, ArgTs...), volatile U *arg) noexcept {
+callback<R(ArgTs...)> make_callback(R(*func)(volatile T *, ArgTs...), volatile U *arg) noexcept {
     return callback<R(ArgTs...)>(func, arg);
 }
 
 template <typename T, typename U, typename R, typename... ArgTs>
-callback<R(ArgTs...)> callback(R(*func)(const volatile T *, ArgTs...), const volatile U *arg) noexcept {
+callback<R(ArgTs...)> make_callback(R(*func)(const volatile T *, ArgTs...), const volatile U *arg) noexcept {
     return callback<R(ArgTs...)>(func, arg);
 }
 
@@ -586,9 +587,9 @@ callback<R(ArgTs...)> callback(R(*func)(const volatile T *, ArgTs...), const vol
  * @note The function object is limited to a single word of storage
  */
 template <typename F>
-callback<estd::details::callback::unqualify_fn_t<estd::details::callback::member_type_t<decltype(&std::remove_cvref_t<F>::operator())>>>
-callback(F &&f) {
-    return callback<estd::details::callback::unqualify_fn_t<estd::details::callback::member_type_t<decltype(&std::remove_cvref_t<F>::operator())>>>(std::forward<F>(f));
+callback<details::callback::unqualify_fn_t<details::callback::member_type_t<decltype(&std::remove_cvref_t<F>::operator())>>>
+make_callback(F &&f) {
+    return callback<details::callback::unqualify_fn_t<details::callback::member_type_t<decltype(&std::remove_cvref_t<F>::operator())>>>(std::forward<F>(f));
 }
 
 /* ======================================================= Deduction guides ======================================================= */
@@ -598,7 +599,7 @@ callback(F &&f) {
 template <typename R, typename... Args>
 callback(R(*)(Args...)) -> callback<R(Args...)>;
 template <typename F>
-callback(F) -> callback<estd::details::callback::unqualify_fn_t<estd::details::callback::member_type_t<decltype(&F::operator())>>>;
+callback(F) -> callback<details::callback::unqualify_fn_t<details::callback::member_type_t<decltype(&F::operator())>>>;
 template <typename T, typename U, typename R, typename... ArgTs>
 callback(U *obj, R(T::*method)(ArgTs...)) -> callback<R(ArgTs...)>;
 template <typename T, typename U, typename R, typename... ArgTs>

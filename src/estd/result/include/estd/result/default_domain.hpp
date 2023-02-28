@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Tuesday, 15th June 2021 8:53:35 pm
- * @modified   Sunday, 26th June 2022 11:56:59 am
+ * @modified   Tuesday, 28th February 2023 8:58:14 pm
  * @project    cpp-utils
  * @brief      Declarations of default domain symbol's
  * 
@@ -69,7 +69,7 @@ constexpr domain_id DefaultDomain = DefaultDomainDescriptor.getDomainID();
  *    human-readable representation of @p code if found in table
  *    @p std::string_view() if @p key is unknown
  */
-inline constexpr std::string_view to_string(const estd::status_code &status);
+inline constexpr std::string_view to_string(const status_code &status);
 
 /* ======================================================== Static objects ======================================================== */
 

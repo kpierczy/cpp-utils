@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Monday, 12th July 2021 9:25:13 am
- * @modified   Wednesday, 19th October 2022 9:57:37 pm
+ * @modified   Tuesday, 28th February 2023 8:18:12 pm
  * @project    cpp-utils
  * @brief      Header file of compile-time strings literal
  *    
@@ -849,9 +849,9 @@ namespace litarals {
 /* ========================================================= Fixed string ========================================================= */
 
 #ifdef __GNUC__ 
-#if (GCC_VERSION <= 12'00'00)
-#warning                                                                                             \
-    "Early GCC versions (probably <= 12) that support NTTP were not able to deduce size_t parameter" \
+#if (GCC_VERSION < 12'00'00)
+#warning                                                                                            \
+    "Early GCC versions (probably < 12) that support NTTP were not able to deduce size_t parameter" \
     "of basic_fixed_string when fixed_string and other typedef were just type aliases"
 #endif
 #endif

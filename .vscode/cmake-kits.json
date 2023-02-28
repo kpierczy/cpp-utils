@@ -1,0 +1,6 @@
+[
+    {
+        "name": "Conan generator",
+        "toolchainFile": "${workspaceFolder}/build/${buildType}/generators/conan_toolchain.cmake"
+    }
+]

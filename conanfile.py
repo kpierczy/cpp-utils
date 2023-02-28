@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 28th December 2022 9:23:13 pm
-# @modified   Thursday, 29th December 2022 5:51:34 am
+# @modified   Tuesday, 28th February 2023 1:37:22 pm
 # @project    cpp-utils
 # @brief      Conan package file for the cpp-utils library
 # 
@@ -28,7 +28,7 @@
 import re
 import os
 
-from conans import ConanFile
+from conan import ConanFile
 from conan.tools.build import check_min_cppstd
 from conan.tools.cmake import CMakeToolchain, CMakeDeps, CMake, cmake_layout
 from conan.tools.files import load, copy
@@ -50,7 +50,7 @@ class HelloConan(ConanFile):
 
     # ---------------------------------------------------------------------------- #
 
-    minimal_cpp_std = 20
+    minimal_cpp_std = "20"
 
     # ---------------------------------------------------------------------------- #
     
@@ -72,26 +72,26 @@ class HelloConan(ConanFile):
 
     @property
     def _build_all(self):
-        return bool(self.conf["user.build:all"])
+        return bool(self.conf.get("user.build:all", default=True))
         
     # ---------------------------------------------------------------------------- #
 
     def requirements(self):
         self.requires("sml/1.1.6")
         self.requires("boost-ext-ut/1.1.9")
-        self.requires("mp-units/0.7.0")
+        self.requires("mp-units/0.7.0@mpusz/stable")
+
+
+    def validate(self):
+        
+        if self.settings.get_safe("compiler.cppstd"):
+            check_min_cppstd(self, self.minimal_cpp_std)
 
 
     def set_version(self):
         content = load(self, os.path.join(self.recipe_folder, "CMakeLists.txt"))
         version = re.search(r"project\([^\)]+VERSION (\d+\.\d+\.\d+)[^\)]*\)", content).group(1)
         self.version = version.strip()
-
-
-    def verify(self):
-
-        # Guarantee minimal C++ standard
-        check_min_cppstd(self, self.minimal_cpp_std)
 
 
     def layout(self):
@@ -103,7 +103,7 @@ class HelloConan(ConanFile):
         toolchain = CMakeToolchain(self)
 
         # Parse conan options into the CMake build
-        toolchain.cache_variables["WITH_TESTS"] = self._build_all
+        toolchain.variables["WITH_TESTS"] = self._build_all
         # Configure CMake
         toolchain.generate()
         

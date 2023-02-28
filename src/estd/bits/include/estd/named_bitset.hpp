@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Thursday, 2nd June 2022 12:53:22 pm
- * @modified   Tuesday, 28th February 2023 12:18:38 am
+ * @modified   Tuesday, 28th February 2023 8:41:24 pm
  * @project    cpp-utils
  * @brief      Definition of the named_bitset class template extending std::bitset with capability to be indexed ([] operator)
  *             with enum class values
@@ -401,7 +401,7 @@ public: /* ---------------------------------------------------- Public methods -
         T t { 0 };
 
         // Construct output by hand as std::bitset::to_ulong is not constexpr yet
-        for(std::size_t i = 0; i < sizeof(T) * estd::bit::BITS_IN_BYTE; ++i)
+        for(std::size_t i = 0; i < sizeof(T) * estd::byte_bitsize; ++i)
             t |= (T(std::bitset<N>::operator[](i)) << i);
 
         return t;

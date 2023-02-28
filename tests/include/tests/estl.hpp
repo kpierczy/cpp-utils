@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Tuesday, 15th February 2022 11:44:39 pm
- * @modified   Wednesday, 19th October 2022 9:57:37 pm
+ * @modified   Tuesday, 28th February 2023 8:49:04 pm
  * @project    cpp-utils
  * @brief      
  * 
@@ -14,17 +14,20 @@
 #ifndef __TESTS_ESTL_H__
 #define __TESTS_ESTL_H__
 
-/* ========================================================= Configuration ======================================================== */
-
-#if defined(__GNUC__) or defined(__GNUG__)
-#define GCC_VERSION (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
-#endif
-
 /* =========================================================== Includes =========================================================== */
 
-#if GCC_VERSION >= 11'02'00
+// Compilation test for 'circular_buffer'
+#include "estl/circular_buffer.hpp"
+
+// Functional test for 'namedtuple'
 #include "tests/estl/namedtuple.hpp"
-#endif
+
+/* ========================================================== Definitions ========================================================= */
+
+inline void estl_tests()
+{
+    namedtuple_test();
+}
 
 /* ================================================================================================================================ */
 

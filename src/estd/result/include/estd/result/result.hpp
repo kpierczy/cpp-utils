@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Tuesday, 13th July 2021 9:47:10 am
- * @modified   Sunday, 26th June 2022 11:57:52 am
+ * @modified   Tuesday, 28th February 2023 8:59:15 pm
  * @project    cpp-utils
  * @brief      Header file of the result class template representing an rabitrary pair {value, status}. status indicates
  *             status of the operation that returned result as well as whether value conains a valid value.
@@ -288,10 +288,10 @@ public: /* ------------------------------------------------ Static public method
 public: /* --------------------------------------------------- Public variables --------------------------------------------------- */
 
     // status associated with the result
-    ::estd::status status;
+    status _status;
 
     // Value associated with the result
-    ResultType value;
+    ResultType _value;
      
 };
 

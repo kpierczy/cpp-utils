@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Thursday, 3rd February 2022 10:11:45 am
-# @modified   Thursday, 29th December 2022 5:58:59 am
+# @modified   Tuesday, 28th February 2023 2:41:30 pm
 # @project    cpp-utils
 # @brief      Top-level CMake file of the project
 # 
@@ -12,10 +12,6 @@
 # ====================================================================================================================================
 
 cmake_minimum_required(VERSION 3.16)
-
-# ============================================================= Options ============================================================ #
-
-option(WITH_TESTS "If ON builds tests" OFF)
 
 # ====================================================== Project configuration ===================================================== #
 
@@ -29,11 +25,19 @@ endif()
 # Project's header
 project(cpp-utils VERSION 1.1.0 LANGUAGES CXX)
 
+# ============================================================= Options ============================================================ #
+
+option(WITH_TESTS "If ON builds tests" OFF)
+
 # ============================================================ Includes ============================================================ #
 
 include(CTest)
 include(CMakePackageConfigHelpers)
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/install_helpers.cmake)
+
+# ====================================================== Common configuration ====================================================== #
+
+add_compile_options(-fdiagnostics-color=always)
 
 # ============================================================= Sources ============================================================ #
 

@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Monday, 14th June 2021 7:39:49 pm
- * @modified   Sunday, 26th June 2022 11:56:59 am
+ * @modified   Tuesday, 28th February 2023 8:57:38 pm
  * @project    cpp-utils
  * @brief      Header of the status_code class representing a generic status code
  * 
@@ -75,7 +75,7 @@ public: /* ------------------------------------------------- Public constructors
     /**
      * @brief Construct a new status code with the @p code. 
      * @note To use this constructor, the @f construct_status_code(Enum code) function template
-     *    must be specialized by the user in the estd:: namespace
+     *    must be specialized by the user in the  namespace
      * @param code 
      *    status code represented by enum constant
      */
@@ -88,7 +88,7 @@ public: /* ------------------------------------------------- Public constructors
      * @param rstatus 
      *    status to be copied to the created status code
      */
-    inline constexpr status_code(const estd::status_code &rstatus) noexcept = default;
+    inline constexpr status_code(const status_code &rstatus) noexcept = default;
 
 public: /* --------------------------------------------------- Public operators --------------------------------------------------- */
 
@@ -99,12 +99,12 @@ public: /* --------------------------------------------------- Public operators 
      * @returns 
      *    reference to assignment's left value
      */
-    inline constexpr status_code &operator=(const estd::status_code &rstatus) noexcept = default;
+    inline constexpr status_code &operator=(const status_code &rstatus) noexcept = default;
 
     /**
      * @brief Assigns enumerical value to the status_code object
      * @note To use this constructor, the @f construct_status_code(Enum code) function template
-     *    must be specialized by the user in the estd:: namespace
+     *    must be specialized by the user in the  namespace
      * @param rstatus 
      *    status to be assigned
      * @returns 
@@ -147,12 +147,12 @@ public: /* --------------------------------------------------- Public operators 
      *    @c true when status codes have the same category and code \n
      *    @c false otherwise
      */
-    inline constexpr bool operator==(const estd::status_code &rstatus) const noexcept = default;
+    inline constexpr bool operator==(const status_code &rstatus) const noexcept = default;
 
     /**
      * @brief Comparison operator between status code and enumeration
      * @note To use this constructor, the @f construct_status_code(Enum code) function template
-     *    must be specialized by the user in the estd:: namespace
+     *    must be specialized by the user in the  namespace
      * @param rstatus 
      *    status enum code to be compared with @p this
      * @returns 
@@ -171,12 +171,12 @@ public: /* --------------------------------------------------- Public operators 
      *    @c false when status codes have not the same category or code \n
      *    @c true otherwise
      */
-    inline constexpr bool operator!=(const estd::status_code &rstatus) const noexcept = default;
+    inline constexpr bool operator!=(const status_code &rstatus) const noexcept = default;
 
     /**
      * @brief Comparison operator between status code and enumeration
      * @note To use this constructor, the @f construct_status_code(Enum code) function template
-     *    must be specialized by the user in the estd:: namespace
+     *    must be specialized by the user in the  namespace
      * @param rstatus 
      *    status enum code to be compared with @p this
      * @returns 

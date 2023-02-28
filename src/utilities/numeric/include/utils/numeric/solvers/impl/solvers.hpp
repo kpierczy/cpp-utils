@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Tuesday, 1st February 2022 10:16:35 am
- * @modified   Wednesday, 19th October 2022 9:57:37 pm
+ * @modified   Tuesday, 28th February 2023 8:56:48 pm
  * @project    cpp-utils
  * @brief      Implementation of tools related to solving polynomial equations
  *    
@@ -15,7 +15,7 @@
 
 /* =========================================================== Includes =========================================================== */
 
-#include "numeric/solvers.hpp"
+#include "utils/numeric/solvers.hpp"
 
 /* ========================================================== Namespaces ========================================================== */
 

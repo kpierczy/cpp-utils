@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Wednesday, 16th June 2021 11:11:55 am
- * @modified   Sunday, 26th June 2022 11:56:59 am
+ * @modified   Tuesday, 28th February 2023 9:04:03 pm
  * @project    cpp-utils
  * @brief      Imlementation of the methods of the class template representing reference to an arbitrary callable object
  * 
@@ -29,7 +29,7 @@ constexpr Callback<Return(Args...)>::Callback() noexcept :
 
 template<typename Return, typename... Args>
 template<typename Class>
-    requires Concepts::Functor<Class, Return, Args...>
+    requires estd::functor<Class, Return, Args...>
 constexpr Callback<Return(Args...)>::Callback(Class &&obj) noexcept {
     *this = obj;
 }
@@ -56,7 +56,7 @@ constexpr Return Callback<Return(Args...)>::operator()(Args... args) const {
 
 template<typename Return, typename... Args>
 template<typename Class>
-requires Concepts::Functor<Class, Return, Args...>
+requires estd::functor<Class, Return, Args...>
 constexpr Callback<Return(Args...)> &Callback<Return(Args...)>::operator=(Class &obj) {
     self = &obj;
     function = expandFunctorCall<Class>(&Class::operator());

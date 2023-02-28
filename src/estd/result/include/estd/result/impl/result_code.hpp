@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Tuesday, 13th July 2021 9:00:51 am
- * @modified   Sunday, 26th June 2022 11:56:59 am
+ * @modified   Tuesday, 28th February 2023 8:58:31 pm
  * @project    cpp-utils
  * @brief      Implementation of inline methods and methods templates related to result_code class template
  * 
@@ -25,13 +25,13 @@ namespace estd {
 /* ====================================================== Public constructors ===================================================== */
 
 template<typename ResultType>
-constexpr result_code<ResultType>::result_code(const estd::status_code &status) noexcept : 
+constexpr result_code<ResultType>::result_code(const status_code &status) noexcept : 
     status(status), value()
 {}
 
 
 template<typename ResultType>
-constexpr result_code<ResultType>::result_code(const ResultType &value, const estd::status_code &status) noexcept : 
+constexpr result_code<ResultType>::result_code(const ResultType &value, const status_code &status) noexcept : 
     status(status), value(value)
 {}
 
@@ -44,7 +44,7 @@ constexpr result_code<ResultType> &result_code<ResultType>::operator=(const Resu
 
 
 template<typename ResultType>
-constexpr result_code<ResultType> &result_code<ResultType>::operator=(const estd::status_code &status_code) noexcept {
+constexpr result_code<ResultType> &result_code<ResultType>::operator=(const status_code &status_code) noexcept {
     status = status_code;
 }
 
@@ -70,7 +70,7 @@ constexpr bool result_code<ResultType>::operator==(const ResultType &rvalue) con
 
 
 template<typename ResultType>
-constexpr bool result_code<ResultType>::operator==(const estd::status_code &status_code) const noexcept {
+constexpr bool result_code<ResultType>::operator==(const status_code &status_code) const noexcept {
     return status == status_code;
 }
 
@@ -90,7 +90,7 @@ constexpr bool result_code<ResultType>::operator!=(const ResultType &value) cons
 
 
 template<typename ResultType>
-constexpr bool result_code<ResultType>::operator!=(const estd::status_code &status_code) const noexcept {
+constexpr bool result_code<ResultType>::operator!=(const status_code &status_code) const noexcept {
     return !(*this == status_code);
 }
 

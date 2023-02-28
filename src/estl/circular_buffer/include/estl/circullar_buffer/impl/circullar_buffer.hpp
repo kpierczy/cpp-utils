@@ -3,7 +3,7 @@
  * @author     jnk0le
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Wednesday, 5th January 2022 7:50:31 am
- * @modified   Wednesday, 19th October 2022 9:57:37 pm
+ * @modified   Tuesday, 28th February 2023 8:57:20 pm
  * @project    cpp-utils
  * @brief      Implementation of the circular buffer class template
  *    
@@ -53,7 +53,7 @@ template<
     bool fake_tso,
     size_t cacheline_size,
     typename index_t
-> void circular_buffer<T, buffer_size, fake_tso, cacheline_size, index_t>::producerClear(void) {
+> void circular_buffer<T, buffer_size, fake_tso, cacheline_size, index_t>::producer_clear(void) {
     
     // Head modification will lead to underflow if cleared during consumer read
     // doing this properly with CAS is not possible without modifying the consumer code

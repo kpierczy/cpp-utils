@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Wednesday, 19th October 2022 9:01:48 pm
- * @modified   Wednesday, 19th October 2022 9:52:58 pm
+ * @modified   Tuesday, 28th February 2023 9:02:51 pm
  * @project    cpp-utils
  * @brief      Helpers concerning usage of the Boost::sml actions
  * 
@@ -31,7 +31,7 @@ namespace details {
     template<auto Callable>
     struct RequiresActionNonstaticMethod {
 
-        void operator()(method_class_t<decltype(Callable)> &impl) const
+        void operator()(estd::method_class_t<decltype(Callable)> &impl) const
         {
             [](auto& impl) -> void {
                 (impl.*Callable)();       

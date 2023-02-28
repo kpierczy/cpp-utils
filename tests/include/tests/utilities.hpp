@@ -1,30 +1,36 @@
 /* ============================================================================================================================ *//**
- * @file       main.cpp
+ * @file       utilities.hpp
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
- * @date       Thursday, 3rd February 2022 7:26:04 pm
- * @modified   Tuesday, 28th February 2023 8:53:27 pm
+ * @date       Tuesday, 28th February 2023 8:49:30 pm
+ * @modified   Tuesday, 28th February 2023 8:54:59 pm
  * @project    cpp-utils
- * @brief      Main source file of host-based tests
- *    
+ * @brief      
+ * 
+ * 
  * @copyright Krzysztof Pierczyk © 2022
  */// ============================================================================================================================= */
 
+#ifndef __TESTS_UTILITIES_H__
+#define __TESTS_UTILITIES_H__
+
 /* =========================================================== Includes =========================================================== */
 
-#include "tests/estl.hpp"
-#include "tests/estd.hpp"
-#include "tests/lib-extensions.hpp"
-#include "tests/utilities.hpp"
+// Compilation test for 'callback'
+#include "callback.hpp"
+// Compilation test for 'numeric'
+#include "utils/numeric/solvers.hpp"
+// Compilation test for 'patterns'
+#include "patterns/crtp.hpp"
 
-/* ============================================================= Tests ============================================================ */
+/* ========================================================== Definitions ========================================================= */
 
-int main()
+inline void utilities_tests()
 {
-    estl_tests();
-    estd_tests();
-    lib_extensions_tests();
-    utilities_tests();
+    
 }
 
 /* ================================================================================================================================ */
+
+#endif
+

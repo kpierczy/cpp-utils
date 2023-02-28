@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Wednesday, 5th January 2022 11:09:00 pm
- * @modified   Wednesday, 19th October 2022 9:57:37 pm
+ * @modified   Tuesday, 28th February 2023 8:42:34 pm
  * @project    cpp-utils
  * @brief      Implementation of helper utilities related to aligned storage container
  *    
@@ -48,7 +48,7 @@ inline constexpr T& aligned_storage_to_object(aligned_storage<T> &storage);
 
 /* ==================================================== Implementation includes =================================================== */
 
-#include "estd/miscellaneous/aligned_storage/impl/aligned_storage.hpp"
+#include "estd/aligned_storage/impl/aligned_storage.hpp"
 
 /* ================================================================================================================================ */
 

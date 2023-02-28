@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Saturday, 15th January 2022 1:44:31 pm
- * @modified   Sunday, 26th June 2022 12:04:16 pm
+ * @modified   Tuesday, 28th February 2023 9:03:18 pm
  * @project    cpp-utils
  * @brief      Helper DSL-type (Domain Specific Language) helpers modelling linear sequence of actions that may fail resuling
  *             in processing of the predefined event
@@ -107,7 +107,9 @@ constexpr auto proceede_action(Callable action, T... t);
  *    type returned by the action
  */
 template<ProceedeResult Result>
-constexpr auto is_sequence_action_success = [](const ProceedeSequence<Result> &proceede);
+constexpr auto is_sequence_action_success = [](const ProceedeSequence<Result> &proceede) {
+    return bool(proceede.result);
+};
 
 /* ================================================================================================================================ */
 
