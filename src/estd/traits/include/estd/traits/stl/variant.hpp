@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Thursday, 3rd February 2022 10:48:23 am
- * @modified   Wednesday, 19th October 2022 9:57:37 pm
+ * @modified   Wednesday, 1st March 2023 4:08:55 am
  * @project    cpp-utils
  * @brief      Set of type traits related to std::variant
  *    
@@ -54,46 +54,45 @@ inline constexpr Var make_variant( std::size_t index, Args&&... args );
 /* ==================================================== Variant transformations =================================================== */
 
 /**
- * @brief Helper type alias template providing std::variant specialization holding specializations
- *    of the template @p T for all types listed in @p Args...
+ * @brief Meta-function transforming all @tparam Args... with the @tparam TransformF 
+ *    template and placing the result in the @b std::variant specialization
  * 
- * @tparam T
- *    template to be specialized
- * @tparam Args 
- *    types for specializaing the @p T template
+ * @tparam TransformF
+ *    transforming template
+ * @tparam Args...
+ *    types to be transformer
  */
-template<template<typename> typename T, typename... Args>
-using specialization_variant = std::variant<T<Args>...>;
+template<template<typename> typename TransformF, typename... Args>
+using transform_into_variant = std::variant<TransformF<Args>...>;
 
 namespace details {
 
     /**
-     * @brief Helper meta-function guiding deduction of Args... from the std::variant declval for 
-     *    the @ref specialization_variant alias
+     * @brief Helper meta-function guiding deduction of Args... from the std::variant for 
+     *    the @ref details::transform_into_variant alias
      */
     template<template<typename> typename T, typename... Args>
-    specialization_variant<T, Args...> specialization_variant_helper(std::variant<Args...> v);
+    transform_into_variant<T, Args...> transform_into_variant_helper(std::variant<Args...> v);
 
     /**
-     * @brief Helper alias template dispaching @ref specialization_variant_helper()
+     * @brief Helper alias template dispatching @ref transform_variant()
      */
     template<template<typename> typename T, typename Var>
-    using specialization_variant = decltype(specialization_variant_helper<T>(std::declval<Var>()));
+    using transform_into_variant = decltype(transform_into_variant_helper<T>(std::declval<Var>()));
 
 }
 
 /**
- * @brief Helper type alias template providing a std::variant specialization defined by
- *    dispatching subsequent types held by the given @p Var std::variant as a template
- *    parameters for specializations of the given @p T template
+ * @brief Helper meta-function transforming @b std::variant type by 'calling' @tparam TransformF 
+ *    on each of its elements
  * 
- * @tparam T
- *    template to dispatch @p Var into
+ * @tparam TransformF
+ *    template to transform @p Var into
  * @tparam Var
- *    variant to be dispatched
+ *    variant to be transformed
  */
 template<template<typename> typename T, typename Var>
-using variant_dispatch = details::specialization_variant_helper<T, Var>;
+using transform_variant = details::transform_into_variant<T, Var>;
 
 /* ================================================================================================================================ */
 

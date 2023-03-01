@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 28th December 2022 9:23:13 pm
-# @modified   Wednesday, 1st March 2023 3:31:48 am
+# @modified   Wednesday, 1st March 2023 3:55:51 am
 # @project    cpp-utils
 # @brief      Conan package file for the cpp-utils library
 # 
@@ -122,7 +122,7 @@ class CppUnitsConan(ConanFile):
     def requirements(self):
 
         # Project requirements
-        if self._with_estd_preprocessor:
+        if self._with_estd_preprocessor or self._with_boost_sml_extensions or self._with_mp_units_extensions:
             self.requires("boost/1.81.0")
         if self._with_boost_sml_extensions:
             self.requires("sml/1.1.6")
@@ -162,7 +162,9 @@ class CppUnitsConan(ConanFile):
         # Create CMake toolchain
         toolchain.generate()
         # Forward options to the CMake
-        toolchain.variables['WITH_ESTD_PREPROCESSOR'   ] = self._with_estd_preprocessor
+        toolchain.variables['WITH_ESTD_PREPROCESSOR'   ] = self._with_estd_preprocessor or \
+                                                           self._with_boost_sml_extensions or \
+                                                           self._with_mp_units_extensions
         toolchain.variables['WITH_BOOST_SML_EXTENSIONS'] = self._with_boost_sml_extensions
         toolchain.variables['WITH_MP_UNITS_EXTENSIONS' ] = self._with_mp_units_extensions
 
