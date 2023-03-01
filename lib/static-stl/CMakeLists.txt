@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 5th January 2022 12:23:05 pm
-# @modified   Wednesday, 28th December 2022 11:51:19 pm
+# @modified   Wednesday, 1st March 2023 7:23:39 pm
 # @project    cpp-utils
 # @brief      Cmake package for the static-stl library
 #    
@@ -36,10 +36,10 @@ target_include_directories(static-stl INTERFACE include)
 target_compile_options(static-stl INTERFACE "$<$<COMPILE_LANGUAGE:CXX>:-Wall>" )
 # Add preprocessor definitions
 if(SSTL_ASSERT)
-    target_compile_definitions(static-stl INTERFACE ${SSTL_ASSERT})
+    target_compile_definitions(static-stl INTERFACE SSTL_ASSERT=${SSTL_ASSERT})
 endif()
 if(SSTL_ASSERT_HEADER)
-    target_compile_definitions(static-stl INTERFACE ${SSTL_ASSERT_HEADER})
+    target_compile_definitions(static-stl INTERFACE SSTL_ASSERT_HEADER=${SSTL_ASSERT_HEADER})
 endif()
 # Link to assert-providing library if given
 if(SSTL_ASSERT_LIB)

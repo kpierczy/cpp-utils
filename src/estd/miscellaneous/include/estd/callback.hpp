@@ -3,7 +3,7 @@
  * @author     ARM Limited
  * @maintainer Krzysztof Pierczyk (kpierczyk@emka-project.com.pl)
  * @date       Tuesday, 30th August 2022 3:16:57 pm
- * @modified   Tuesday, 28th February 2023 8:45:32 pm
+ * @modified   Wednesday, 1st March 2023 4:35:41 am
  * @project    SHARK_KB
  * @brief      Modificationn of the mbed::callback class tempalte originally from ARM Mbed
  * @details 
@@ -63,7 +63,7 @@ class callback;
  * @brief callback class based on template specialization
  */
 template <typename R, typename... ArgTs>
-class callback<R(ArgTs...)> : private details::callback::CallbackBase {
+class callback<R(ArgTs...)> : private details::callback::callback_base {
 
 public: /* ---------------------------------------------------- Public types ----------------------------------------------------- */
 
@@ -75,7 +75,7 @@ public: /* ---------------------------------------------------- Public ctors ---
     /** 
      * @brief Create an empty callback
      */
-    callback() noexcept : CallbackBase(nullptr) { }
+    callback() noexcept : callback_base(nullptr) { }
 
     /** 
      * @brief Create an empty callback
@@ -89,7 +89,7 @@ public: /* ---------------------------------------------------- Public ctors ---
      * @param other 
      *     The callback to copy
      */
-    callback(const callback &other) : CallbackBase() {
+    callback(const callback &other) : callback_base() {
         copy(other);
     }
 
@@ -101,7 +101,7 @@ public: /* ---------------------------------------------------- Public ctors ---
      * @param other 
      *    The callback to move
      */
-    callback(callback &&other) : CallbackBase() {
+    callback(callback &&other) : callback_base() {
         copy(other);
     }
 
@@ -124,7 +124,7 @@ public: /* ---------------------------------------------------- Public ctors ---
      */
     template<typename Obj, typename Method,
         typename std::enable_if_t<std::is_invocable_r<R, Method, Obj, ArgTs...>::value, int> = 0>
-    callback(Obj obj, Method method) : CallbackBase() {
+    callback(Obj obj, Method method) : callback_base() {
         generate([obj, method](ArgTs... args) {
             return details::callback::invoke_r<R>(method, obj, std::forward<ArgTs>(args)...);
         });
@@ -140,8 +140,7 @@ public: /* ---------------------------------------------------- Public ctors ---
      */
     template<typename Fn, typename BoundArg,
         typename std::enable_if_t<std::is_invocable_r<R, Fn, BoundArg, ArgTs...>::value, int> = 0>
-    callback(Fn func, BoundArg arg) : CallbackBase()
-    {
+    callback(Fn func, BoundArg arg) : callback_base() {
         generate([func, arg](ArgTs... args) {
             return details::callback::invoke_r<R>(func, arg, std::forward<ArgTs>(args)...);
         });
@@ -159,7 +158,7 @@ public: /* ---------------------------------------------------- Public ctors ---
         typename std::enable_if_t<
             !details::callback::can_null_check<F>::value &&
             std::is_invocable_r<R, F, ArgTs...>::value, int> = 0>
-    callback(F f) : CallbackBase() {
+    callback(F f) : callback_base() {
         static_assert(std::is_copy_constructible<F>::value, "callback F must be CopyConstructible");
         generate(std::move(f));
     }
@@ -174,7 +173,7 @@ public: /* ---------------------------------------------------- Public ctors ---
         typename std::enable_if_t<
             details::callback::can_null_check<F>::value &&
             std::is_invocable_r<R, F, ArgTs...>::value, int> = 0>
-    callback(F f) : CallbackBase() {
+    callback(F f) : callback_base() {
         static_assert(std::is_copy_constructible<F>::value, "callback F must be CopyConstructible");
         if (!f) {
             clear();
@@ -208,7 +207,7 @@ public: /* --------------------------------------------------- Public methods --
             that = std::move(temp);
         }
         #else
-        CallbackBase::swap(that);
+        callback_base::swap(that);
         #endif
     }
 
@@ -392,7 +391,7 @@ public: /* --------------------------------------------------- Public methods --
 public: /* --------------------------------------------------- Private types ----------------------------------------------------- */
 
     // Signature of the callback
-    using call_type = R(const CallbackBase *, ArgTs...);
+    using call_type = R(const callback_base *, ArgTs...);
 
 public: /* -------------------------------------------------- Private methods ---------------------------------------------------- */
 
@@ -407,14 +406,14 @@ public: /* -------------------------------------------------- Private methods --
         #ifndef __ICCARM__ /* This assert fails on IAR for unknown reason */
         static_assert(std::is_same<decltype(target_call<F>), call_type>::value, "Call type mismatch");
         #endif
-        static_assert(sizeof(callback) == sizeof(CallbackBase), "callback should be same size as CallbackBase");
-        static_assert(std::is_trivially_copyable<CallbackBase>::value, "CallbackBase expected to be TriviallyCopyable");
+        static_assert(sizeof(callback) == sizeof(callback_base), "callback should be same size as callback_base");
+        static_assert(std::is_trivially_copyable<callback_base>::value, "callback_base expected to be TriviallyCopyable");
 
         // Set the control pointer
         #if CONF_CALLBACK_NONTRIVIAL
         // Generates one static ops for each <F,R,ArgTs...> tuple
         // But the functions used for copy/move/dtor depend only on F, and even then only if non-trivial.
-        // `call` is type-erased - we cast from our call_type to the void (*)(void) in CallbackBase
+        // `call` is type-erased - we cast from our call_type to the void (*)(void) in callback_base
         // This should be a ROMmed constant table, but formally it can't be constexpr because of the reinterpret_cast :(
         static const ops ops = {
             reinterpret_cast<void (*)()>(target_call<F>),
@@ -444,7 +443,7 @@ public: /* -------------------------------------------------- Private methods --
 
     /// Target call routine - custom needed for each <F,R,ArgTs...> tuple
     template <typename F>
-    static R target_call(const CallbackBase *p, ArgTs... args) {
+    static R target_call(const callback_base *p, ArgTs... args) {
         // Need for const_cast here correlates to a std::function bug - see P0045 and N4159
         F &f = const_cast<F &>(reinterpret_cast<const F &>(p->_storage));
         return details::callback::invoke_r<R>(f, std::forward<ArgTs>(args)...);

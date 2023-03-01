@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 28th December 2022 9:23:13 pm
-# @modified   Tuesday, 28th February 2023 12:05:02 am
+# @modified   Wednesday, 1st March 2023 7:29:12 pm
 # @project    cpp-utils
 # @brief      Conan package file for the static-stl library
 # 
@@ -32,7 +32,7 @@ from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout
 
 # ============================================================ Script ============================================================== #
 
-class HelloConan(ConanFile):
+class StaticStlConan(ConanFile):
     
     name        = "static-stl"
     version     = "1.0"
@@ -48,22 +48,16 @@ class HelloConan(ConanFile):
     
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
-    # Library options
-    options = {
-        'sstl_assert'        : [ None, 'ANY' ],
-        'sstl_assert_header' : [ None, 'ANY' ],
-        'sstl_assert_lib'    : [ None, 'ANY' ],
-    }
-    default_options = {
-        'sstl_assert'        : None,
-        'sstl_assert_header' : None,
-        'sstl_assert_lib'    : None,
-    }
 
     # ---------------------------------------------------------------------------- #
 
     # Sources are located in the same place as this recipe, copy them to the recipe
-    exports_sources = "CMakeLists.txt", "include/*", "sstl/include/*", "patches/*"
+    exports_sources = [
+        "CMakeLists.txt",
+        "include/*",
+        "sstl/include/*",
+        "patches/*",
+    ]
 
     # ---------------------------------------------------------------------------- #
 
@@ -82,20 +76,7 @@ class HelloConan(ConanFile):
 
 
     def generate(self):
-
         toolchain = CMakeToolchain(self)
-
-        # Helper routines
-        def add_cmake_option(option_name, cmake_var_name):
-            if getattr(self.options, option_name) is not None:
-                toolchain.variables[cmake_var_name] = getattr(self.options, option_name)
-
-        # Add CMake options as needed
-        add_cmake_option('sstl_assert',        'SSTL_ASSERT'       )
-        add_cmake_option('sstl_assert_header', 'SSTL_ASSERT_HEADER')
-        add_cmake_option('sstl_assert_lib',    'SSTL_ASSERT_LIB'   )
-        
-        # Generate CMake files
         toolchain.generate()
 
 
@@ -110,8 +91,8 @@ class HelloConan(ConanFile):
         cmake.install()
 
 
-    def package_info(self):
-        self.cpp_info.components[ "static-stl" ]
+    def package_id(self):
+        self.info.clear()
 
 
 # ================================================================================================================================== #

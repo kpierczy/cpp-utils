@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 28th December 2022 10:20:00 pm
-# @modified   Thursday, 29th December 2022 2:02:59 am
+# @modified   Wednesday, 1st March 2023 7:29:18 pm
 # @project    cpp-utils
 # @brief      Test package for the static-stl package
 # 
@@ -32,7 +32,7 @@ from conan.tools.build import cross_building
 
 # ============================================================ Script ============================================================== #
 
-class HelloTestConan(ConanFile):
+class StaticStlTestConan(ConanFile):
 
     settings   = "os", "compiler", "build_type", "arch"
     generators = 'CMakeDeps', 'CMakeToolchain', 'VirtualBuildEnv', 'VirtualRunEnv'

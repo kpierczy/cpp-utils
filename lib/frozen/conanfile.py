@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 28th December 2022 9:23:13 pm
-# @modified   Tuesday, 28th February 2023 12:03:21 am
+# @modified   Wednesday, 1st March 2023 7:28:54 pm
 # @project    cpp-utils
 # @brief      Conan package file for the static-stl library
 # 
@@ -33,7 +33,7 @@ from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout
 
 # ============================================================ Script ============================================================== #
 
-class HelloConan(ConanFile):
+class FrozenConan(ConanFile):
     
     name        = "frozen"
     version     = "1.1.2-alpha"
@@ -51,22 +51,25 @@ class HelloConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     # Library options
     options = {
-        'with_exceptions' : [ False, True ],
         'with_tests'      : [ False, True ],
         'with_benchmark'  : [ False, True ],
         'with_coverage'   : [ False, True ],
     }
     default_options = {
-        'with_exceptions' : True,
-        'with_tests'      : False,
-        'with_benchmark'  : False,
-        'with_coverage'   : False,
+        'with_tests'      : True,
+        'with_benchmark'  : True,
+        'with_coverage'   : True,
     }
 
     # ---------------------------------------------------------------------------- #
 
-    # Sources are located in the same place as this recipe, copy them to the recipe
-    exports_sources = "CMakeLists.txt", "cmake/*", "include/*", "tests/*", "patches/*"
+    exports_sources = [
+        "cmake/*",
+        "examples/*",
+        "include/*",
+        "tests/*",
+        "CMakeLists.txt",
+    ]
 
     # ---------------------------------------------------------------------------- #
     
@@ -76,14 +79,12 @@ class HelloConan(ConanFile):
         
     def source(self):
 
-        # Download and checkout SSTL library
+        # Download and checkout Frozen library
         git = Git(self, folder='frozen')
         git.clone(self.homepage, target='.')
         git.checkout(self.revision)
         # Copy files to the source folder
         copy_tree('./frozen', '.')
-        # Patch sources
-        apply_conandata_patches(self)
 
 
     def generate(self):
@@ -99,10 +100,9 @@ class HelloConan(ConanFile):
                 toolchain.variables[cmake_var_name] = 'OFF'
 
         # Add CMake options as needed
-        add_cmake_option('with_exceptions', 'frozen.exceptions')
-        add_cmake_option('with_tests',      'frozen.tests'     )
-        add_cmake_option('with_benchmark',  'frozen.benchmark' )
-        add_cmake_option('with_coverage',   'frozen.coverage'  )
+        add_cmake_option('with_tests',     'frozen.tests'     )
+        add_cmake_option('with_benchmark', 'frozen.benchmark' )
+        add_cmake_option('with_coverage',  'frozen.coverage'  )
 
         toolchain.generate()
 
@@ -118,8 +118,8 @@ class HelloConan(ConanFile):
         cmake.install()
 
 
-    def package_info(self):
-        self.cpp_info.components[ "frozen" ]
+    def package_id(self):
+        self.info.clear()
 
 
 # ================================================================================================================================== #

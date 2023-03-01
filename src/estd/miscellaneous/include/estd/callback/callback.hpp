@@ -3,7 +3,7 @@
  * @author     ARM Limited
  * @maintainer Krzysztof Pierczyk (kpierczyk@emka-project.com.pl)
  * @date       Tuesday, 30th August 2022 3:16:57 pm
- * @modified   Tuesday, 28th February 2023 12:25:09 am
+ * @modified   Wednesday, 1st March 2023 4:22:03 am
  * @project    SHARK_KB
  * @brief      Modificationn of the mbed::callback class tempalte originally from ARM Mbed (details)
  * 
@@ -143,9 +143,8 @@ struct can_null_check :
 
 /**
  * @brief Base class for the @ref callback type
- * 
  */
-struct [[gnu::may_alias]] CallbackBase {
+struct [[gnu::may_alias]] callback_base {
     
 public: /* ---------------------------------------------------- Public types ----------------------------------------------------- */
 
@@ -159,41 +158,42 @@ public: /* ---------------------------------------------------- Public types ---
         void *obj;
     };
 
-    /* Notes on the [[gnu::may_alias]] attribute here.
-     *
-     * The CallbackBase::Store is subject to aliasing problems if ever copied via a trivial copy.
-     * This issue is described here:
-     *
-     *    https://answers.launchpad.net/gcc-arm-embedded/+question/686870/+index
-     *    http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0593r5.html
-     *
-     * The paper p0593 proposes to solve the problem via a language Defect Report, which would make this
-     * code valid - it would become legal to copy a trivial object into char array storage. (But not
-     * aligned_storage_t, as of version 5 - I've suggested a revision).
-     *
-     * Real-life problems have only been seen in GCC when the code used aligned_storage_t.
-     *
-     * The libstdc++ implementation of std::function uses the [[gnu::may_alias]] attribute itself to avoid
-     * problems when it swaps locally-stored functors; we need it for copy-assignment too.
-     *
-     * It appears [[gnu::may_alias]] doesn't work through composition - it's not sufficent to mark just the
-     * `Store` type, we have to mark the whole `callback` if we're going to let the compiler
-     * implicitly define the trivial copy for it. This potentially could lead to an issue if a `callback`
-     * was used in a trivially-copyable type itself, but this seems an unlikely use case. The p0593r5
-     * change would, if correctly implemented, work in composition.
-     *
-     * Although, to further increase the confusion, it appears that using a character array does work
-     * fine without may_alias, while aligned_storage_t does not. I've seen a suggestion that GCC 8
-     * may have implicit "may_alias" on character arrays, rendering the attribute in std::function
-     * and here redundant on current GCC:
-     *
-     *    https://gcc.gnu.org/ml/gcc-help/2017-06/msg00102.html
-     *
-     * For maximum safety, this version now avoids aligned_storage_t, and also has the possibly-redundant
-     * attribute at each level.
-     *
-     * C++17 says that implementations ignore unrecognized attributes, and IAR+clang comply with this
-     * even in C++14 mode, so we add [[gnu::may_alias]] unconditionally.
+    /**
+     *  Notes on the [[gnu::may_alias]] attribute here.
+     *  
+     *  The callback_base::Store is subject to aliasing problems if ever copied via a trivial copy.
+     *  This issue is described here:
+     *  
+     *     https://answers.launchpad.net/gcc-arm-embedded/+question/686870/+index
+     *     http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0593r5.html
+     *  
+     *  The paper p0593 proposes to solve the problem via a language Defect Report, which would make this
+     *  code valid - it would become legal to copy a trivial object into char array storage. (But not
+     *  aligned_storage_t, as of version 5 - I've suggested a revision).
+     *  
+     *  Real-life problems have only been seen in GCC when the code used aligned_storage_t.
+     *  
+     *  The libstdc++ implementation of std::function uses the [[gnu::may_alias]] attribute itself to avoid
+     *  problems when it swaps locally-stored functors; we need it for copy-assignment too.
+     *  
+     *  It appears [[gnu::may_alias]] doesn't work through composition - it's not sufficent to mark just the
+     *  `Store` type, we have to mark the whole `callback` if we're going to let the compiler
+     *  implicitly define the trivial copy for it. This potentially could lead to an issue if a `callback`
+     *  was used in a trivially-copyable type itself, but this seems an unlikely use case. The p0593r5
+     *  change would, if correctly implemented, work in composition.
+     *  
+     *  Although, to further increase the confusion, it appears that using a character array does work
+     *  fine without may_alias, while aligned_storage_t does not. I've seen a suggestion that GCC 8
+     *  may have implicit "may_alias" on character arrays, rendering the attribute in std::function
+     *  and here redundant on current GCC:
+     *  
+     *     https://gcc.gnu.org/ml/gcc-help/2017-06/msg00102.html
+     *  
+     *  For maximum safety, this version now avoids aligned_storage_t, and also has the possibly-redundant
+     *  attribute at each level.
+     *  
+     *  C++17 says that implementations ignore unrecognized attributes, and IAR+clang comply with this
+     *  even in C++14 mode, so we add [[gnu::may_alias]] unconditionally.
      */
     struct alignas(_model_function_object) [[gnu::may_alias]] Store {
         char data[sizeof(_model_function_object)];
@@ -217,7 +217,7 @@ public: /* --------------------------------------------------- Public members --
     using Control = const ops *;
 
     // Construct as empty
-    CallbackBase(std::nullptr_t) noexcept : _ops(nullptr) { }
+    callback_base(std::nullptr_t) noexcept : _ops(nullptr) { }
 
     #else
 
@@ -228,14 +228,14 @@ public: /* --------------------------------------------------- Public members --
     using Control = void(*)();
 
     // Construct as empty
-    CallbackBase(std::nullptr_t) noexcept : _call(nullptr) { }
+    callback_base(std::nullptr_t) noexcept : _call(nullptr) { }
     
     #endif
 
 public: /* ---------------------------------------------------- Public ctors ----------------------------------------------------- */
 
     // Default constructor - no initialization
-    CallbackBase() = default;
+    callback_base() = default;
 
 public: /* --------------------------------------------------- Public methods ---------------------------------------------------- */
 
@@ -277,9 +277,9 @@ public: /* --------------------------------------------------- Public methods --
     #if CONF_CALLBACK_NONTRIVIAL
     
     /**
-     * @brief Copy from another CallbackBase - assumes we are uninitialised
+     * @brief Copy from another callback_base - assumes we are uninitialised
      */
-    void copy(const CallbackBase &other) {
+    void copy(const callback_base &other) {
         _ops = other._ops;
         if (_ops) {
             _ops->copy(_storage, other._storage);
@@ -289,7 +289,7 @@ public: /* --------------------------------------------------- Public methods --
     #else
 
     /// Swaps callback objects
-    void swap(CallbackBase &other) noexcept {
+    void swap(callback_base &other) noexcept {
         std::swap(_storage, other._storage);
         std::swap(_call, other._call);
     }
@@ -298,7 +298,7 @@ public: /* --------------------------------------------------- Public methods --
 
     /**
      * @brief Destroy anything we hold - does not reset, so we are in undefined state afterwards.
-     * @note Must be followed by copy, move, reset, or destruction of the CallbackBase
+     * @note Must be followed by copy, move, reset, or destruction of the callback_base
      */
     void destroy() {
         #if CONF_CALLBACK_NONTRIVIAL

@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 28th December 2022 10:20:00 pm
-# @modified   Thursday, 29th December 2022 2:02:49 am
+# @modified   Wednesday, 1st March 2023 7:29:05 pm
 # @project    cpp-utils
 # @brief      Test package for the frozen package
 # 
@@ -27,12 +27,12 @@
 
 import os
 from conan import ConanFile
-from conan.tools.cmake import CMake, CMakeToolchain, cmake_layout
-from conan.tools.build import cross_building
+from conan.tools.cmake import CMake, cmake_layout
+from conan.tools.build import can_run
 
 # ============================================================ Script ============================================================== #
 
-class HelloTestConan(ConanFile):
+class FrozenTestConan(ConanFile):
 
     settings   = "os", "compiler", "build_type", "arch"
     generators = 'CMakeDeps', 'CMakeToolchain', 'VirtualBuildEnv', 'VirtualRunEnv'
@@ -51,8 +51,8 @@ class HelloTestConan(ConanFile):
         cmake.build()
 
     def test(self):
-        if not cross_building(self):
-            cmd = os.path.join(self.cpp.build.bindirs[0], "test")
+        if can_run(self):
+            cmd = os.path.join(self.cpp.build.bindir, "test")
             self.run(cmd, env="conanrun")
 
 # ================================================================================================================================== #

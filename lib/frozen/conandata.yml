@@ -1,4 +1,0 @@
-patches:
-  "1.1.2-alpha":
-    - patch_file: "patches/079f73c.patch"
-      patch_description: Needed to handle FROZEN_NO_EXCEPTIONS from CMake script
