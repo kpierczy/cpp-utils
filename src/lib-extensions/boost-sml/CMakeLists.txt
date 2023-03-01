@@ -3,13 +3,17 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Tuesday, 15th June 2021 9:10:08 pm
-# @modified   Thursday, 29th December 2022 4:46:44 am
+# @modified   Wednesday, 1st March 2023 2:32:29 am
 # @project    cpp-utils
 # @brief      CMakeList for Boost::SML utilities library
 # 
 # 
 # @copyright Krzysztof Pierczyk © 2022
 # ====================================================================================================================================
+
+find_package(sml CONFIG REQUIRED COMPONENTS sml)
+
+# ================================================================================================================================== #
 
 # Find dependencies
 find_package(sml CONFIG REQUIRED)

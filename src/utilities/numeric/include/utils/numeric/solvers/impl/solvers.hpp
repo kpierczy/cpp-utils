@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Tuesday, 1st February 2022 10:16:35 am
- * @modified   Tuesday, 28th February 2023 8:56:48 pm
+ * @modified   Wednesday, 1st March 2023 12:15:58 am
  * @project    cpp-utils
  * @brief      Implementation of tools related to solving polynomial equations
  *    
@@ -129,7 +129,9 @@ constexpr std::pair<T, T> quadratic(T a, T b, T c) {
     T x_2 = c / x_1;
     
     // Return result
-    return std::pair{ x_1, x_2 };
+    return (x_1 < x_2)
+        ? std::pair{ x_1, x_2 }
+        : std::pair{ x_2, x_1 };
 }
 
 /* ================================================================================================================================ */

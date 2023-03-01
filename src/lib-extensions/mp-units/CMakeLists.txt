@@ -3,13 +3,17 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Wednesday, 7th July 2021 7:57:46 pm
-# @modified   Thursday, 29th December 2022 4:46:57 am
+# @modified   Wednesday, 1st March 2023 2:32:39 am
 # @project    cpp-utils
 # @brief      CMakeList for units' library
 # 
 # 
 # @copyright Krzysztof Pierczyk © 2022
 # ====================================================================================================================================
+
+find_package(mp-units CONFIG REQUIRED COMPONENTS mp-units)
+
+# ================================================================================================================================== #
 
 # Find dependencies
 find_package(mp-units CONFIG REQUIRED)

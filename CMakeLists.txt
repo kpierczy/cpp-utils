@@ -3,7 +3,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Thursday, 3rd February 2022 10:11:45 am
-# @modified   Tuesday, 28th February 2023 2:41:30 pm
+# @modified   Wednesday, 1st March 2023 2:23:01 am
 # @project    cpp-utils
 # @brief      Top-level CMake file of the project
 # 
@@ -25,10 +25,6 @@ endif()
 # Project's header
 project(cpp-utils VERSION 1.1.0 LANGUAGES CXX)
 
-# ============================================================= Options ============================================================ #
-
-option(WITH_TESTS "If ON builds tests" OFF)
-
 # ============================================================ Includes ============================================================ #
 
 include(CTest)
@@ -45,7 +41,7 @@ add_compile_options(-fdiagnostics-color=always)
 add_subdirectory(src)
 
 # Tests directory
-if(MASTER_PROJECT AND WITH_TESTS)
+if(MASTER_PROJECT AND BUILD_TESTING)
 
     # Add tests
     add_subdirectory(tests)

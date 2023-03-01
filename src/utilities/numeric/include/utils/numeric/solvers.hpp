@@ -3,7 +3,7 @@
  * @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
  * @date       Tuesday, 1st February 2022 10:16:35 am
- * @modified   Tuesday, 28th February 2023 8:56:40 pm
+ * @modified   Wednesday, 1st March 2023 12:15:32 am
  * @project    cpp-utils
  * @brief      Definitions of tools related to solving polynomial equations
  *    
@@ -81,6 +81,8 @@ constexpr T linear(T a, T b);
  * @returns 
  *    pair of solutons of the equation. In cases when Δ ≤ 0 one or both of values are set to be
  *    @ref std::numeric_limits<T>::quiet_NaN
+ * 
+ * @note Smaller solution is returned as @a first
  */
 template<typename T = double, unsigned comp_precision = 1>
 constexpr std::pair<T, T> quadratic(T a, T b, T c);

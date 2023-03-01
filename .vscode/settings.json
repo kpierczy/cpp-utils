@@ -15,7 +15,7 @@
     "conan.install_args": [
         "-s", "compiler.cppstd=20",
         "-b", "missing",
-        "-c", "user.build:all=True"
+        "-c", "user.build:all=True",
     ],
 
     // CMake configuration
