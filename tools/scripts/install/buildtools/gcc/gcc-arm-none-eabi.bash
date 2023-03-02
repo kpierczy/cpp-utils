@@ -4,7 +4,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Sunday, 21st November 2021 6:16:17 pm
-# @modified   Monday, 27th February 2023 3:58:16 pm
+# @modified   Thursday, 2nd March 2023 10:44:51 pm
 # @project    cpp-utils
 # @brief      Installs arm-none-eabi toolchain form source (abased on the build script from ARM Embedded Toolchain v10.3-2021.10)
 #    
@@ -42,7 +42,7 @@ declare -A opts_description=(
     [prefix]="installation directory"
     [basedir]="basedire directory for toolchain's builder"
     [verbose_tools]="if set, the building process will be run with verbose output of building tools"
-    [debug]="if set, the debug build will be used"
+    [debug]="if set, target libraries will be built in debug-friendly way (lower optimisations, debug symbols)"
     [autocontinue]="if set, the script will not ask user before building each next stage of toolchain"
 )
 
@@ -142,6 +142,20 @@ function install() {
     declare -a GCC_CONFIG=(
         "--with-host-libstdcxx=-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm"
     )
+
+    # ---------------------------------------------------------------------------
+    # @brief Resulting toolchain will be compiled with multilib support (e.g.
+    #    libc, libc++, libgcc, libgloss, etc. compiled for many target
+    #    architectures) targetting Cortex-M and Cortex-R cores. If Cortex-A
+    #    support is needed, modify multilib option to:
+    #
+    #       --with-multilib-list=rmprofile,aprofile
+    #
+    # @note Execute `arm-none-eabi-gcc -print-multi-lib` to list included
+    #   architectures. Paths to the variant folders are printed relative to
+    #   'arm-none-eabi/lib' directory
+    # ---------------------------------------------------------------------------
+
     # Multilib list
     declare -a MULTILIB_LIST=(
         "--with-multilib-list=rmprofile"
@@ -240,10 +254,10 @@ function install() {
         "--disable-nls"
         "--disable-shared"
         "--disable-threads"
-        "--disable-tls"
-        "--with-newlib"
-        "--without-headers"
-        "--with-gnu-as"
+        "--disable-tls"             # -----------------------------------------------------
+        "--with-newlib"     # <---- # For great explenation of these two options 
+        "--without-headers" # <---- # @see https://www.ryanstan.com/withoutHeaders.html
+        "--with-gnu-as"             # -----------------------------------------------------
         "--with-gnu-ld"
         "--with-pkgversion=$PKG_VERSION"
         "${GCC_CONFIG[@]}"
@@ -253,6 +267,10 @@ function install() {
     declare -A TOOLCHAIN_GCC_BASE_BUILD_ENV=(
         ['CXXFLAGS']="${BUILD_OPTIONS[@]}"
     )
+
+    # ---------------------------------------------------------------------------
+    # @note Basic version of the Newlib library is compiled with -O2
+    # ---------------------------------------------------------------------------
 
     # Configuration of the libc (newlib)
     declare -a TOOLCHAIN_LIBC_CONFIG_FLAGS=(
@@ -276,7 +294,46 @@ function install() {
     is_var_set opts[debug] &&
         TOOLCHAIN_LIBC_BUILD_ENV['CFLAGS_FOR_TARGET']+=" -g"
 
-    # Configuration of the auxiliary libc (newlib nano)
+    # ---------------------------------------------------------------------------
+    # @brief In this script (which is functionally improved equivalent of the 
+    #    original ARM bash building scripts wrt resulting toolchain) the 'libc'
+    #    build step is used to build "Classic Newlib" library targetting bigger
+    #    cores (Cortex-A), while 'libc_aux' step builds so called "Newlib Nano".
+    #    Important note here is that both libraries **are compiled from the
+    #    source code base** and differ only in terms of options options passed
+    #    to Autotools during configuration. The "Newlib Nano" thing is in general
+    #    a fancy name for the library variant introduced by ARM at some revision
+    #    of their "ARM Embedded Toolchain".
+    #
+    #    To versions of the library are accompanied by two dedicated spec files
+    #    (nano.specs and nosys.specs in arm-none-eabi/lib) which guide gcc
+    #    compiler in decision of:
+    #
+    #      - which variant of C library should application be linked against
+    #        (arm-none-eabi/lib/libc.a or arm-none-eabi/lib/libc_nano.a)
+    #      - which variant of rdimon [1] library should application be linked 
+    #        against (arm-none-eabi/lib/libc.a or arm-none-eabi/lib/libc_nano.a)
+    #      - what should be search order of standard includes directories
+    #        (nano version prepends search list with arm-none-eabi/include
+    #        /newlib-nano folder)
+    #
+    #    Newlib Nano version is build by the script in the external (wrt to the
+    #    target --prefix directory) location. Resulting files are used by the
+    #    'gcc_final_aux' step to build libstdc++ library in the 'nano' version.
+    #
+    # @note [1] 'rdimon' library implements ARM-defined semihosting mechanism
+    #    for Cortex-M (see https://github.com/ARM-software/abi-aa/blob/main/
+    #    semihosting/semihosting.rst). It is part of the 'libgloss' library
+    #    (implementing platform-specific code)
+    # @see https://mcuoneclipse.com/2023/01/28/which-embedded-gcc-standard-
+    #    library-newlib-newlib-nano/
+    # @see https://community.arm.com/arm-community-blogs/b/embedded-blog/
+    #    posts/shrink-your-mcu-code-size-with-gcc-arm-embedded-4-7
+    #
+    # @note This version of the library is compiled with -Os
+    # ---------------------------------------------------------------------------
+
+    # Configuration of the auxiliary libc (newlib-nano)
     declare -a TOOLCHAIN_LIBC_AUX_CONFIG_FLAGS=(
         "--disable-newlib-supplied-syscalls"
         "--enable-newlib-reent-check-verify"
@@ -297,12 +354,21 @@ function install() {
         ['CFLAGS_FOR_TARGET']="
             -ffunction-sections
             -fdata-sections
-            -O2
+            -Os
         "
     )
     # Build environment of libc (newlib-nano) [DEBUG]
     is_var_set opts[debug] &&
         TOOLCHAIN_LIBC_AUX_BUILD_ENV['CFLAGS_FOR_TARGET']+=" -g"
+
+    # ---------------------------------------------------------------------------
+    # @brief Basic 'gcc_final' run builds whole GCC (simple 'make') with the
+    #    sysroot configured to the --prefix installation location. As a result,
+    #    the compiler's libraries (especially libc++, but also libgcc, libgloss,
+    #    etc.) are linekd to the 'classic' version of the Newlib library.
+    #
+    # @note This version of the libraries is compiled with -O2
+    # ---------------------------------------------------------------------------
 
     # Configuration of the GCC final build (with newlib)
     declare -a TOOLCHAIN_GCC_FINAL_CONFIG_FLAGS=(
@@ -327,18 +393,36 @@ function install() {
         "--with-pkgversion=$PKG_VERSION"
         "${MULTILIB_LIST[@]}"
     )
-    # Build environment of GCC final build (with newlib) [@note Originally these flags was passed directly to `make`]
-    declare -A TOOLCHAIN_GCC_FINAL_BUILD_ENV=(
-        ['CXXFLAGS']="${BUILD_OPTIONS[@]}"
-        ['INHIBIT_LIBC_CFLAGS']="-DUSE_TM_CLONE_REGISTRY=0"
-    )
 
     # ----------------------------------------------------------------------
     # @note [INHIBIT_LIBC_CFLAGS] variable is set to disable transactional 
     #     memory related code in crtbegin.o. This is a workaround. Better
     #     approach is have a t-* to set this flag via CRTSTUFF_T_CFLAGS
     # ----------------------------------------------------------------------
+    
+    # Build environment of GCC final build (with newlib) [@note Originally these flags was passed directly to `make`]
+    declare -A TOOLCHAIN_GCC_FINAL_BUILD_ENV=(
+        ['CXXFLAGS']="${BUILD_OPTIONS[@]}"
+        ['INHIBIT_LIBC_CFLAGS']="-DUSE_TM_CLONE_REGISTRY=0"
+    )
 
+
+    # ---------------------------------------------------------------------------
+    # @brief The 'gcc_final_aux' run builds whole GCC (simple 'make') with the
+    #    sysroot configured to the external newlib-nano installation location.
+    #    As a result, the compiler's libraries (especially libc++, but also
+    #    libgcc, libgloss, etc.) are linekd to the 'nano' version of the
+    #    library. Resulting files, i.e.:
+    #
+    #      - static libraries [arm-none-eabi/lib(/arm:/thumb)]
+    #      - startup files, e.g. (crt0) [arm-none-eabi/lib]
+    #      - GCC spec files [arm-none-eabi/lib]
+    #
+    #    are copied into the target --prefix location.
+    #
+    # @note This version of the libraries is compiled with -Os
+    # ---------------------------------------------------------------------------
+    
     # Configuration of the GCC final build (with newlib-nano)
     declare -a TOOLCHAIN_GCC_FINAL_AUX_CONFIG_FLAGS=(
         "--enable-languages=c,c++"

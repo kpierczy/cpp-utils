@@ -4,7 +4,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Saturday, 6th November 2021 5:49:03 pm
-# @modified   Thursday, 29th December 2022 1:58:43 am
+# @modified   Friday, 3rd March 2023 12:10:18 am
 # @project    cpp-utils
 # @brief      Installation routines for `binutils` toolset
 #    
@@ -80,8 +80,9 @@ function build_binutils() {
     # ------------------------------------ Finalize -------------------------------------
 
     # Copy <prefix> content to target's installation directory for future use
-    # (these binutils will be used by mid-stage-GCC that is built with --with-sysroot
-    # pointing to the target's installation directory)
+    # (these binutils will be used by final-GCC that is built with --with-sysroot
+    # pointing to the target's installation directory, i.e. when bulding gcc_final_aux
+    # usually used for building optimised version of libc++)
     deep_copy_dir ${dirs[prefix]} ${dirs[install_target]}
 
     # ------------------------------------- Cleanup -------------------------------------

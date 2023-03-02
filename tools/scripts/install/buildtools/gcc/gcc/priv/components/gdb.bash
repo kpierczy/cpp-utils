@@ -4,7 +4,7 @@
 # @author     Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @maintainer Krzysztof Pierczyk (krzysztof.pierczyk@gmail.com)
 # @date       Saturday, 6th November 2021 5:49:03 pm
-# @modified   Thursday, 29th December 2022 1:57:52 am
+# @modified   Friday, 3rd March 2023 12:24:35 am
 # @project    cpp-utils
 # @brief      Installation routines for gdb tool
 #    
@@ -110,7 +110,12 @@ function build_gdb() {
     remove_directory_marker ${dirs[gdb_build]} 'build'
     remove_directory_marker ${dirs[gdb_build]} 'install'
 
+    local -a gdb_extra_config_python=(
+        "--with-python=yes"
+        "--program-suffix=-py"
+    )
+
     # Then build gdb with python support
-    build_gdb_impl gdb_extra_config || return 1
+    build_gdb_impl gdb_extra_config_python || return 1
 
 }
